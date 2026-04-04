@@ -1,745 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Kabini AgroGlobal | Global Agriculture Marketplace</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<title>Kabini Global</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-
-/* ================= ROOT ================= */
-
-:root{
-
---green:#1F7A3A;
---dark-green:#145A2A;
---brown:#6B4F2A;
---gold:#E8A317;
---bg:#F5F7F2;
-
---glass:rgba(255,255,255,.18);
---glass-border:rgba(255,255,255,.3);
-
---radius:22px;
-
+:root {
+    --deep-green: #0f5f2f;
+    --earth-brown: #5c4033;
+    --gold: #d4af37;
+    --white: #ffffff;
+    --bg: #fefcf8;
+    --transition: all 0.4s ease-in-out;
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+/* RESET & BASE */
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif;}
+body {background-color: var(--bg); color:#222; scroll-behavior:smooth; line-height:1.6;}
+
+/* NAVIGATION */
+nav {position:fixed; width:100%; top:0; left:0; padding:20px 50px; display:flex; justify-content:space-between; align-items:center; z-index:1000; background:rgba(15,95,47,0.8); backdrop-filter:blur(12px); transition:var(--transition);}
+nav img {max-height:60px; width:auto;}
+nav ul {display:flex; gap:30px; list-style:none;}
+nav a {color:var(--white); text-decoration:none; font-weight:500; position:relative; transition:var(--transition);}
+nav a::after {content:''; position:absolute; width:0; height:2px; background:var(--gold); bottom:-5px; left:0; transition:var(--transition);}
+nav a:hover::after {width:100%;}
+
+/* HAMBURGER MENU */
+.menu-toggle {display:none; flex-direction:column; cursor:pointer;}
+.menu-toggle div {width:30px; height:3px; background:var(--white); margin:5px 0; transition:0.3s;}
+@media(max-width:768px){
+    nav ul {
+        position:fixed;
+        right:-100%;
+        top:70px;
+        flex-direction:column;
+        width:220px;
+        background:rgba(0,0,0,0.95); /* darker background for visibility */
+        height:calc(100% - 70px);
+        padding:30px;
+        gap:25px;
+        transition:0.5s;
+        border-radius:0 0 0 10px;
+        font-size:18px; /* bigger font */
+    }
+    nav ul.active {right:0;}
+    nav a {color: var(--gold);} /* bright text for visibility */
+    nav a:hover {color: var(--white);}
+    .menu-toggle {display:flex;}
 }
 
-body{
-background:var(--bg);
-overflow-x:hidden;
-color:#333;
-}
-
-/* ================= PARTICLES ================= */
-
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
-opacity:.25;
-}
-
-/* ================= NAVBAR ================= */
-
-nav{
-
-position:fixed;
-top:0;
-width:100%;
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-padding:20px 60px;
-
-background:rgba(255,255,255,.65);
-backdrop-filter:blur(18px);
-
-border-bottom:1px solid rgba(0,0,0,.05);
-
-z-index:100;
-
-}
-
-.logo{
-
-font-size:24px;
-font-weight:700;
-color:var(--green);
-
-}
-
-nav ul{
-
-display:flex;
-gap:30px;
-list-style:none;
-
-}
-
-nav a{
-
-text-decoration:none;
-color:#333;
-font-weight:500;
-
-transition:.3s;
-
-}
-
-nav a:hover{
-color:var(--green);
-}
-
-/* ================= HERO ================= */
-
-.hero{
-
-min-height:100vh;
-
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-
-text-align:center;
-
-padding:24px 24px;
-
-background:
-
-linear-gradient(
-rgba(31,122,58,.75),
-rgba(20,90,42,.75)
-),
-
-url("https://images.unsplash.com/photo-1464226184884-fa280b87c399");
-
-background-size:cover;
-
-color:white;
-
-}
-
-.hero h1{
-
-font-size:4rem;
-
-background:linear-gradient(90deg,#fff,#E8A317);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-
-animation:floatText 6s ease-in-out infinite;
-
-}
-
-@keyframes floatText{
-
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-12px)}
-
-}
-
-.hero p{
-max-width:650px;
-margin-top:20px;
-}
-
-.btn{
-
-margin-top:30px;
-
-padding:14px 40px;
-
-border:none;
-
-border-radius:50px;
-
-background:var(--gold);
-
-font-weight:600;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-.btn:hover{
-
-transform:translateY(-3px);
-
-}
-
-/* ================= TRUST BADGES ================= */
-
-.badges{
-
-display:flex;
-justify-content:center;
-gap:40px;
-
-padding:50px;
-
-flex-wrap:wrap;
-
-background:white;
-
-}
-
-.badge{
-
-padding:10px 20px;
-
-background:var(--bg);
-
-border-radius:30px;
-
-font-weight:500;
-
-}
-
-/* ================= LIVE METRICS ================= */
-
-.metrics{
-
-max-width:1200px;
-margin:80px auto;
-
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-
-gap:30px;
-
-padding:0 20px;
-
-}
-
-.metric{
-
-background:var(--glass);
-border:1px solid var(--glass-border);
-
-backdrop-filter:blur(18px);
-
-padding:30px;
-
-border-radius:var(--radius);
-
-text-align:center;
-
-}
-
-.metric h2{
-color:var(--green);
-}
-
-/* ================= CATEGORIES ================= */
-
-.categories{
-
-max-width:1200px;
-margin:100px auto;
-
-padding:0 20px;
-
-}
-
-.categories h2{
-text-align:center;
-margin-bottom:40px;
-}
-
-.category-grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-
-gap:30px;
-
-}
-
-.category{
-
-background:white;
-
-padding:30px;
-
-border-radius:var(--radius);
-
-text-align:center;
-
-box-shadow:0 15px 40px rgba(0,0,0,.08);
-
-transition:.3s;
-
-}
-
-.category:hover{
-transform:translateY(-8px);
-}
-
-/* ================= PRODUCTS ================= */
-
-.products{
-
-max-width:1200px;
-margin:100px auto;
-padding:0 20px;
-
-}
-
-.products h2{
-text-align:center;
-margin-bottom:40px;
-}
-
-.product-grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-
-gap:30px;
-
-}
-
-.card{
-
-background:white;
-
-border-radius:var(--radius);
-
-padding:20px;
-
-box-shadow:0 15px 40px rgba(0,0,0,.08);
-
-transition:.3s;
-
-}
-
-.card img{
-width:100%;
-border-radius:12px;
-}
-
-.card:hover{
-transform:translateY(-8px);
-}
-
-.price{
-color:var(--green);
-margin:10px 0;
-}
-
-/* ================= FLASH SALE ================= */
-
-.flash{
-
-background:linear-gradient(135deg,var(--gold),#ffd95b);
-
-padding:60px;
-
-text-align:center;
-
-margin-top:80px;
-
-}
-
-.timer{
-font-size:28px;
-margin-top:10px;
-}
-
-/* ================= FARMER MARKETPLACE ================= */
-
-.farmers{
-
-padding:120px 20px;
-
-text-align:center;
-
-background:linear-gradient(135deg,var(--green),var(--dark-green));
-
-color:white;
-
-}
-
-.farmers h2{
-font-size:2.4rem;
-}
-
-/* ================= NEWSLETTER ================= */
-
-.newsletter{
-
-padding:80px 20px;
-text-align:center;
-
-}
-
-.newsletter input{
-
-padding:14px;
-width:260px;
-
-border-radius:6px;
-border:1px solid #ccc;
-
-margin-right:10px;
-
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-
-background:#111;
-
-color:white;
-
-padding:60px 40px;
-
-}
-
-.footer-grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-
-gap:40px;
-
-}
-
-footer p{
-opacity:.7;
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:900px){
-
-.hero h1{
-font-size:2.5rem;
-}
-
-nav{
-padding:20px;
-}
-
-}
+/* HERO */
+.hero {height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; color:var(--white); background:linear-gradient(rgba(15,95,47,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef') center/cover no-repeat; position:relative; overflow:hidden;}
+.hero h1 {font-size:60px; font-weight:700; margin-bottom:20px; animation:fadeInUp 1.2s ease forwards;}
+.hero p {font-size:22px; opacity:0.9; margin-bottom:30px; animation:fadeInUp 1.5s ease forwards;}
+.hero .buttons a {padding:16px 32px; margin:0 10px; border-radius:12px; font-weight:600; text-decoration:none; transition:var(--transition);}
+.btn-primary {background:var(--deep-green); color:var(--white);}
+.btn-primary:hover {background:var(--earth-brown); box-shadow:0 0 20px var(--gold);}
+.btn-secondary {background:var(--white); color:var(--deep-green);}
+.btn-secondary:hover {background:var(--gold); color:var(--white);}
+
+/* SECTIONS */
+.section {padding:100px 60px; text-align:center; position:relative;}
+.section h2 {font-size:36px; margin-bottom:60px; color:var(--deep-green); position:relative;}
+.section h2::after {content:''; width:80px; height:4px; background:var(--gold); display:block; margin:10px auto 0; border-radius:2px;}
+
+/* CORE VALUES */
+.values {display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:30px;}
+.value-card {background:var(--white); border-radius:18px; padding:30px; box-shadow:0 12px 35px rgba(0,0,0,0.12); transition:transform 0.4s ease, box-shadow 0.4s ease; cursor:pointer;}
+.value-card:hover {transform:translateY(-10px) scale(1.05); box-shadow:0 20px 50px rgba(0,0,0,0.2);}
+.value-card h3 {font-size:24px; margin-bottom:12px; color:var(--deep-green);}
+.value-card p {font-size:16px; color:#555;}
+
+/* 2032 GOALS */
+.goals {background:linear-gradient(rgba(15,95,47,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1464226184884-fa280b87c399') center/cover no-repeat; color:var(--white);}
+.goals-container {display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;}
+.goal-list {text-align:left;}
+.goal {margin:15px 0; padding:15px 20px; background:rgba(255,255,255,0.1); border-radius:10px; font-size:18px; transition:var(--transition);}
+.goal:hover {background:rgba(255,255,255,0.2); transform:translateX(10px);}
+.goal-visual {display:grid; grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); gap:20px;}
+.goal-box {padding:40px 15px; text-align:center; background:rgba(255,255,255,0.08); border-radius:15px; transition:var(--transition); animation:float 4s ease-in-out infinite;}
+.goal-box:hover {background:rgba(255,255,255,0.15); transform:translateY(-5px) scale(1.05);}
+.goal-box h1 {color:var(--gold); font-size:32px; margin-bottom:10px;}
+.goal-box p {font-weight:500;}
+
+/* PRODUCTS */
+.products {display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:30px;}
+.product {background:var(--white); border-radius:16px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,0.1); transition:transform 0.4s ease, box-shadow 0.4s ease;}
+.product img {width:100%; height:220px; object-fit:cover; transition:transform 0.5s ease;}
+.product:hover img {transform:scale(1.08);}
+.product h4 {padding:18px; font-size:20px; color:var(--deep-green);}
+
+/* ABOUT */
+.about {display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; text-align:left;}
+.about img {width:100%; border-radius:16px; object-fit:cover; box-shadow:0 12px 25px rgba(0,0,0,0.15);}
+
+/* TEAM */
+.team {display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:30px;}
+.team-member {background:var(--white); padding:30px; border-radius:16px; box-shadow:0 10px 25px rgba(0,0,0,0.1); transition:transform 0.4s ease, box-shadow 0.4s ease;}
+.team-member img {width:100%; border-radius:50%; height:200px; object-fit:cover; transition:transform 0.5s ease;}
+.team-member:hover img {transform:scale(1.05);}
+.team-member h4 {margin:15px 0 5px; color:var(--deep-green);}
+.team-member p {font-size:14px; color:#666;}
+
+/* FOOTER */
+footer {background:var(--deep-green); color:var(--white); padding:60px 40px; text-align:center; position:relative;}
+footer img {max-height:60px; margin-bottom:20px;}
+footer a {color:var(--gold); margin:0 10px; text-decoration:none; transition:var(--transition);}
+footer a:hover {color:var(--white);}
+
+/* ANIMATIONS */
+@keyframes fadeInUp {0% {opacity:0; transform:translateY(50px);}100% {opacity:1; transform:translateY(0);}}
+@keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.goals-container,.about{grid-template-columns:1fr; gap:30px;} .hero h1{font-size:42px;} .hero p{font-size:18px;} nav{padding:15px 25px;}}
+@media(max-width:600px){.hero h1{font-size:32px;}}
 
 </style>
 </head>
-
 <body>
 
-<canvas id="particles"></canvas>
-
+<!-- NAVIGATION -->
 <nav>
-
-<div class="logo">
-    <img src="YOUR_LOGO_URL_HERE.png" alt="Kabini AgroGlobal " class="logo-img">
-</div>
-
-<ul>
-
-<li><a href="index.html">Home</a></li>
-    <li><a href="products.html">Products</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="admin-dashboard.html">Admin</a></li>
-    <li><a href="cart.html">cart</a></li>
-    <li><a href="checkout.html">checkout</a></li>
-    <li><a href="flashsales.html">flashsales</a></li>
-    <li><a href="invoice.html">invoice</a></li>
-    <li><a href="receipt.html">receipt</a></li>
-    <li><a href="login.html">login</a></li>
-    <li><a href="register.html">register</a></li>
-    <li><a href="tracking.html">tracking</a></li>
-    <li><a href="orders.html">orders</a></li>
-
-</ul>
-
+      <div class="logo-container">
+        <img src="NEXACORE CANVAS/IMG-20260323-WA0001.jpg" alt="Kabini Global Logo">
+        <span class="logo-text">KABINI GLOBAL LTD</span>
+    </div>
+    
+    <ul>
+        <li><a href="#hero">🏠 Home</a></li>
+        <li><a href="#values">💡 Values</a></li>
+        <li><a href="#goals">🎯 Goals</a></li>
+        <li><a href="product.html">🛒 Products</a></li>
+        <li><a href="#about">📖 About</a></li>
+        <li><a href="#team">👥 Team</a></li>
+        <li><a href="#contact">✉️ Contact</a></li>
+    </ul>
+    <div class="menu-toggle"><div></div><div></div><div></div></div>
 </nav>
 
-<section class="hero">
-
-<h1>The Global Agriculture Marketplace</h1>
-
-<p>Connecting farmers and buyers worldwide.</p>
-
-<button class="btn">Explore Marketplace</button>
-
+<!-- HERO -->
+<section class="hero" id="hero">
+    <h1>Powering the Future of Food</h1>
+    <p>Innovation • Agriculture • Sustainability</p>
+    <div class="buttons">
+        <a href="#products" class="btn btn-primary">Explore Products</a>
+        <a href="#about" class="btn btn-secondary">Learn More</a>
+    </div>
 </section>
 
-<div class="badges">
-
-<div class="badge">🌾 Direct From Farmers</div>
-<div class="badge">🚚 Global Delivery</div>
-<div class="badge">🌱 Organic Produce</div>
-<div class="badge">🔒 Secure Payments</div>
-
-</div>
-
-<section class="metrics">
-
-<div class="metric">
-<h2 id="farmers">0</h2>
-<p>Farmers</p>
-</div>
-
-<div class="metric">
-<h2 id="productsCount">0</h2>
-<p>Products</p>
-</div>
-
-<div class="metric">
-<h2 id="orders">0</h2>
-<p>Orders</p>
-</div>
-
-<div class="metric">
-<h2 id="sales">0</h2>
-<p>Live Sales</p>
-</div>
-
+<!-- VALUES -->
+<section class="section" id="values">
+    <h2>Our Core Values</h2>
+    <div class="values">
+        <div class="value-card"><h3>Operational Excellence</h3><p>Precision & efficiency in all operations.</p></div>
+        <div class="value-card"><h3>Customer Innovation</h3><p>Future-driven solutions for every client.</p></div>
+        <div class="value-card"><h3>Impact Strategy</h3><p>Driving sustainable growth.</p></div>
+        <div class="value-card"><h3>Quality Delivery</h3><p>Premium standards, every time.</p></div>
+        <div class="value-card"><h3>Integrity</h3><p>Honesty and transparency in business.</p></div>
+        <div class="value-card"><h3>Collaboration</h3><p>Working together for maximum impact.</p></div>
+    </div>
 </section>
 
-<section class="categories">
-
-<h2>Marketplace Categories</h2>
-
-<div class="category-grid">
-
-<div class="category">🌾 Grains</div>
-<div class="category">🥕 Vegetables</div>
-<div class="category">🍎 Fruits</div>
-<div class="category">🐄 Livestock</div>
-<div class="category">🌱 Seeds</div>
-<div class="category">🚜 Equipment</div>
-
-</div>
-
+<!-- 2032 GOALS -->
+<section class="section goals" id="goals">
+    <h2>Our 2032 Goals</h2>
+    <div class="goals-container">
+        <div class="goal-list">
+            <div class="goal">Quality Production</div>
+            <div class="goal">Digital Transformation</div>
+            <div class="goal">Economic Growth</div>
+            <div class="goal">Collaborative Innovation</div>
+            <div class="goal">Sustainability Practices</div>
+        </div>
+        <div class="goal-visual">
+            <div class="goal-box"><h1>01</h1><p>Quality</p></div>
+            <div class="goal-box"><h1>02</h1><p>Digital</p></div>
+            <div class="goal-box"><h1>03</h1><p>Growth</p></div>
+            <div class="goal-box"><h1>04</h1><p>Innovation</p></div>
+            <div class="goal-box"><h1>05</h1><p>Sustainability</p></div>
+        </div>
+    </div>
 </section>
 
-<section class="products">
-
-<h2>Featured Products</h2>
-
-<div class="product-grid" id="productsGrid"></div>
-
+<!-- PRODUCTS -->
+<section class="section" id="products">
+    <h2>Our Products</h2>
+    <div class="products">
+        <div class="product"><img src="NEXACORE CANVAS/IMG-20260325-WA0027.jpg" alt="Kabini Oil"><h4>Kabini Oil</h4></div>
+        <div class="product"><img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc" alt="Rice Flour"><h4>Rice Flour</h4></div>
+        <div class="product"><img src="https://images.unsplash.com/photo-1604908176997-431fd7b8a3c6" alt="Corn Flour"><h4>Corn Flour</h4></div>
+        <div class="product"><img src="https://images.unsplash.com/photo-1625944525533-473f1b3d54e7" alt="Chin Chin"><h4>Chin Chin</h4></div>
+        <div class="product"><img src="https://images.unsplash.com/photo-1564419320461-6870880221ad" alt="Water"><h4>Water</h4></div>
+    </div>
 </section>
 
-<section class="flash">
-
-<h2>Flash Sale</h2>
-
-<div class="timer" id="timer">24:00:00</div>
-
+<!-- ABOUT -->
+<section class="section about" id="about">
+    <div>
+        <h2>About Kabini Integrated Nigeria Limited</h2>
+        <p><strong>Driving the Future of Agriculture in Africa</strong></p>
+        <p>We deliver high-quality food products through innovation and sustainability, ensuring consistent excellence across all our operations.</p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70" alt="About Kabini">
 </section>
 
-<section class="farmers">
-
-<h2>Sell Your Farm Products Globally</h2>
-
-<button class="btn">Become a Farmer Partner</button>
-
+<!-- TEAM -->
+<section class="section" id="team">
+    <h2>Meet Our Team</h2>
+    <div class="team">
+        <div class="team-member"><img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a1" alt="Jane Doe"><h4>Jane Doe</h4><p>CEO & Founder</p></div>
+        <div class="team-member"><img src="https://images.unsplash.com/photo-1603415526960-f5b3d3b9a932" alt="John Smith"><h4>John Smith</h4><p>Head of Operations</p></div>
+        <div class="team-member"><img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a1" alt="Mary Johnson"><h4>Mary Johnson</h4><p>Chief Innovation Officer</p></div>
+    </div>
 </section>
 
-<section class="newsletter">
-
-<h2>Subscribe for Market Updates</h2>
-
-<input type="email" placeholder="Enter your email">
-
-<button class="btn">Subscribe</button>
-
-</section>
-
-<footer>
-
-<div class="footer-grid">
-
-<div>
-<h3>Kabini AgroGlobal</h3>
-<p>Global agriculture marketplace.</p>
-</div>
-
-<div>
-<h4>Marketplace</h4>
-<p>Products</p>
-<p>Farmers</p>
-<p>Flash Sales</p>
-</div>
-
-<div>
-<h4>Company</h4>
-<p>About</p>
-<p>Careers</p>
-</div>
-
-<div>
-<h4>Support</h4>
-<p>Help Center</p>
-<p>Shipping</p>
-</div>
-
-</div>
-
+<!-- FOOTER -->
+<footer id="contact">
+    <img src="NEXACORE CANVAS/IMG-20260323-WA0001.jpg" alt="Kabini Global Logo">
+    <p>© 2026 Kabini Global</p>
+    <p><a href="https://www.facebook.com/YourPageName" target="_blank" rel="noopener noreferrer">Facebook</a> | 
+   <a href="https://www.instagram.com/YourProfileName" target="_blank" rel="noopener noreferrer">Instagram</a> | 
+   <a href="https://www.linkedin.com/company/YourCompanyName" target="_blank" rel="noopener noreferrer">LinkedIn</a> | 
+   <a href="https://twitter.com/YourProfileName" target="_blank" rel="noopener noreferrer">Twitter</a>
+   <a href="https://wa.me/2348000000000" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+</p>
+    <p>Contact: info@kabini.com | +234 800 000 0000</p>
 </footer>
 
 <script>
+// Hamburger toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const navUl = document.querySelector('nav ul');
+menuToggle.addEventListener('click', () => { navUl.classList.toggle('active'); });
 
-/* ================= PRODUCTS ================= */
-
-const products=[
-
-{id:1,name:"KABINI AGROGLOBAL",price:100000,cat:"grain",img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260323-WA0001.jpg",sale:true},
-{id:2,name:"KABINI TABLE WATER",price:4000,cat:"fruit",img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260323-WA0002.jpg",sale:true},
-{id:3,name:"KABINI GROUNDNUT OIL",price:20000,cat:"livestock",img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260325-WA0027.jpg",sale:false},
-{id:4,name:"KABINI ONLINE STORE",price:30000,cat:"fruit",img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260325-WA0028.jpg",sale:true},
-{id:5,name:"CATTLES",price:2000000,cat:"livestock",img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/47b551b04a66cdd9039b46c01076b164.jpg",sale:true},
-{id:6,name:"GOATS",price:35000,cat:"livestock",img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/5b538c0521fb05c889c0239139e561da.jpg",sale:false},
-{id:7,name:"LAYERS",price:25000,cat:"livestock",img:"httPs://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/4d859011438527d70f5236717eff0cd0.jpg",sale:false},
-{id:8,name:"DUCKS",price:45000,cat:"livestock",img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/592b4baaa4532b786bb044b5c2289e02.jpg",sale:false},
-]
-
-document.getElementById("productsCount").innerText=products.length
-
-function renderProducts(){
-
-const grid=document.getElementById("productsGrid")
-
-products.forEach(p=>{
-
-grid.innerHTML+=`
-
-<div class="card">
-
-<img src="${p.img}">
-
-<h4>${p.name}</h4>
-
-<p class="price">₦${p.price}</p>
-
-<button class="btn" onclick="addToCart(${p.id})">Add To Cart</button>
-
-</div>
-
-`
-
-})
-
-}
-
-renderProducts()
-
-function addToCart(id){
-
-let cart=JSON.parse(localStorage.getItem("cart"))||[]
-
-const product=products.find(p=>p.id===id)
-
-const item=cart.find(p=>p.id===id)
-
-if(item) item.qty++
-else cart.push({...product,qty:1})
-
-localStorage.setItem("cart",JSON.stringify(cart))
-
-alert(product.name+" added to cart")
-
-}
-
-/* ================= FLASH SALE TIMER ================= */
-
-let end=new Date().getTime()+86400000
-
-setInterval(()=>{
-
-let now=new Date().getTime()
-
-let distance=end-now
-
-let h=Math.floor(distance/(1000*60*60))
-let m=Math.floor((distance%(1000*60*60))/(1000*60))
-let s=Math.floor((distance%(1000*60))/1000)
-
-document.getElementById("timer").innerText=`${h}:${m}:${s}`
-
-},1000)
-
-/* ================= LIVE STATS ================= */
-
-let sales=200
-
-setInterval(()=>{
-
-sales+=Math.floor(Math.random()*3)
-
-document.getElementById("sales").innerText=sales
-
-},2000)
-
-document.getElementById("farmers").innerText=540
-document.getElementById("orders").innerText=2800
-
-/* ================= PARTICLES ================= */
-
-const canvas=document.getElementById("particles")
-const ctx=canvas.getContext("2d")
-
-canvas.width=innerWidth
-canvas.height=innerHeight
-
-let particles=[]
-
-for(let i=0;i<80;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2,
-vx:Math.random()-.5,
-vy:Math.random()-.5
-})
-}
-
-function animate(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height)
-
-particles.forEach(p=>{
-p.x+=p.vx
-p.y+=p.vy
-
-ctx.beginPath()
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
-ctx.fillStyle="rgba(31,122,58,.5)"
-ctx.fill()
-})
-
-requestAnimationFrame(animate)
-
-}
-
-animate()
-
+// Smooth scrolling
+document.querySelectorAll('nav a, .btn').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:'smooth'});
+        navUl.classList.remove('active'); // close menu on mobile
+    });
+});
 </script>
 
 </body>
