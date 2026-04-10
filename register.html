@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kabini Global - Register</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+    --deep-green:#0f5f2f;
+    --earth-brown:#5c4033;
+    --gold:#d4af37;
+    --white:#fff;
+    --bg:#fefcf8;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:var(--bg);}
+
+/* NAV */
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 30px;
+    background:rgba(15,95,47,0.9);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
+
+.logo-container{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#fff;
+}
+
+.logo-container img{height:45px;}
+
+nav ul{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+nav a{color:#fff;text-decoration:none;}
+
+.menu-toggle{display:none;flex-direction:column;cursor:pointer;}
+.menu-toggle div{width:25px;height:3px;background:#fff;margin:4px;}
+
+@media(max-width:768px){
+    nav ul{
+        position:fixed;
+        right:-100%;
+        top:65px;
+        flex-direction:column;
+        width:260px;
+        height:100%;
+        padding:25px;
+        background:rgba(255,255,255,0.15);
+        backdrop-filter:blur(20px);
+        transition:0.5s;
+    }
+    nav ul.active{right:0;}
+    .menu-toggle{display:flex;}
+}
+
+/* REGISTER */
+.container{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding-top:80px;
+}
+
+.register-box{
+    background:#fff;
+    padding:40px;
+    border-radius:15px;
+    width:100%;
+    max-width:420px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.register-box h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:var(--deep-green);
+}
+
+.input-group{margin-bottom:15px;}
+
+.input-group input{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+.btn{
+    width:100%;
+    padding:12px;
+    background:var(--deep-green);
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.btn:hover{background:var(--earth-brown);}
+
+.extra{text-align:center;margin-top:15px;}
+.extra a{color:var(--deep-green);text-decoration:none;font-weight:600;}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:var(--deep-green);
+    color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo-container">
+<img src="NEXACORE CANVAS/IMG-20260323-WA0001.jpg">
+<span>KABINI GLOBAL LTD</span>
+</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="order.html">Orders</a></li>
+<li><a href="product.html">Products</a></li>
+<li><a href="cart.html">Cart</a></li>
+<li><a href="checkout.html">Checkout</a></li>
+<li><a href="receipt.html">Receipt</a></li>
+<li><a href="login.html">Login</a></li>
+</ul>
+
+<div class="menu-toggle"><div></div><div></div><div></div></div>
+</nav>
+
+<div class="container">
+<div class="register-box">
+<h2>Create Account</h2>
+
+<div class="input-group">
+<input type="text" id="name" placeholder="Full Name">
+</div>
+
+<div class="input-group">
+<input type="email" id="email" placeholder="Email">
+</div>
+
+<div class="input-group">
+<input type="password" id="password" placeholder="Password">
+</div>
+
+<div class="input-group">
+<input type="password" id="confirm" placeholder="Confirm Password">
+</div>
+
+<button class="btn" onclick="register()">Register</button>
+
+<div class="extra">
+<p>Already have an account? <a href="login.html">Login</a></p>
+</div>
+</div>
+</div>
+
+<footer>
+<p>© 2026 Kabini Global</p>
+</footer>
+
+<script>
+const toggle=document.querySelector('.menu-toggle');
+const nav=document.querySelector('nav ul');
+toggle.addEventListener('click',()=>nav.classList.toggle('active'));
+
+function register(){
+    const name=document.getElementById('name').value;
+    const email=document.getElementById('email').value;
+    const password=document.getElementById('password').value;
+    const confirm=document.getElementById('confirm').value;
+
+    if(!name || !email || !password || !confirm){
+        alert('Please fill all fields');
+        return;
+    }
+
+    if(password !== confirm){
+        alert('Passwords do not match');
+        return;
+    }
+
+    const user = {name,email,password};
+    localStorage.setItem('kabiniUser', JSON.stringify(user));
+
+    alert('Registration successful!');
+    window.location.href='login.html';
+}
+</script>
+
+</body>
+<script src="app.js"></script>
+</html>
