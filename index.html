@@ -4,248 +4,403 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kabini Global</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ICON LIBRARY -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 :root {
-    --deep-green: #0f5f2f;
-    --earth-brown: #5c4033;
-    --gold: #d4af37;
-    --white: #ffffff;
-    --bg: #fefcf8;
-    --transition: all 0.4s ease-in-out;
+    --deep-green:#0f5f2f;
+    --earth-brown:#5c4033;
+    --gold:#d4af37;
+    --white:#fff;
+    --bg:#fefcf8;
+    --transition:all 0.4s ease;
 }
 
-/* RESET & BASE */
-* {margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif;}
-body {background-color: var(--bg); color:#222; scroll-behavior:smooth; line-height:1.6;}
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:var(--bg);line-height:1.6;scroll-behavior:smooth;}
 
-/* NAVIGATION */
-nav {position:fixed; width:100%; top:0; left:0; padding:20px 50px; display:flex; justify-content:space-between; align-items:center; z-index:1000; background:rgba(15,95,47,0.8); backdrop-filter:blur(12px); transition:var(--transition);}
-nav img {max-height:60px; width:auto;}
-nav ul {display:flex; gap:30px; list-style:none;}
-nav a {color:var(--white); text-decoration:none; font-weight:500; position:relative; transition:var(--transition);}
-nav a::after {content:''; position:absolute; width:0; height:2px; background:var(--gold); bottom:-5px; left:0; transition:var(--transition);}
-nav a:hover::after {width:100%;}
+/* NAV */
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 30px;
+    background:rgba(15,95,47,0.9);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
 
-/* HAMBURGER MENU */
-.menu-toggle {display:none; flex-direction:column; cursor:pointer;}
-.menu-toggle div {width:30px; height:3px; background:var(--white); margin:5px 0; transition:0.3s;}
+.logo-container{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#fff;
+    font-weight:600;
+}
+
+.logo-container img{height:45px;}
+
+nav ul{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    position:relative;
+    font-weight:600;
+}
+
+nav a::after{
+    content:'';
+    position:absolute;
+    width:0;
+    height:2px;
+    background:var(--gold);
+    bottom:-5px;
+    left:0;
+    transition:0.3s;
+}
+
+nav a:hover::after{width:100%;}
+
+/* MOBILE */
+.menu-toggle{
+    display:none;
+    flex-direction:column;
+    cursor:pointer;
+}
+.menu-toggle div{
+    width:25px;height:3px;background:#fff;margin:4px;
+}
+
 @media(max-width:768px){
-    nav ul {
+    nav ul{
         position:fixed;
         right:-100%;
-        top:70px;
+        top:65px;
         flex-direction:column;
-        width:220px;
-        background:rgba(0,0,0,0.95); /* darker background for visibility */
-        height:calc(100% - 70px);
-        padding:30px;
-        gap:25px;
-        transition:0.5s;
-        border-radius:0 0 0 10px;
-        font-size:18px; /* bigger font */
+        width:260px;
+        height:calc(100% - 65px);
+        padding:25px;
+        gap:15px;
+
+        /* PREMIUM GLASSMORPHISM */
+        background:rgba(255,255,255,0.15);
+        backdrop-filter:blur(20px);
+        border-left:1px solid rgba(255,255,255,0.2);
+
+        transition:0.5s ease;
+        z-index:999;
     }
-    nav ul.active {right:0;}
-    nav a {color: var(--gold);} /* bright text for visibility */
-    nav a:hover {color: var(--white);}
-    .menu-toggle {display:flex;}
+
+    nav ul.active{
+        right:0;
+    }
+
+    /* PREMIUM CARD ITEMS */
+    nav ul li{
+        list-style:none;
+        background:rgba(255,255,255,0.9);
+        border-radius:12px;
+        padding:12px 15px;
+        box-shadow:0 6px 15px rgba(0,0,0,0.15);
+        transition:0.3s ease;
+        display:flex;
+        align-items:center;
+        gap:10px;
+        cursor:pointer;
+    }
+
+    nav ul li i{
+        color:var(--deep-green);
+        font-size:14px;
+    }
+
+    nav ul li a{
+        color:#000;
+        display:block;
+        width:100%;
+        font-weight:600;
+    }
+
+    nav ul li:hover{
+        transform:scale(1.05);
+        box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    nav ul li:active{
+        transform:scale(0.97);
+    }
+
+    nav ul li a::after{
+        display:none;
+    }
+
+    .menu-toggle{display:flex;}
 }
 
 /* HERO */
-.hero {height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; color:var(--white); background:linear-gradient(rgba(15,95,47,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef') center/cover no-repeat; position:relative; overflow:hidden;}
-.hero h1 {font-size:60px; font-weight:700; margin-bottom:20px; animation:fadeInUp 1.2s ease forwards;}
-.hero p {font-size:22px; opacity:0.9; margin-bottom:30px; animation:fadeInUp 1.5s ease forwards;}
-.hero .buttons a {padding:16px 32px; margin:0 10px; border-radius:12px; font-weight:600; text-decoration:none; transition:var(--transition);}
-.btn-primary {background:var(--deep-green); color:var(--white);}
-.btn-primary:hover {background:var(--earth-brown); box-shadow:0 0 20px var(--gold);}
-.btn-secondary {background:var(--white); color:var(--deep-green);}
-.btn-secondary:hover {background:var(--gold); color:var(--white);}
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:#fff;
+    background:linear-gradient(rgba(15,95,47,0.6),rgba(0,0,0,0.6)),
+    url('NEXACORE CANVAS/photorealistic-view-african-people-harvesting-vegetables-grains.jpg') center/cover;
+}
+
+.hero h1{font-size:55px;margin-bottom:20px;animation:fadeInUp 1s;font-weight:700;}
+.hero p{font-size:20px;margin-bottom:30px;animation:fadeInUp 1.3s;font-weight:500;}
+
+.btn{
+    padding:15px 30px;
+    border-radius:10px;
+    text-decoration:none;
+    background:var(--deep-green);
+    color:#fff;
+    font-weight:600;
+}
+.btn:hover{background:var(--earth-brown);}
 
 /* SECTIONS */
-.section {padding:100px 60px; text-align:center; position:relative;}
-.section h2 {font-size:36px; margin-bottom:60px; color:var(--deep-green); position:relative;}
-.section h2::after {content:''; width:80px; height:4px; background:var(--gold); display:block; margin:10px auto 0; border-radius:2px;}
+.section{padding:90px 40px;text-align:center;}
+.section h2{color:var(--deep-green);margin-bottom:40px;font-weight:700;}
 
-/* CORE VALUES */
-.values {display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:30px;}
-.value-card {background:var(--white); border-radius:18px; padding:30px; box-shadow:0 12px 35px rgba(0,0,0,0.12); transition:transform 0.4s ease, box-shadow 0.4s ease; cursor:pointer;}
-.value-card:hover {transform:translateY(-10px) scale(1.05); box-shadow:0 20px 50px rgba(0,0,0,0.2);}
-.value-card h3 {font-size:24px; margin-bottom:12px; color:var(--deep-green);}
-.value-card p {font-size:16px; color:#555;}
+/* VALUES */
+.values{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+.card{
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    font-weight:600;
+}
 
-/* 2032 GOALS */
-.goals {background:linear-gradient(rgba(15,95,47,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1464226184884-fa280b87c399') center/cover no-repeat; color:var(--white);}
-.goals-container {display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;}
-.goal-list {text-align:left;}
-.goal {margin:15px 0; padding:15px 20px; background:rgba(255,255,255,0.1); border-radius:10px; font-size:18px; transition:var(--transition);}
-.goal:hover {background:rgba(255,255,255,0.2); transform:translateX(10px);}
-.goal-visual {display:grid; grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); gap:20px;}
-.goal-box {padding:40px 15px; text-align:center; background:rgba(255,255,255,0.08); border-radius:15px; transition:var(--transition); animation:float 4s ease-in-out infinite;}
-.goal-box:hover {background:rgba(255,255,255,0.15); transform:translateY(-5px) scale(1.05);}
-.goal-box h1 {color:var(--gold); font-size:32px; margin-bottom:10px;}
-.goal-box p {font-weight:500;}
+/* GOALS */
+.goals{
+    background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+    url('NEXACORE CANVAS/photorealistic-portrait-african-rastafarian-woman-with-dreads.jpg') center/cover;
+    color:#fff;
+}
+.goal{
+    background:rgba(255,255,255,0.15);
+    padding:15px;
+    margin:10px 0;
+    border-radius:10px;
+    font-weight:700;
+}
 
 /* PRODUCTS */
-.products {display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:30px;}
-.product {background:var(--white); border-radius:16px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,0.1); transition:transform 0.4s ease, box-shadow 0.4s ease;}
-.product img {width:100%; height:220px; object-fit:cover; transition:transform 0.5s ease;}
-.product:hover img {transform:scale(1.08);}
-.product h4 {padding:18px; font-size:20px; color:var(--deep-green);}
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+.product img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:10px;
+}
 
 /* ABOUT */
-.about {display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; text-align:left;}
-.about img {width:100%; border-radius:16px; object-fit:cover; box-shadow:0 12px 25px rgba(0,0,0,0.15);}
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    align-items:center;
+    text-align:left;
+}
+.about img{width:100%;border-radius:10px;}
+
+@media(max-width:768px){
+    .about{grid-template-columns:1fr;}
+}
 
 /* TEAM */
-.team {display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:30px;}
-.team-member {background:var(--white); padding:30px; border-radius:16px; box-shadow:0 10px 25px rgba(0,0,0,0.1); transition:transform 0.4s ease, box-shadow 0.4s ease;}
-.team-member img {width:100%; border-radius:50%; height:200px; object-fit:cover; transition:transform 0.5s ease;}
-.team-member:hover img {transform:scale(1.05);}
-.team-member h4 {margin:15px 0 5px; color:var(--deep-green);}
-.team-member p {font-size:14px; color:#666;}
+.team{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+.team-member{
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+}
+.team-member img{
+    width:100%;
+    border-radius:50%;
+}
 
 /* FOOTER */
-footer {background:var(--deep-green); color:var(--white); padding:60px 40px; text-align:center; position:relative;}
-footer img {max-height:60px; margin-bottom:20px;}
-footer a {color:var(--gold); margin:0 10px; text-decoration:none; transition:var(--transition);}
-footer a:hover {color:var(--white);}
+footer{
+    background:var(--deep-green);
+    color:#fff;
+    text-align:center;
+    padding:40px;
+}
+footer img{height:50px;margin-bottom:10px;}
+footer a{
+    color:var(--gold);
+    font-weight:600;
+    text-decoration:none;
+}
+footer a:hover{text-decoration:underline;}
 
-/* ANIMATIONS */
-@keyframes fadeInUp {0% {opacity:0; transform:translateY(50px);}100% {opacity:1; transform:translateY(0);}}
-@keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-
-/* RESPONSIVE */
-@media(max-width:1024px){.goals-container,.about{grid-template-columns:1fr; gap:30px;} .hero h1{font-size:42px;} .hero p{font-size:18px;} nav{padding:15px 25px;}}
-@media(max-width:600px){.hero h1{font-size:32px;}}
-
+/* ANIMATION */
+@keyframes fadeInUp{
+    from{opacity:0;transform:translateY(40px);}
+    to{opacity:1;transform:translateY(0);}
+}
 </style>
 </head>
+
 <body>
 
-<!-- NAVIGATION -->
+<!-- NAV -->
 <nav>
-      <div class="logo-container">
-        <img src="NEXACORE CANVAS/IMG-20260323-WA0001.jpg" alt="Kabini Global Logo">
-        <span class="logo-text">KABINI GLOBAL LTD</span>
-    </div>
-    
-    <ul>
-        <li><a href="#hero">🏠 Home</a></li>
-        <li><a href="#values">💡 Values</a></li>
-        <li><a href="#goals">🎯 Goals</a></li>
-        <li><a href="product.html">🛒 Products</a></li>
-        <li><a href="#about">📖 About</a></li>
-        <li><a href="#team">👥 Team</a></li>
-        <li><a href="#contact">✉️ Contact</a></li>
-    </ul>
-    <div class="menu-toggle"><div></div><div></div><div></div></div>
+<div class="logo-container">
+<img src="NEXACORE CANVAS/IMG-20260323-WA0001.jpg">
+<span>KABINI GLOBAL LTD</span>
+</div>
+
+<ul>
+<li><i class="fas fa-home"></i><a href="index.html">Home</a></li>
+<li><i class="fas fa-leaf"></i><a href="order.html">Orders</a></li>
+<li><i class="fas fa-bullseye"></i><a href="login.html">login</a></li>
+<li><i class="fas fa-box"></i><a href="product.html">Products</a></li>
+<li><i class="fas fa-circle-info"></i><a href="about.html">About</a></li>
+<li><i class="fas fa-users"></i><a href="receipt.html">receipt</a></li>
+<li><i class="fas fa-phone"></i><a href="contact.html">Contact</a></li>
+<li><i class="fas fa-cart-shopping"></i><a href="cart.html">Cart</a></li>
+<li><i class="fas fa-credit-card"></i><a href="checkout.html">Checkout</a></li>
+<li><i class="fas fa-bolt"></i><a href="invoice.html">Invoice</a></li>
+</ul><li><i class="fas fa-bolt"></i><a href="register.html">register</a></li>
+
+<div class="menu-toggle"><div></div><div></div><div></div></div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="hero">
-    <h1>Powering the Future of Food</h1>
-    <p>Innovation • Agriculture • Sustainability</p>
-    <div class="buttons">
-        <a href="#products" class="btn btn-primary">Explore Products</a>
-        <a href="#about" class="btn btn-secondary">Learn More</a>
-    </div>
+<h1>Kabini Global. 
+Africa’s Trusted Source for High-Quality Agricultural Products.</h1>
+<p>Innovation • Agriculture • Sustainability</p>
+<a href="product.html" class="btn">Explore Product</a>
 </section>
 
 <!-- VALUES -->
 <section class="section" id="values">
-    <h2>Our Core Values</h2>
-    <div class="values">
-        <div class="value-card"><h3>Operational Excellence</h3><p>Precision & efficiency in all operations.</p></div>
-        <div class="value-card"><h3>Customer Innovation</h3><p>Future-driven solutions for every client.</p></div>
-        <div class="value-card"><h3>Impact Strategy</h3><p>Driving sustainable growth.</p></div>
-        <div class="value-card"><h3>Quality Delivery</h3><p>Premium standards, every time.</p></div>
-        <div class="value-card"><h3>Integrity</h3><p>Honesty and transparency in business.</p></div>
-        <div class="value-card"><h3>Collaboration</h3><p>Working together for maximum impact.</p></div>
-    </div>
+<h2>Our Core Values</h2>
+<div class="values">
+<div class="card">Operational Excellence</div>
+<div class="card">Trusted Supply</div>
+<div class="card">Superior Quality</div>
+<div class="card">Seamless Global Delivery</div>
+</div>
 </section>
 
-<!-- 2032 GOALS -->
+<!-- GOALS -->
 <section class="section goals" id="goals">
-    <h2>Our 2032 Goals</h2>
-    <div class="goals-container">
-        <div class="goal-list">
-            <div class="goal">Quality Production</div>
-            <div class="goal">Digital Transformation</div>
-            <div class="goal">Economic Growth</div>
-            <div class="goal">Collaborative Innovation</div>
-            <div class="goal">Sustainability Practices</div>
-        </div>
-        <div class="goal-visual">
-            <div class="goal-box"><h1>01</h1><p>Quality</p></div>
-            <div class="goal-box"><h1>02</h1><p>Digital</p></div>
-            <div class="goal-box"><h1>03</h1><p>Growth</p></div>
-            <div class="goal-box"><h1>04</h1><p>Innovation</p></div>
-            <div class="goal-box"><h1>05</h1><p>Sustainability</p></div>
-        </div>
-    </div>
+<h2>Our  Goals</h2>
+<div>
+<div class="goal">Quality Production</div>
+<div class="goal">Digital Transformation</div>
+<div class="goal">Economic Growth</div>
+<div class="goal">Sustainability</div>
+</div>
 </section>
 
 <!-- PRODUCTS -->
 <section class="section" id="products">
-    <h2>Our Products</h2>
-    <div class="products">
-        <div class="product"><img src="NEXACORE CANVAS/IMG-20260325-WA0027.jpg" alt="Kabini Oil"><h4>Kabini Oil</h4></div>
-        <div class="product"><img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc" alt="Rice Flour"><h4>Rice Flour</h4></div>
-        <div class="product"><img src="https://images.unsplash.com/photo-1604908176997-431fd7b8a3c6" alt="Corn Flour"><h4>Corn Flour</h4></div>
-        <div class="product"><img src="https://images.unsplash.com/photo-1625944525533-473f1b3d54e7" alt="Chin Chin"><h4>Chin Chin</h4></div>
-        <div class="product"><img src="https://images.unsplash.com/photo-1564419320461-6870880221ad" alt="Water"><h4>Water</h4></div>
-    </div>
+<h2>Our Products</h2>
+<div class="products">
+<div class="product"><img src="NEXACORE CANVAS/IMG-20260323-WA0001.jpg"></div>
+<div class="product"><img src="NEXACORE CANVAS/IMG-20260331-WA0013.jpg"></div>
+<div class="product"><img src="NEXACORE CANVAS/IMG-20260331-WA0014.jpg"></div>
+<div class="product"><img src="NEXACORE CANVAS/IMG-20260331-WA0008.jpg"></div>
+<div class="product"><img src="NEXACORE CANVAS/IMG-20260325-WA0028.jpg"></div>
+<div class="product"><img src="NEXACORE CANVAS/IMG-20260331-WA0003.jpg"></div>
+<div class="product"><img src="NEXACORE CANVAS/IMG-20260331-WA0012(1).jpg"></div>
+<div class="product"><img src="NEXACORE CANVAS/2bbffd3f91915d0b25940ac0ac608d40.jpg"></div>
+<div class="product"><img src="NEXACORE CANVAS/IMG-20260410-WA0006.jpg"></div>
+<div class="product"><img src="NEXACORE CANVAS/5b538c0521fb05c889c0239139e561da.jpg"></div>
+<div class="product"><img src="NEXACORE CANVAS/5c935cd486763b3bfa7d4bd2c454020b.jpg"></div>
+<div class="product"><img src="NEXACORE CANVAS/8dc40fc8fbbe300fbfaae586b25b1cdb.jpg"></div>
+</div>
 </section>
 
 <!-- ABOUT -->
 <section class="section about" id="about">
-    <div>
-        <h2>About Kabini Integrated Nigeria Limited</h2>
-        <p><strong>Driving the Future of Agriculture in Africa</strong></p>
-        <p>We deliver high-quality food products through innovation and sustainability, ensuring consistent excellence across all our operations.</p>
-    </div>
-    <img src="https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70" alt="About Kabini">
+<div>
+<h2>About Us</h2>
+<p> We connect you directly to top-grade, export-quality farm produce—delivered with consistency, reliability, and global standards you can depend on.
+
+From farm to market, every product is carefully selected, processed, and handled to ensure maximum quality, freshness, and value.. Kabini Global Farms is not just a supplier—
+we are your trusted partner for quality, consistency, and long-term s.</p>
+</div>
+<img src="NEXACORE CANVAS/freepik_men-and-women-on-a-nigeri_2756972819.png">
 </section>
 
 <!-- TEAM -->
 <section class="section" id="team">
-    <h2>Meet Our Team</h2>
-    <div class="team">
-        <div class="team-member"><img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a1" alt="Jane Doe"><h4>Jane Doe</h4><p>CEO & Founder</p></div>
-        <div class="team-member"><img src="https://images.unsplash.com/photo-1603415526960-f5b3d3b9a932" alt="John Smith"><h4>John Smith</h4><p>Head of Operations</p></div>
-        <div class="team-member"><img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a1" alt="Mary Johnson"><h4>Mary Johnson</h4><p>Chief Innovation Officer</p></div>
-    </div>
+<h2>Meet Our Team</h2>
+<div class="team">
+<div class="team-member"><img src="NEXACORE CANVAS/freepik_create-a-single-portrait-_2757148342.png"><h4>Halima Sani</h4><p>CEO</p></div>
+<div class="team-member"><img src="NEXACORE CANVAS/freepik_generate-beautiful-nigeri_2757138044.png"><h4>management</h4><p>Operations</p></div>
+</div>
 </section>
 
 <!-- FOOTER -->
 <footer id="contact">
-    <img src="NEXACORE CANVAS/IMG-20260323-WA0001.jpg" alt="Kabini Global Logo">
-    <p>© 2026 Kabini Global</p>
-    <p><a href="https://www.facebook.com/YourPageName" target="_blank" rel="noopener noreferrer">Facebook</a> | 
-   <a href="https://www.instagram.com/YourProfileName" target="_blank" rel="noopener noreferrer">Instagram</a> | 
-   <a href="https://www.linkedin.com/company/YourCompanyName" target="_blank" rel="noopener noreferrer">LinkedIn</a> | 
-   <a href="https://twitter.com/YourProfileName" target="_blank" rel="noopener noreferrer">Twitter</a>
-   <a href="https://wa.me/2348000000000" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+<img src="NEXACORE CANVAS/IMG-20260323-WA0001.jpg">
+<p>© 2026 Kabini Global</p>
+<p>
+<a href="https://facebook.com" target="_blank">Facebook</a> |
+<a href="https://instagram.com" target="_blank">Instagram</a> |
+<a href="https://linkedin.com" target="_blank">LinkedIn</a> |
+<a href="https://twitter.com" target="_blank">Twitter</a> |
+<a href="https://wa.me/2348000000000" target="_blank">WhatsApp</a>
 </p>
-    <p>Contact: info@kabini.com | +234 800 000 0000</p>
+<p>info@kabini.com | +234 800 000 0000</p>
 </footer>
 
 <script>
-// Hamburger toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const navUl = document.querySelector('nav ul');
-menuToggle.addEventListener('click', () => { navUl.classList.toggle('active'); });
+const toggle=document.querySelector('.menu-toggle');
+const nav=document.querySelector('nav ul');
 
-// Smooth scrolling
-document.querySelectorAll('nav a, .btn').forEach(link => {
-    link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        if(target) target.scrollIntoView({behavior:'smooth'});
-        navUl.classList.remove('active'); // close menu on mobile
-    });
+toggle.addEventListener('click',()=>nav.classList.toggle('active'));
+
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
+link.addEventListener('click',e=>{
+const target=document.querySelector(link.getAttribute('href'));
+if(target){
+e.preventDefault();
+target.scrollIntoView({behavior:'smooth'});
+nav.classList.remove('active');
+}
+});
 });
 </script>
 
 </body>
+<script src="app.js"></script>
 </html>
