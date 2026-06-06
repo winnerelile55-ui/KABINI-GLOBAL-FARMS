@@ -3,381 +3,426 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Details | Kabini AI Store</title>
 
-<title>Kabini Global | Product Details</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-
-/* ================= ROOT ================= */
-:root{
---green:#0f5f2f;
---gold:#d4af37;
---brown:#5c4033;
---bg:#f7f5f0;
---card:#ffffff;
---radius:18px;
---shadow:0 10px 30px rgba(0,0,0,0.08);
-}
 
 /* ================= GLOBAL ================= */
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Inter',sans-serif;
+font-family:Poppins;
 }
 
 body{
-background:var(--bg);
-color:#222;
+background:#f5f7fb;
 }
 
 /* ================= NAV ================= */
 nav{
-position:fixed;
-top:0;
-width:100%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:14px 18px;
-background:rgba(15,95,47,0.95);
-backdrop-filter:blur(15px);
-color:#fff;
+padding:15px;
+background:white;
+position:sticky;
+top:0;
 z-index:1000;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
 }
 
-nav img{
-height:40px;
-border-radius:6px;
+.logo{
+font-weight:900;
+color:#0B3D2E;
 }
 
-.back-btn{
-background:var(--gold);
-border:none;
-padding:8px 14px;
-border-radius:8px;
-font-weight:600;
+.menu-btn{
+font-size:28px;
 cursor:pointer;
+}
+
+/* ================= MENU ================= */
+.menu{
+position:fixed;
+top:0;
+left:-100%;
+width:300px;
+height:100%;
+background:#0B3D2E;
+padding:20px;
+transition:.4s;
+z-index:2000;
+}
+
+.menu.open{left:0;}
+
+.menu a{
+display:block;
+padding:14px;
+margin:10px 0;
+background:rgba(255,255,255,.1);
+color:white;
+text-decoration:none;
+border-radius:12px;
+box-shadow:0 0 15px rgba(255,255,255,.5);
+font-weight:700;
 }
 
 /* ================= CONTAINER ================= */
 .container{
-margin-top:90px;
 padding:15px;
 }
 
-/* ================= PRODUCT CARD ================= */
-.product-card{
-background:var(--card);
-border-radius:var(--radius);
-box-shadow:var(--shadow);
-overflow:hidden;
-max-width:500px;
-margin:auto;
-animation:fadeIn 0.6s ease;
+/* PRODUCT CARD */
+.product-box{
+background:white;
+padding:15px;
+border-radius:18px;
+box-shadow:0 15px 30px rgba(0,0,0,.1);
 }
 
 /* IMAGE */
-.product-image{
+.product-box img{
 width:100%;
-height:300px;
-object-fit:cover;
+border-radius:15px;
 }
 
-/* CONTENT */
-.product-content{
-padding:15px;
-}
-
-.product-title{
-font-size:22px;
-font-weight:700;
-margin-bottom:10px;
-}
-
-.price{
-font-size:20px;
-color:var(--green);
-font-weight:700;
-}
-
-.old-price{
-text-decoration:line-through;
-opacity:0.5;
-margin-left:10px;
-}
-
-/* TIMER */
-.timer{
+/* TITLE */
+h2{
 margin-top:10px;
-color:red;
-font-weight:600;
+color:#0B3D2E;
 }
 
-/* DESCRIPTION */
-.description{
-margin-top:15px;
-font-size:14px;
-line-height:1.6;
-color:#444;
+/* PRICE */
+.price{
+font-size:22px;
+font-weight:900;
+color:#0B3D2E;
+margin-top:5px;
 }
 
-/* ================= ACTIONS ================= */
-.actions{
-margin-top:20px;
+/* RATING */
+.rating{
+color:gold;
+margin-top:5px;
+}
+
+/* QUANTITY */
+.qty{
 display:flex;
-flex-direction:column;
+align-items:center;
 gap:10px;
+margin-top:10px;
 }
 
-.btn{
-padding:14px;
+.qty button{
+padding:8px 12px;
 border:none;
-border-radius:12px;
-font-weight:600;
+background:#ddd;
+font-size:18px;
 cursor:pointer;
-transition:0.3s;
+border-radius:8px;
 }
 
-.add{
-background:var(--green);
-color:#fff;
+.qty span{
+font-weight:700;
 }
 
-.buy{
-background:var(--gold);
-color:#000;
-}
-
-.btn:active{
-transform:scale(0.97);
-}
-
-/* ================= EXTRA INFO ================= */
-.info-box{
-margin-top:20px;
-background:#fff;
-padding:15px;
+/* BUTTONS */
+.btn{
+display:block;
+padding:12px;
+margin-top:10px;
 border-radius:12px;
-box-shadow:var(--shadow);
+text-align:center;
+font-weight:800;
+border:none;
+cursor:pointer;
 }
 
-.info-box h4{
-margin-bottom:10px;
-}
+.cart{background:#D4AF37;}
+.buy{background:#0B3D2E;color:white;}
+.wa{background:#25D366;color:white;}
 
-/* ================= RELATED ================= */
+/* RELATED */
 .related{
-margin-top:30px;
+margin-top:25px;
 }
 
 .related h3{
 margin-bottom:10px;
 }
 
-.related-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+.slider{
+display:flex;
 gap:10px;
+overflow-x:auto;
 }
 
-.related-card{
-background:#fff;
+.item{
+min-width:150px;
+background:white;
+padding:10px;
 border-radius:12px;
-overflow:hidden;
-box-shadow:var(--shadow);
+box-shadow:0 10px 20px rgba(0,0,0,.1);
+text-align:center;
 }
 
-.related-card img{
+.item img{
 width:100%;
 height:100px;
 object-fit:cover;
-}
-
-.related-card p{
-padding:8px;
-font-size:13px;
-}
-
-/* ================= TOAST ================= */
-.toast{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-background:var(--green);
-color:#fff;
-padding:12px 16px;
 border-radius:10px;
-opacity:0;
-transition:0.3s;
 }
 
-.toast.show{
-opacity:1;
+/* FLOAT */
+.float{
+position:fixed;
+right:15px;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+font-size:22px;
+cursor:pointer;
 }
 
-/* ================= ANIMATION ================= */
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
+.whatsapp{bottom:20px;background:#25D366;}
+.insta{bottom:90px;background:#E1306C;}
+.ai{bottom:160px;background:#0B3D2E;}
+
+/* FOOTER */
+footer{
+background:#061b14;
+color:white;
+padding:40px 15px;
+margin-top:40px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+}
+
+.footer-bottom{
+text-align:center;
+margin-top:20px;
+border-top:1px solid rgba(255,255,255,.2);
+padding-top:10px;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <!-- NAV -->
 <nav>
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260323-WA0001.jpg">
-<button class="back-btn" onclick="goBack()">← Back</button>
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<div class="logo">KABINI PRODUCT</div>
 </nav>
 
-<!-- CONTENT -->
+<!-- MENU -->
+<div class="menu" id="menu">
+
+<a href="index.html">Home</a>
+<a href="product.html">Products</a>
+<a href="cart.html">Cart</a>
+<a href="checkout.html">Checkout</a>
+<a href="account.html">Account</a>
+<a href="invoice.html">Invoice</a>
+<a href="contact.html">Contact</a>
+
+</div>
+
+<!-- PRODUCT -->
 <div class="container">
 
-<div class="product-card">
+<div class="product-box">
 
-<img id="img" class="product-image">
+<img id="img">
 
-<div class="product-content">
+<h2 id="name"></h2>
 
-<h1 class="product-title" id="name"></h1>
+<div class="rating">⭐⭐⭐⭐☆ (4.5)</div>
 
-<div>
-<span class="price" id="price"></span>
-<span class="old-price" id="old"></span>
-</div>
+<p class="price" id="price"></p>
 
-<div class="timer" id="timer"></div>
-
-<p class="description" id="desc">
-This is a premium Kabini Global product sourced with the highest quality standards.
+<p style="margin-top:10px;">
+Premium quality product from Kabini LTD Store. Fast delivery across Nigeria. Secure payment system enabled.
 </p>
 
-<!-- ACTIONS -->
-<div class="actions">
-<button class="btn add" onclick="addToCart()">Add to Cart</button>
+<!-- QUANTITY -->
+<div class="qty">
+<button onclick="minus()">-</button>
+<span id="qty">1</span>
+<button onclick="plus()">+</button>
+</div>
+
+<button class="btn cart" onclick="addCart()">Add to Cart</button>
+
 <button class="btn buy" onclick="buyNow()">Buy Now</button>
-</div>
 
-</div>
+<button class="btn wa" onclick="whatsappOrder()">Order via WhatsApp</button>
 
-</div>
-
-<!-- INFO -->
-<div class="info-box">
-<h4>Product Information</h4>
-<p>
-✔ High quality guaranteed<br>
-✔ Fresh from trusted sources<br>
-✔ Secure packaging<br>
-✔ Fast delivery available<br>
-</p>
 </div>
 
 <!-- RELATED -->
 <div class="related">
+
 <h3>Related Products</h3>
-<div class="related-grid" id="related"></div>
+
+<div class="slider">
+
+<div class="item">
+<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260323-WA0001.jpg">
+<p>KABINI STOCKS</p>
+</div>
+
+<div class="item">
+<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0013.jpg">
+<p>KABINI BEVARAGES</p>
+</div>
+
+<div class="item">
+<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260325-WA0027.jpg">
+<p>KABINI FINAL SOYA OIL</p>
 </div>
 
 </div>
 
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
+</div>
+
+<!-- FLOAT -->
+<div class="float whatsapp" onclick="wa()">💬</div>
+<div class="float insta" onclick="ig()">📸</div>
+<div class="float ai" onclick="alert('AI Assistant Coming Soon 🤖')">🤖</div>
+
+<!-- FOOTER -->
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<h3>AI Store</h3>
+<p>Smart automation enabled</p>
+</div>
+
+<div>
+<h3>Contact</h3>
+<p>Abuja, Nigeria</p>
+</div>
+
+<div>
+<h3>Social</h3>
+<p>WhatsApp • Instagram</p>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 Kabini Global AI Store
+</div>
+
+</footer>
 
 <script>
 
-/* ================= GET PRODUCT ================= */
-let product = JSON.parse(localStorage.getItem("selectedProduct"))
-
-if(!product){
-document.body.innerHTML="<h2 style='text-align:center;margin-top:100px;'>No product selected</h2>"
+/* MENU */
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("open");
 }
 
-document.getElementById("img").src = product.img
-document.getElementById("name").innerText = product.name
-document.getElementById("price").innerText = "₦" + product.price
-document.getElementById("old").innerText = "₦" + (product.price + 500)
+/* PRODUCT DATA */
+let products = {
+1:{name:"KABINI STOCKS",price:200000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260323-WA0001.jpg"},
+2:{name:"KABINI BEVARAGES",price:1500,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0013.jpg"},
+3:{name:"KABINI CRUNCHY",price:1500,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0014.jpg"},
+4:{name:"KABINI FINAL SOYA OIL",price:25000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260325-WA0027.jpg"},
+5:{name:"KABINI STOCKS",price:150000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260325-WA0028.jpg"},
+6:{name:"KABINI FINAL SOYA OIL",price:3500,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0005.jpg"},
+7:{name:"KABINI TABLE WATER",price:1500,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0012(1).jpg"},
+8:{name:"CHICKENS",price:15000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/tmp-1589792989118857216-mQ4lIS.jpg"},
+9:{name:"KABINI FINAL SOYA OIL",price:3500,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0003.jpg"},
+10:{name:"GOATS",price:150000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/5b538c0521fb05c889c0239139e561da.jpg"},
+11:{name:"EGGS",price:150000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/9e1da69742169f6f7000be2ecf9ad2d8.jpg"},
+12:{name:"COWS",price:1500000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images%202/8dc40fc8fbbe300fbfaae586b25b1cdb.jpg"},
+13:{name:"CABAGES",price:3500,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/86d55b649d06acde6e6960105f8eec1e.jpg"},
+14:{name:"CARROTS",price:1500,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/62470630b6689e1431a3a29d64cfaf93.jpg"},
+15:{name:"VEGETABLES",price:2500,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/d4a2526b8193401d65afa6644f645bcc.jpg"},
+16:{name:"PLANTAINS",price:5500,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/d811290e405d2bb747927bee7f5c4026.jpg"},
+17:{name:"VEGETABLES",price:2500,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/front-view-smiley-woman-with-harvest.jpg"},
+18:{name:"KABINI SALAD",price:150000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/8c814da10ef8dcd65105c9ade7b091fa.jpg"},
+19:{name:"GRAINS",price:15000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images%202/7f891149e176e075049f485dd324f3f9.jpg"},
+20:{name:"CORN FLOURS",price:45000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images%202/8ab7039d0808648f526af6d56d6f9fc5.jpg"},
+21:{name:"RICE",price:65000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images%202/8b47efa4bea6682e6dafdde9136ec64b.jpg"},
+22:{name:"SALAD",price:3500,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/5feed2ae3bd94816976793f280b0e1d3.jpg"},
+23:{name:"SPICES",price:150000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images%202/9a903c36a5b21e89f30087c31d861835.jpg"},
+24:{name:"GINGER",price:1500,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/27c2e119e1339e11a8fc278733dce845.jpg"},
+25:{name:"RED COWS",price:1500000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/47b551b04a66cdd9039b46c01076b164.jpg"},
+26:{name:"COCOA",price:15000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/51bd903723da533f3f9c445cb80c5204.jpg"},
+27:{name:"GREEN PEPPERS",price:1500,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/b7276f133ed34934857af0b153d375c4.jpg"},
+28:{name:"BAG OF GRAINS",price:55000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/61bcc7efeeff2db822393dc36b61740d.jpg"},
+29:{name:"TATASHI",price:2000,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/53c923642878481c4ce9bb0dd5702818.jpg"},
+30:{name:"ONIONS",price:3500,img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images%202/4e4330e84a34c8b756ad08d98f5244a6.jpg"}
+};
 
-/* ================= TIMER ================= */
-let timerValue = 86400
+let id = new URLSearchParams(window.location.search).get("id");
+let p = products[id];
 
-setInterval(()=>{
-if(timerValue>0){
-timerValue--
-let h=Math.floor(timerValue/3600)
-let m=Math.floor((timerValue%3600)/60)
-let s=timerValue%60
+document.getElementById("name").innerText = p.name;
+document.getElementById("price").innerText = "₦" + p.price;
+document.getElementById("img").src = p.img;
 
-document.getElementById("timer").innerText=
-`Offer ends in ${h}h ${m}m ${s}s`
+/* QUANTITY */
+let qty = 1;
+
+function plus(){
+qty++;
+document.getElementById("qty").innerText = qty;
 }
-},1000)
 
-/* ================= CART ================= */
-function addToCart(){
-
-let cart = JSON.parse(localStorage.getItem("cart")) || []
-
-cart.push({...product,qty:1})
-
-localStorage.setItem("cart",JSON.stringify(cart))
-
-toast("Added to cart")
-
+function minus(){
+if(qty > 1){
+qty--;
+document.getElementById("qty").innerText = qty;
+}
 }
 
-/* ================= BUY NOW ================= */
+/* CART */
+function addCart(){
+let cart = JSON.parse(localStorage.getItem("kabiniCart")) || [];
+cart.push({...p, qty});
+localStorage.setItem("kabiniCart", JSON.stringify(cart));
+alert("Added to cart");
+}
+
+/* BUY */
 function buyNow(){
-addToCart()
-window.location.href="checkout.html"
+window.location.href="checkout.html";
 }
 
-/* ================= TOAST ================= */
-function toast(msg){
-let t=document.getElementById("toast")
-t.innerText=msg
-t.classList.add("show")
-
-setTimeout(()=>t.classList.remove("show"),2000)
+/* WHATSAPP */
+function whatsappOrder(){
+let msg = `Order: ${p.name} x${qty} - ₦${p.price*qty}`;
+window.open("https://wa.me/2348107808968?text="+encodeURIComponent(msg));
 }
 
-/* ================= BACK ================= */
-function goBack(){
-window.history.back()
-}
-
-/* ================= RELATED PRODUCTS ================= */
-const relatedData = [
-{img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0014.jpg",name:"Related Product 1"},
-{img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260325-WA0027.jpg",name:"Related Product 2"},
-{img:"https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0012(1).jpg",name:"Related Product 3"}
-]
-
-const related=document.getElementById("related")
-
-relatedData.forEach(p=>{
-related.innerHTML+=`
-<div class="related-card">
-<img src="${p.img}">
-<p>${p.name}</p>
-</div>
-`
-})
+/* SOCIAL */
+function wa(){window.open("https://wa.me/2348107808968")}
+function ig(){window.open("https://instagram.com")}
 
 </script>
 
 </body>
-<script src="app.js"></script>
 </html>
