@@ -3,205 +3,823 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kabini Global | About</title>
+<title>About Us | Kabini Global</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+
 :root{
---green:#0f5f2f;
---dark:#081c12;
---gold:#d4af37;
---bg:#f4f7f2;
---glass:rgba(255,255,255,0.12);
---radius:18px;
---shadow:0 20px 50px rgba(0,0,0,0.08);
+--green:#0B3D2E;
+--gold:#D4AF37;
+--dark:#050505;
+--light:#f5f7fb;
+--white:#ffffff;
+--shadow:0 15px 40px rgba(0,0,0,.12);
+--glow:0 0 20px rgba(255,255,255,.6);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background:var(--bg);color:#222;overflow-x:hidden;}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-/* NAV */
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#f8fafc;
+overflow-x:hidden;
+}
+
+/* ================= TOP BAR ================= */
+
+.topbar{
+background:#050505;
+color:white;
+padding:10px 20px;
+display:flex;
+justify-content:space-between;
+font-size:13px;
+}
+
+/* ================= NAVBAR ================= */
+
 nav{
-position:fixed;top:0;width:100%;
-display:flex;justify-content:space-between;align-items:center;
-padding:18px 40px;
-background:rgba(15,95,47,.85);
-backdrop-filter:blur(20px);
+position:sticky;
+top:0;
 z-index:1000;
+background:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+box-shadow:var(--shadow);
 }
 
-.logo{display:flex;align-items:center;color:#fff;font-weight:700;gap:10px;}
-.logo img{height:42px;}
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
 
-nav ul{display:flex;gap:25px;list-style:none;}
-nav a{color:#fff;text-decoration:none;font-weight:500;transition:.3s;}
-nav a:hover{color:var(--gold);}
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
+}
 
-.menu-toggle{display:none;flex-direction:column;cursor:pointer;}
-.menu-toggle div{width:25px;height:3px;background:#fff;margin:4px;border-radius:4px;}
+.logo h2{
+font-size:20px;
+font-weight:800;
+color:var(--green);
+}
 
-.overlay{position:fixed;width:100%;height:100%;background:rgba(0,0,0,.6);top:0;left:0;opacity:0;visibility:hidden;transition:.4s;}
-.overlay.active{opacity:1;visibility:visible;}
+.hamburger{
+font-size:28px;
+cursor:pointer;
+color:var(--green);
+}
 
-@media(max-width:900px){
-nav ul{
-position:fixed;top:0;right:-100%;height:100vh;width:300px;
-flex-direction:column;padding:100px 25px;
-background:rgba(255,255,255,.1);
-backdrop-filter:blur(30px);
+.nav-icons{
+display:flex;
+gap:15px;
+font-size:22px;
+color:var(--green);
+}
+
+/* ================= MENU ================= */
+
+#overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.7);
+opacity:0;
+visibility:hidden;
+transition:.4s;
+z-index:1999;
+}
+
+#menu{
+position:fixed;
+left:-100%;
+top:0;
+width:320px;
+height:100%;
+overflow-y:auto;
+padding:25px;
+background:linear-gradient(135deg,#051a13,#0B3D2E,#143e2f);
+transition:.5s;
+z-index:2000;
+}
+
+.menu-title{
+font-size:26px;
+font-weight:900;
+color:white;
+margin-bottom:25px;
+text-align:center;
+}
+
+.menu-item{
+display:block;
+padding:16px;
+margin-bottom:14px;
+border-radius:15px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.2);
+color:white;
+text-decoration:none;
+font-weight:700;
+box-shadow:
+0 0 15px rgba(255,255,255,.4),
+0 0 25px rgba(255,255,255,.2);
 transition:.4s;
 }
-nav ul.active{right:0;}
-.menu-toggle{display:flex;}
+
+.menu-item:hover{
+transform:translateX(10px);
+box-shadow:
+0 0 25px white,
+0 0 45px var(--gold);
 }
 
-/* HERO */
+/* ================= HERO ================= */
+
 .hero{
-min-height:90vh;
-display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
-padding:120px 20px;
-background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.7)),url('https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/photorealistic-view-african-people-harvesting-vegetables-grains-1.jpg') center/cover;
-color:white;
+min-height:85vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:40px;
+background:
+linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+url('https://images.unsplash.com/photo-1500595046743-cd271d694d30');
+background-size:cover;
+background-position:center;
 }
-.hero h1{font-size:3.5rem;font-weight:700;}
-.hero p{max-width:650px;margin-top:20px;font-size:1.1rem;}
 
-/* SECTION */
-.section{max-width:1200px;margin:100px auto;padding:0 20px;}
+.hero-content h1{
+font-size:60px;
+color:white;
+margin-bottom:20px;
+}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;}
+.hero-content p{
+max-width:900px;
+margin:auto;
+color:#eee;
+font-size:18px;
+line-height:1.8;
+}
+
+.hero-btn{
+margin-top:25px;
+padding:15px 35px;
+border:none;
+background:var(--gold);
+border-radius:40px;
+font-weight:800;
+cursor:pointer;
+}
+
+/* ================= SECTIONS ================= */
+
+.section{
+padding:80px 8%;
+}
+
+.section-title{
+text-align:center;
+font-size:42px;
+margin-bottom:50px;
+color:var(--green);
+font-weight:900;
+}
+
+.about-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
+
+.about-grid img{
+width:100%;
+border-radius:20px;
+box-shadow:var(--shadow);
+}
+
+.about-card{
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:var(--shadow);
+}
+
+/* ================= CARDS ================= */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
 
 .card{
-background:white;padding:25px;border-radius:var(--radius);
-box-shadow:var(--shadow);
-transition:.3s;
-}
-.card:hover{transform:translateY(-6px);}
-
-/* STATS */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:25px;text-align:center;}
-.stat{background:var(--glass);backdrop-filter:blur(20px);padding:25px;border-radius:var(--radius);}
-.stat h2{color:var(--green);}
-
-/* TEAM */
-.team img{width:100%;height:220px;object-fit:cover;border-radius:12px;}
-
-/* CTA */
-.cta{
+background:white;
+padding:30px;
+border-radius:20px;
 text-align:center;
-padding:80px 20px;
-background:linear-gradient(135deg,var(--green),var(--dark));
+box-shadow:var(--shadow);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card i{
+font-size:45px;
+color:var(--gold);
+margin-bottom:15px;
+}
+
+/* ================= AI ================= */
+
+.ai-section{
+background:linear-gradient(135deg,#071d15,#0B3D2E);
 color:white;
 }
-.btn{margin-top:20px;padding:14px 40px;border:none;border-radius:40px;background:var(--gold);cursor:pointer;}
 
-/* FOOTER */
-footer{background:#111;color:white;padding:60px;text-align:center;}
+.ai-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.ai-box{
+padding:25px;
+border-radius:20px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.1);
+}
+
+/* ================= STATS ================= */
+
+.stats{
+background:var(--green);
+color:white;
+padding:80px 8%;
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+text-align:center;
+}
+
+.stats h2{
+font-size:50px;
+color:var(--gold);
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+background:#051a13;
+color:white;
+padding:80px 8% 30px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:35px;
+}
+
+.footer-grid h3{
+color:var(--gold);
+margin-bottom:15px;
+}
+
+.footer-grid a{
+display:block;
+color:#ddd;
+text-decoration:none;
+margin:8px 0;
+}
+
+.footer-grid a:hover{
+color:var(--gold);
+}
+
+.footer-bottom{
+margin-top:40px;
+padding-top:25px;
+border-top:1px solid rgba(255,255,255,.15);
+text-align:center;
+}
+
+/* ================= FLOATING BUTTONS ================= */
+
+.float{
+position:fixed;
+right:20px;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+cursor:pointer;
+z-index:999;
+}
+
+.whatsapp{
+bottom:20px;
+background:#25D366;
+color:white;
+}
+
+.instagram{
+bottom:95px;
+background:#E1306C;
+color:white;
+}
+
+.ai{
+bottom:170px;
+background:var(--gold);
+color:black;
+}
+
+/* ================= CHATBOT ================= */
+
+#chatbot{
+position:fixed;
+right:20px;
+bottom:240px;
+width:350px;
+height:500px;
+background:white;
+border-radius:20px;
+box-shadow:0 20px 50px rgba(0,0,0,.25);
+display:none;
+flex-direction:column;
+overflow:hidden;
+z-index:9999;
+}
+
+.chat-header{
+background:var(--green);
+color:white;
+padding:15px;
+}
+
+.chat-body{
+flex:1;
+padding:15px;
+overflow-y:auto;
+}
+
+.chat-input{
+padding:10px;
+border-top:1px solid #ddd;
+}
+
+.chat-input input{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:1px solid #ccc;
+}
+
+.chat-input button{
+width:100%;
+margin-top:10px;
+padding:12px;
+background:var(--green);
+color:white;
+border:none;
+border-radius:10px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+.hero-content h1{
+font-size:35px;
+}
+
+.about-grid{
+grid-template-columns:1fr;
+}
+
+.section{
+padding:60px 20px;
+}
+
+.section-title{
+font-size:30px;
+}
+
+#menu{
+width:85%;
+}
+
+#chatbot{
+width:95%;
+right:2.5%;
+height:450px;
+}
+
+.logo h2{
+font-size:16px;
+}
+
+}
 
 </style>
 </head>
-
 <body>
 
-<div class="overlay" id="overlay"></div>
+<div class="topbar">
+<div id="clock"></div>
+<div>KABINI GLOBAL • AI AGRICULTURE PLATFORM</div>
+</div>
 
 <nav>
+
+<div class="hamburger" onclick="openMenu()">
+<i class="fas fa-bars"></i>
+</div>
+
 <div class="logo">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260323-WA0001.jpg">
-<span>KABINI LTD</span>
+<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260323-WA0001.jpg" alt="">
+<h2>KABINI LTD</h2>
 </div>
 
-<ul id="navLinks">
-<li><a href="index.html">Home</a></li>
-<li><a href="product.html">Products</a></li>
-<li><a href="cart.html">Cart</a></li>
-<li><a href="checkout.html">Checkout</a></li>
-<li><a href="order.html">Orders</a></li>
-<li><a href="receipt.html">Receipt</a></li>
-<li><a href="invoice.html">Invoice</a></li>
-<li><a href="about.html">About</a></li>
-</ul>
-
-<div class="menu-toggle" id="menuToggle">
-<div></div><div></div><div></div>
+<div class="nav-icons">
+<i class="fas fa-cart-shopping"></i>
 </div>
+
 </nav>
 
+<div id="overlay" onclick="closeMenu()"></div>
+
+<div id="menu">
+
+<div class="menu-title">
+KABINI LTD
+</div>
+
+<a href="index.htmll" class="menu-item">🏠 Home</a>
+
+<a href="product.html" class="menu-item">🛒 Products</a>
+
+<a href="contact.html" class="menu-item">📞 Contact Us</a>
+
+<a href="cart.html" class="menu-item">🛍 Cart</a>
+
+<a href="ai.html" class="menu-item">🤖 AI CHATBOT</a>
+
+<a href="register.html" class="menu-item">👤 Register</a>
+
+<a href="invoice.html" class="menu-item">🧾 Invoice</a>
+
+<a href="order.html" class="menu-item">📦 Orders</a>
+
+<a href="checkout.html" class="menu-item">📦 checkout</a>
+
+<a href="receipt.html" class="menu-item">📦 receipt</a>
+
+</div>
+
 <section class="hero">
-<h1>About Kabini Global</h1>
-<p>We are building Africa’s leading digital agriculture ecosystem—seamlessly connecting trusted farmers to buyers and global markets, ensuring premium quality, reliable supply, and effortless trade at every step.</p>
-</section>
 
-<section class="section grid">
-<div class="card">
-<h2>🌱 Our Mission</h2>
-<p>To deliver premium-quality agricultural products by connecting trusted farmers to global markets through innovation, reliability, and uncompromising standards—ensuring value, consistency, and satisfaction for every customer..</p>
+<div class="hero-content">
+
+<h1>ABOUT KABINI GLOBAL</h1>
+
+<p>
+Kabini Global is a next-generation agricultural technology and commerce platform combining artificial intelligence, automation, digital trade, smart logistics, and global agricultural commerce.
+</p>
+
+<button class="hero-btn">
+Explore More
+</button>
+
 </div>
 
-<div class="card">
-<h2>🌍 Our Vision</h2>
-<p>To become Africa’s most trusted and leading agricultural brand, setting the standard for quality, innovation, and seamless global trade.</p>
-</div>
-</section>
-
-<section class="section stats">
-<div class="stat"><h2 id="farmers">0</h2><p>Farmers</p></div>
-<div class="stat"><h2 id="products">0</h2><p>Products</p></div>
-<div class="stat"><h2 id="orders">0</h2><p>Orders</p></div>
 </section>
 
 <section class="section">
-<h2 style="text-align:center;margin-bottom:40px;">Our Team</h2>
-<div class="grid team">
-<div class="card">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/freepik_create-a-single-portrait-_2757148342.png">
-<h3>Founder</h3>
-<p>Visionary leader behind Kabini.</p>
+
+<h2 class="section-title">
+Our Story
+</h2>
+
+<div class="about-grid">
+
+<img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854">
+
+<div class="about-card">
+
+<h3>Transforming Agriculture Through Innovation</h3>
+
+<br>
+
+<p>
+Kabini Global was established to connect farmers, suppliers, exporters, and consumers through one intelligent digital ecosystem.
+</p>
+
+<br>
+
+<p>
+Our platform combines AI, automation, logistics, commerce, and smart agricultural technologies to create a modern future for African agriculture.
+</p>
+
 </div>
 
-<div class="card">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/freepik_create-a-single-portrait-_2757157689.png">
-<h3>Operations</h3>
-<p>Ensuring smooth logistics globally.</p>
 </div>
 
-<div class="card">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/freepik_generate-beautiful-nigeri_2757138044.png">
-<h3>Marketing</h3>
-<p>Driving global reach and branding.</p>
-</div>
-</div>
 </section>
 
-<section class="cta">
-<h2>Join the Future of Agriculture</h2>
-<p>Start buying or selling globally today.</p>
-<button class="btn" onclick="location.href='product.html'">Explore Products</button>
+<section class="section">
+
+<h2 class="section-title">
+Mission • Vision • Values
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<i class="fas fa-bullseye"></i>
+<h3>Mission</h3>
+<p>Empowering agriculture through technology and innovation.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-eye"></i>
+<h3>Vision</h3>
+<p>To become Africa's leading AI-powered agricultural marketplace.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-star"></i>
+<h3>Values</h3>
+<p>Innovation, Integrity, Sustainability, Excellence.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section ai-section">
+
+<h2 class="section-title" style="color:white;">
+AI AUTOMATION & INTEGRATION
+</h2>
+
+<div class="ai-grid">
+
+<div class="ai-box">
+🤖 AI Customer Support
+</div>
+
+<div class="ai-box">
+📦 AI Inventory Management
+</div>
+
+<div class="ai-box">
+🚚 Smart Logistics Tracking
+</div>
+
+<div class="ai-box">
+📈 AI Analytics
+</div>
+
+<div class="ai-box">
+📱 WhatsApp Commerce
+</div>
+
+<div class="ai-box">
+📸 Instagram Commerce
+</div>
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="stats-grid">
+
+<div>
+<h2>10K+</h2>
+<p>Customers</p>
+</div>
+
+<div>
+<h2>500+</h2>
+<p>Farmers</p>
+</div>
+
+<div>
+<h2>50+</h2>
+<p>Export Partners</p>
+</div>
+
+<div>
+<h2>24/7</h2>
+<p>Support</p>
+</div>
+
+</div>
+
 </section>
 
 <footer>
-<p>© 2026 KABINI LTD </p>
-<p>info@kabini.com | +2348107808968</p>
+
+<div class="footer-grid">
+
+<div>
+<h3>Company</h3>
+<a href="about.html">About Us</a>
+<a href="products.html">Products</a>
+<a href="contact.html">Contact</a>
+<a href="register.html">Register</a>
+</div>
+
+<div>
+<h3>AI Automation</h3>
+<p>AI Assistant</p>
+<p>AI Analytics</p>
+<p>AI Logistics</p>
+<p>AI Commerce</p>
+</div>
+
+<div>
+<h3>Support</h3>
+<p>24/7 Customer Care</p>
+<p>Order Tracking</p>
+<p>Delivery Support</p>
+<p>Export Assistance</p>
+</div>
+
+<div>
+<h3>Contact</h3>
+<p>Abuja, Nigeria</p>
+<p>+234 810 780 8968</p>
+<p>support@kabiniglobal.com</p>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 Kabini Global. All Rights Reserved.
+</div>
+
 </footer>
+
+<div class="float whatsapp" onclick="openWhatsApp()">
+<i class="fab fa-whatsapp"></i>
+</div>
+
+<div class="float instagram" onclick="openInstagram()">
+<i class="fab fa-instagram"></i>
+</div>
+
+<div class="float ai" onclick="toggleChat()">
+<i class="fas fa-robot"></i>
+</div>
+
+<div id="chatbot">
+
+<div class="chat-header">
+🤖 Kabini AI Assistant
+</div>
+
+<div class="chat-body" id="messages">
+<div><b>AI:</b> Welcome to Kabini Global. Ask me about products, exports, delivery, farming, or services.</div>
+</div>
+
+<div class="chat-input">
+
+<input id="userInput" placeholder="Ask Kabini AI...">
+
+<button onclick="sendMessage()">
+Send Message
+</button>
+
+</div>
+
+</div>
 
 <script>
 
-const toggle=document.getElementById('menuToggle');
-const nav=document.getElementById('navLinks');
-const overlay=document.getElementById('overlay');
+setInterval(()=>{
+document.getElementById("clock").innerHTML=
+new Date().toLocaleTimeString();
+},1000);
 
-toggle.onclick=()=>{nav.classList.toggle('active');overlay.classList.toggle('active');}
-overlay.onclick=()=>{nav.classList.remove('active');overlay.classList.remove('active');}
+const menu=document.getElementById("menu");
+const overlay=document.getElementById("overlay");
 
-// STATS
-document.getElementById("farmers").innerText=540;
-document.getElementById("products").innerText=120;
-document.getElementById("orders").innerText=2800;
+function openMenu(){
+menu.style.left="0";
+overlay.style.opacity="1";
+overlay.style.visibility="visible";
+}
+
+function closeMenu(){
+menu.style.left="-100%";
+overlay.style.opacity="0";
+overlay.style.visibility="hidden";
+}
+
+function openWhatsApp(){
+window.open(
+"https://wa.me/2348107808968?text=Hello%20Kabini%20Global",
+"_blank"
+);
+}
+
+function openInstagram(){
+window.open(
+"https://instagram.com",
+"_blank"
+);
+}
+
+function toggleChat(){
+const bot=document.getElementById("chatbot");
+
+if(bot.style.display==="flex"){
+bot.style.display="none";
+}else{
+bot.style.display="flex";
+}
+}
+
+function sendMessage(){
+
+let input=document.getElementById("userInput");
+let messages=document.getElementById("messages");
+
+let text=input.value.trim();
+
+if(!text)return;
+
+messages.innerHTML +=
+"<div><b>You:</b> "+text+"</div>";
+
+let reply="I can help you with products, farming, exports, logistics and Kabini Global services.";
+
+if(text.toLowerCase().includes("product"))
+reply="Kabini Global offers agricultural products and export services.";
+
+if(text.toLowerCase().includes("delivery"))
+reply="We provide nationwide delivery services.";
+
+if(text.toLowerCase().includes("contact"))
+reply="You can contact us through WhatsApp support.";
+
+if(text.toLowerCase().includes("export"))
+reply="We support local and international agricultural exports.";
+
+messages.innerHTML +=
+"<div><b>AI:</b> "+reply+"</div>";
+
+messages.scrollTop=messages.scrollHeight;
+
+input.value="";
+
+}
+
+document.getElementById("userInput")
+.addEventListener("keypress",function(e){
+
+if(e.key==="Enter"){
+sendMessage();
+}
+
+});
 
 </script>
 
 </body>
-<script src="app.js"></script>
 </html>
