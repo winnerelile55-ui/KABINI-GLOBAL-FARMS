@@ -3,321 +3,439 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kabini Global | Shopping Cart</title>
 
-<title>Kabini Global | Cart</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
-/* ================= ROOT ================= */
 :root{
---green:#0f5f2f;
---brown:#5c4033;
---gold:#d4af37;
---bg:#f7f5f0;
---card:#fff;
---radius:16px;
---shadow:0 10px 30px rgba(0,0,0,0.08);
+--green:#0B3D2E;
+--gold:#D4AF37;
+--dark:#050505;
+--light:#f5f7fb;
+--white:#ffffff;
+--shadow:0 15px 40px rgba(0,0,0,.12);
 }
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Inter',sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-background:var(--bg);
+background:var(--light);
+overflow-x:hidden;
 }
 
-/* ================= NAV ================= */
+/* ================= NAVBAR ================= */
+
 nav{
-position:fixed;
-top:0;
-width:100%;
+background:white;
+padding:15px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px 20px;
-background:rgba(15,95,47,0.95);
-backdrop-filter:blur(15px);
-color:#fff;
-z-index:1000;
-}
-
-nav img{
-height:40px;
-}
-
-/* Desktop menu */
-.nav-links{
-display:flex;
-gap:20px;
-list-style:none;
-}
-
-.nav-links a{
-color:#fff;
-text-decoration:none;
-font-weight:600;
-}
-
-/* ================= HAMBURGER ================= */
-.hamburger{
-display:none;
-flex-direction:column;
-gap:5px;
-cursor:pointer;
-}
-
-.hamburger span{
-width:25px;
-height:3px;
-background:#fff;
-border-radius:5px;
-transition:0.3s;
-}
-
-/* Mobile menu */
-.mobile-menu{
-position:fixed;
+position:sticky;
 top:0;
-right:-100%;
-width:75%;
-height:100vh;
-background:#fff;
-box-shadow:-10px 0 30px rgba(0,0,0,0.2);
-padding:30px;
+z-index:1000;
+box-shadow:var(--shadow);
+}
+
+.logo{
 display:flex;
-flex-direction:column;
-gap:20px;
-transition:0.4s;
-z-index:2000;
+align-items:center;
+gap:10px;
 }
 
-.mobile-menu a{
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.logo h2{
 color:var(--green);
-text-decoration:none;
-font-weight:600;
-font-size:18px;
+font-size:20px;
+font-weight:800;
 }
 
-/* ACTIVE MENU */
-.mobile-menu.active{
-right:0;
+.hamburger{
+font-size:28px;
+cursor:pointer;
+color:var(--green);
 }
 
-/* Overlay */
-.overlay{
+/* ================= MENU ================= */
+
+#overlay{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.4);
+background:rgba(0,0,0,.7);
 opacity:0;
 visibility:hidden;
-transition:0.3s;
-z-index:1500;
+transition:.4s;
+z-index:1999;
 }
 
-.overlay.active{
-opacity:1;
-visibility:visible;
+#menu{
+position:fixed;
+left:-100%;
+top:0;
+width:320px;
+height:100%;
+background:linear-gradient(135deg,#071d15,#0B3D2E,#143e2f);
+padding:25px;
+overflow-y:auto;
+transition:.5s;
+z-index:2000;
 }
 
-/* Responsive */
-@media(max-width:768px){
-.nav-links{
-display:none;
+.menu-title{
+font-size:26px;
+font-weight:900;
+color:white;
+margin-bottom:25px;
+text-align:center;
 }
 
-.hamburger{
-display:flex;
-}
+.menu-item{
+display:block;
+padding:16px;
+margin-bottom:15px;
+border-radius:15px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.2);
+color:white;
+font-weight:700;
+text-decoration:none;
+box-shadow:
+0 0 15px rgba(255,255,255,.5),
+0 0 25px rgba(255,255,255,.3);
 }
 
-/* ================= LAYOUT ================= */
-.container{
-margin-top:100px;
-padding:15px;
-max-width:1200px;
-margin-inline:auto;
+/* ================= HERO ================= */
+
+.hero{
+padding:80px 20px;
+text-align:center;
+background:
+linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+url('https://images.unsplash.com/photo-1556740749-887f6717d7e4');
+background-size:cover;
+background-position:center;
+color:white;
 }
 
-.cart-layout{
+.hero h1{
+font-size:55px;
+}
+
+/* ================= CART ================= */
+
+.cart-section{
+padding:60px 8%;
+}
+
+.cart-container{
 display:grid;
 grid-template-columns:2fr 1fr;
-gap:25px;
+gap:30px;
 }
 
-@media(max-width:900px){
-.cart-layout{
-grid-template-columns:1fr;
-}
-}
-
-/* ================= CART ITEMS ================= */
-.cart-box{
-background:var(--card);
-padding:15px;
-border-radius:var(--radius);
+.cart-items{
+background:white;
+padding:25px;
+border-radius:20px;
 box-shadow:var(--shadow);
 }
 
 .cart-item{
 display:flex;
-gap:15px;
-padding:15px 0;
-border-bottom:1px solid #eee;
+justify-content:space-between;
 align-items:center;
-}
-
-.cart-item img{
-width:90px;
-height:90px;
-object-fit:cover;
-border-radius:10px;
-}
-
-.item-details{
-flex:1;
-}
-
-.price{
-color:var(--green);
-font-weight:700;
-}
-
-.controls{
-display:flex;
-align-items:center;
-gap:10px;
-margin-top:8px;
-}
-
-.controls button{
-padding:6px 10px;
-border:none;
-background:var(--green);
-color:#fff;
-cursor:pointer;
-border-radius:6px;
-}
-
-.remove{
-background:red;
-}
-
-/* ================= SUMMARY ================= */
-.summary{
-background:rgba(255,255,255,0.7);
-backdrop-filter:blur(12px);
 padding:20px;
-border-radius:var(--radius);
+border-bottom:1px solid #eee;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.cart-item h3{
+color:var(--green);
+}
+
+.cart-item button{
+padding:10px 15px;
+border:none;
+background:red;
+color:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+.summary{
+background:white;
+padding:25px;
+border-radius:20px;
 box-shadow:var(--shadow);
+height:fit-content;
 }
 
-.summary h3{
-margin-bottom:15px;
+.summary h2{
+color:var(--green);
+margin-bottom:20px;
 }
 
-.summary p{
+.summary-row{
 display:flex;
 justify-content:space-between;
-margin:10px 0;
+margin-bottom:15px;
 }
 
 .checkout-btn{
 width:100%;
 padding:15px;
 border:none;
-border-radius:12px;
-background:var(--gold);
-font-weight:700;
-cursor:pointer;
-margin-top:15px;
-}
-
-/* ================= TOAST ================= */
-.toast{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
 background:var(--green);
-color:#fff;
-padding:12px 16px;
-border-radius:10px;
-opacity:0;
-transition:0.3s;
+color:white;
+font-weight:700;
+border-radius:12px;
+cursor:pointer;
+margin-top:20px;
 }
 
-.toast.show{
-opacity:1;
+.clear-btn{
+width:100%;
+padding:15px;
+border:none;
+background:red;
+color:white;
+font-weight:700;
+border-radius:12px;
+cursor:pointer;
+margin-top:10px;
+}
+
+/* ================= AI CART ASSISTANT ================= */
+
+.ai-box{
+margin-top:30px;
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:var(--shadow);
+}
+
+.ai-box h3{
+color:var(--green);
+margin-bottom:15px;
+}
+
+/* ================= FLOAT BUTTONS ================= */
+
+.float{
+position:fixed;
+right:20px;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+cursor:pointer;
+z-index:999;
+}
+
+.whatsapp{
+bottom:20px;
+background:#25D366;
+color:white;
+}
+
+.instagram{
+bottom:95px;
+background:#E1306C;
+color:white;
+}
+
+.ai{
+bottom:170px;
+background:var(--gold);
+color:black;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+background:#051a13;
+color:white;
+padding:80px 8% 30px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:35px;
+}
+
+.footer-grid h3{
+color:var(--gold);
+margin-bottom:15px;
+}
+
+.footer-grid a{
+display:block;
+color:#ddd;
+text-decoration:none;
+margin:8px 0;
+}
+
+.footer-bottom{
+margin-top:40px;
+padding-top:20px;
+border-top:1px solid rgba(255,255,255,.15);
+text-align:center;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+.cart-container{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:35px;
+}
+
+#menu{
+width:85%;
+}
+
+.cart-item{
+flex-direction:column;
+align-items:flex-start;
+}
+
 }
 
 </style>
 </head>
-
 <body>
 
-<!-- OVERLAY -->
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-<a href="index.html">Home</a>
-<a href="product.html">Products</a>
-<a href="cart.html">Cart</a>
-<a href="checkout.html">Checkout</a>
-<a href="order.html">Orders</a>
-
-</div>
-
-<!-- NAV -->
 <nav>
 
+<div class="hamburger" onclick="openMenu()">
+<i class="fas fa-bars"></i>
+</div>
+
+<div class="logo">
 <img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260323-WA0001.jpg">
+<h2>KABINI LTD</h2>
+</div>
 
-<ul class="nav-links">
-<li><a href="index.html">Home</a></li>
-<li><a href="product.html">Products</a></li>
-<li><a href="cart.html">Cart</a></li>
-<li><a href="checkout.html">Checkout</a></li>
-<li><a href="order.html">Orders</a></li>
-</ul>
-
-<div class="hamburger" onclick="toggleMenu()">
-<span></span>
-<span></span>
-<span></span>
+<div>
+<i class="fas fa-cart-shopping" style="font-size:25px;color:#0B3D2E;"></i>
 </div>
 
 </nav>
 
-<!-- CONTENT -->
-<div class="container">
+<div id="overlay" onclick="closeMenu()"></div>
 
-<h2 style="margin-bottom:15px;">🛒 Your Cart</h2>
+<div id="menu">
 
-<div class="cart-layout">
+<div class="menu-title">
+KABINI LTD
+</div>
 
-<div class="cart-box" id="cartItems"></div>
+<a href="index.htmll" class="menu-item">🏠 Home</a>
+
+<a href="product.html" class="menu-item">🛒 Products</a>
+
+<a href="contact.html" class="menu-item">📞 Contact Us</a>
+
+<a href="cart.html" class="menu-item">🛍 Cart</a>
+
+<a href="ai.html" class="menu-item">🤖 AI CHATBOT</a>
+
+<a href="register.html" class="menu-item">👤 Register</a>
+
+<a href="invoice.html" class="menu-item">🧾 Invoice</a>
+
+<a href="order.html" class="menu-item">📦 Orders</a>
+
+<a href="checkout.html" class="menu-item">📦 checkout</a>
+
+<a href="receipt.html" class="menu-item">📦 receipt</a>
+
+</div>
+
+
+<section class="hero">
+<h1>Shopping Cart</h1>
+<p>Review your products and proceed to checkout</p>
+</section>
+
+<section class="cart-section">
+
+<div class="cart-container">
+
+<div class="cart-items">
+
+<h2 style="margin-bottom:20px;color:#0B3D2E;">
+Cart Items
+</h2>
+
+<div id="cartItems">
+</div>
+
+</div>
+
+<div>
 
 <div class="summary">
 
-<h3>Order Summary</h3>
+<h2>Order Summary</h2>
 
-<p>Subtotal <span id="subtotal">₦0</span></p>
-<p>Shipping <span>₦2000</span></p>
-<p><strong>Total <span id="total">₦0</span></strong></p>
+<div class="summary-row">
+<span>Total Items</span>
+<span id="totalItems">0</span>
+</div>
 
-<button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+<div class="summary-row">
+<span>Total Amount</span>
+<span id="totalPrice">₦0</span>
+</div>
+
+<button class="checkout-btn"
+onclick="goCheckout()">
+Proceed To Checkout
+</button>
+
+<button class="clear-btn"
+onclick="clearCart()">
+Clear Cart
+</button>
+
+</div>
+
+<div class="ai-box">
+
+<h3>🤖 AI Cart Assistant</h3>
+
+<p>
+Your cart is synced across the entire Kabini Global website.
+Products added from products.html will automatically appear here.
+</p>
 
 </div>
 
@@ -325,144 +443,179 @@ opacity:1;
 
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
+</section>
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<h3>Company</h3>
+<a href="about.html">About Us</a>
+<a href="products.html">Products</a>
+<a href="account.html">My Account</a>
+</div>
+
+<div>
+<h3>Customer Service</h3>
+<a href="#">Support</a>
+<a href="#">Delivery</a>
+<a href="#">Tracking</a>
+</div>
+
+<div>
+<h3>AI Automation</h3>
+<p>AI Commerce</p>
+<p>AI Analytics</p>
+<p>AI Inventory</p>
+</div>
+
+<div>
+<h3>Contact</h3>
+<p>Abuja, Nigeria</p>
+<p>+234 810 780 8968</p>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 Kabini LTD. All Rights Reserved.
+</div>
+
+</footer>
+
+<div class="float whatsapp" onclick="openWhatsApp()">
+<i class="fab fa-whatsapp"></i>
+</div>
+
+<div class="float instagram" onclick="openInstagram()">
+<i class="fab fa-instagram"></i>
+</div>
 
 <script>
 
-/* ================= MENU ================= */
+const menu=document.getElementById("menu");
+const overlay=document.getElementById("overlay");
 
-function toggleMenu(){
-document.getElementById("mobileMenu").classList.toggle("active")
-document.getElementById("overlay").classList.toggle("active")
+function openMenu(){
+menu.style.left="0";
+overlay.style.opacity="1";
+overlay.style.visibility="visible";
 }
 
-/* ================= CART ================= */
-
-let cart = JSON.parse(localStorage.getItem("cart")) || []
-
-cart = cart.map(item => ({
-...item,
-price: Number(item.price) || 0,
-qty: Number(item.qty) || 1
-}))
-
-const cartBox = document.getElementById("cartItems")
-
-function renderCart(){
-
-cartBox.innerHTML = ""
-
-if(cart.length === 0){
-cartBox.innerHTML = `<h3 style="text-align:center;">Your cart is empty</h3>`
-updateTotals()
-return
+function closeMenu(){
+menu.style.left="-100%";
+overlay.style.opacity="0";
+overlay.style.visibility="hidden";
 }
 
-cart.forEach(item => {
+function loadCart(){
 
-cartBox.innerHTML += `
+let cart=
+JSON.parse(localStorage.getItem("kabiniCart"))||[];
+
+let container=
+document.getElementById("cartItems");
+
+let totalPrice=0;
+
+container.innerHTML="";
+
+if(cart.length===0){
+
+container.innerHTML=
+"<h3>Your cart is empty.</h3>";
+
+}
+
+cart.forEach((item,index)=>{
+
+let price=item.price || 0;
+
+totalPrice+=Number(price);
+
+container.innerHTML+=`
+
 <div class="cart-item">
 
-<img src="${item.img}">
+<div>
+<h3>${item.name || "Product"}</h3>
+<p>₦${price}</p>
+</div>
 
-<div class="item-details">
-
-<h4>${item.name}</h4>
-
-<p class="price">₦${item.price}</p>
-
-<div class="controls">
-
-<button onclick="decrease(${item.id})">-</button>
-<span>${item.qty}</span>
-<button onclick="increase(${item.id})">+</button>
-<button class="remove" onclick="removeItem(${item.id})">Remove</button>
+<button onclick="removeItem(${index})">
+Remove
+</button>
 
 </div>
 
-</div>
+`;
 
-</div>
-`
+});
 
-})
+document.getElementById("totalItems")
+.innerHTML=cart.length;
 
-updateTotals()
-
-}
-
-/* ================= ACTIONS ================= */
-
-function increase(id){
-cart = cart.map(i => i.id === id ? {...i, qty:i.qty+1} : i)
-save()
-toast("Updated")
-}
-
-function decrease(id){
-cart = cart.map(i => i.id === id ? {...i, qty:Math.max(1,i.qty-1)} : i)
-save()
-toast("Updated")
-}
-
-function removeItem(id){
-cart = cart.filter(i => i.id !== id)
-save()
-toast("Removed")
-}
-
-function save(){
-localStorage.setItem("cart", JSON.stringify(cart))
-renderCart()
-}
-
-/* ================= TOTAL ================= */
-
-function updateTotals(){
-
-let subtotal = 0
-
-cart.forEach(item => {
-subtotal += item.price * item.qty
-})
-
-document.getElementById("subtotal").innerText = "₦" + subtotal
-
-let total = subtotal + 2000
-
-document.getElementById("total").innerText = "₦" + total
+document.getElementById("totalPrice")
+.innerHTML="₦"+totalPrice.toLocaleString();
 
 }
 
-/* ================= CHECKOUT ================= */
+function removeItem(index){
 
-function checkout(){
+let cart=
+JSON.parse(localStorage.getItem("kabiniCart"))||[];
 
-if(cart.length === 0){
-toast("Cart is empty")
-return
+cart.splice(index,1);
+
+localStorage.setItem(
+"kabiniCart",
+JSON.stringify(cart)
+);
+
+loadCart();
+
 }
 
-localStorage.setItem("order", JSON.stringify(cart))
-window.location.href = "checkout.html"
+function clearCart(){
+
+if(confirm("Clear entire cart?")){
+
+localStorage.removeItem("kabiniCart");
+
+loadCart();
 
 }
 
-/* ================= TOAST ================= */
-
-function toast(msg){
-let t = document.getElementById("toast")
-t.innerText = msg
-t.classList.add("show")
-setTimeout(()=>t.classList.remove("show"),2000)
 }
 
-/* INIT */
-renderCart()
+function goCheckout(){
+
+window.location.href="checkout.html";
+
+}
+
+function openWhatsApp(){
+
+window.open(
+"https://wa.me/2348107808968?text=Hello%20Kabini%20Global",
+"_blank"
+);
+
+}
+
+function openInstagram(){
+
+window.open(
+"https://instagram.com",
+"_blank"
+);
+
+}
+
+loadCart();
 
 </script>
 
 </body>
-<script src="app.js"></script>
 </html>
