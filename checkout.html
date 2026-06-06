@@ -3,370 +3,532 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Kabini Global | Checkout</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
-/* ================= ROOT ================= */
 :root{
---green:#0f5f2f;
---gold:#d4af37;
---bg:#f7f5f0;
---card:#fff;
---radius:16px;
---shadow:0 10px 30px rgba(0,0,0,0.08);
+--green:#0B3D2E;
+--gold:#D4AF37;
+--dark:#050505;
+--light:#f5f7fb;
+--white:#ffffff;
+--shadow:0 15px 40px rgba(0,0,0,.12);
 }
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Inter',sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-background:var(--bg);
+background:var(--light);
+overflow-x:hidden;
 }
 
-/* ================= NAV ================= */
+/* ================= NAVBAR ================= */
+
 nav{
-position:fixed;
-top:0;
-width:100%;
+background:white;
+padding:15px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px 20px;
-background:rgba(15,95,47,0.95);
-color:#fff;
+position:sticky;
+top:0;
 z-index:1000;
-}
-
-nav a{
-color:#fff;
-text-decoration:none;
-font-weight:600;
-margin-left:15px;
-}
-
-/* ================= LAYOUT ================= */
-.container{
-max-width:1100px;
-margin:100px auto;
-padding:15px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:2fr 1fr;
-gap:25px;
-}
-
-@media(max-width:900px){
-.grid{
-grid-template-columns:1fr;
-}
-}
-
-/* ================= FORM ================= */
-.form-box{
-background:var(--card);
-padding:20px;
-border-radius:var(--radius);
 box-shadow:var(--shadow);
 }
 
-.form-box h2{
-margin-bottom:15px;
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
 }
 
-.input{
-margin-bottom:12px;
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
 }
 
-.input input,
-.input textarea,
-select{
+.logo h2{
+font-size:20px;
+font-weight:800;
+color:var(--green);
+}
+
+.hamburger{
+font-size:28px;
+cursor:pointer;
+color:var(--green);
+}
+
+/* ================= MENU ================= */
+
+#overlay{
+position:fixed;
+top:0;
+left:0;
 width:100%;
-padding:12px;
-border-radius:8px;
-border:1px solid #ccc;
+height:100%;
+background:rgba(0,0,0,.7);
+opacity:0;
+visibility:hidden;
+transition:.4s;
+z-index:1999;
 }
 
-textarea{
-height:100px;
-resize:none;
+#menu{
+position:fixed;
+left:-100%;
+top:0;
+width:320px;
+height:100%;
+background:linear-gradient(135deg,#071d15,#0B3D2E,#143e2f);
+padding:25px;
+overflow-y:auto;
+transition:.5s;
+z-index:2000;
 }
 
-/* ================= SUMMARY ================= */
-.summary{
-background:rgba(255,255,255,0.7);
-backdrop-filter:blur(12px);
-padding:20px;
-border-radius:var(--radius);
+.menu-title{
+font-size:26px;
+font-weight:900;
+color:white;
+margin-bottom:25px;
+text-align:center;
+}
+
+.menu-item{
+display:block;
+padding:16px;
+margin-bottom:15px;
+border-radius:15px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.2);
+color:white;
+font-weight:700;
+text-decoration:none;
+box-shadow:
+0 0 15px rgba(255,255,255,.5),
+0 0 25px rgba(255,255,255,.3);
+}
+
+/* ================= CHECKOUT ================= */
+
+.hero{
+padding:80px 20px;
+text-align:center;
+color:white;
+background:
+linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+url('https://images.unsplash.com/photo-1556742400-b5a63e0b0d8a');
+background-size:cover;
+background-position:center;
+}
+
+.hero h1{
+font-size:55px;
+}
+
+.checkout-section{
+padding:60px 8%;
+}
+
+.checkout-grid{
+display:grid;
+grid-template-columns:1.5fr 1fr;
+gap:30px;
+}
+
+.box{
+background:white;
+padding:25px;
+border-radius:20px;
 box-shadow:var(--shadow);
 }
 
-.item{
-display:flex;
-justify-content:space-between;
-margin:8px 0;
-font-size:14px;
+.box h2{
+color:var(--green);
+margin-bottom:20px;
 }
 
-.total{
-margin-top:15px;
-font-size:18px;
-font-weight:700;
-display:flex;
-justify-content:space-between;
-}
-
-/* ================= BUTTON ================= */
-.btn{
+input,textarea,select{
 width:100%;
 padding:14px;
-margin-top:20px;
-border:none;
+margin-bottom:15px;
 border-radius:10px;
-background:var(--gold);
+border:1px solid #ddd;
+}
+
+.summary-row{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+}
+
+.btn{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
 font-weight:700;
 cursor:pointer;
 }
 
-.btn:hover{
-opacity:0.9;
+.btn-green{
+background:var(--green);
+color:white;
 }
 
-/* ================= EMPTY ================= */
-.empty{
+.btn-gold{
+background:var(--gold);
+color:black;
+}
+
+.btn-red{
+background:red;
+color:white;
+margin-top:10px;
+}
+
+/* ================= FLOAT ================= */
+
+.float{
+position:fixed;
+right:20px;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+cursor:pointer;
+z-index:999;
+}
+
+.whatsapp{
+bottom:20px;
+background:#25D366;
+color:white;
+}
+
+.instagram{
+bottom:95px;
+background:#E1306C;
+color:white;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+background:#051a13;
+color:white;
+padding:80px 8% 30px;
+margin-top:60px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:35px;
+}
+
+.footer-bottom{
+margin-top:40px;
+padding-top:20px;
+border-top:1px solid rgba(255,255,255,.15);
 text-align:center;
-padding:40px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+.checkout-grid{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:35px;
+}
+
+#menu{
+width:85%;
+}
+
 }
 
 </style>
 </head>
-
 <body>
 
-<!-- NAV -->
 <nav>
-<div><strong>Kabini LTD</strong></div>
-<div>
-<a href="index.html">Home</a>
-<a href="product.html">Products</a>
-<a href="cart.html">Cart</a>
-<a href="order.html">Orders</a>
+
+<div class="hamburger" onclick="openMenu()">
+<i class="fas fa-bars"></i>
 </div>
+
+<div class="logo">
+<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260323-WA0001.jpg">
+<h2>KABINI LTD</h2>
+</div>
+
+<div>
+<i class="fas fa-credit-card" style="font-size:25px;color:#0B3D2E;"></i>
+</div>
+
 </nav>
 
-<!-- CONTENT -->
-<div class="container">
+<div id="overlay" onclick="closeMenu()"></div>
 
-<h2>Checkout</h2>
+<div id="menu">
 
-<div class="grid">
+<div class="menu-title">KABINI LTD</div>
 
-<!-- FORM -->
-<div class="form-box">
+<a href="index.htmll" class="menu-item">🏠 Home</a>
+
+<a href="product.html" class="menu-item">🛒 Products</a>
+
+<a href="contact.html" class="menu-item">📞 Contact Us</a>
+
+<a href="cart.html" class="menu-item">🛍 Cart</a>
+
+<a href="ai.html" class="menu-item">🤖 AI CHATBOT</a>
+
+<a href="register.html" class="menu-item">👤 Register</a>
+
+<a href="invoice.html" class="menu-item">🧾 Invoice</a>
+
+<a href="order.html" class="menu-item">📦 Orders</a>
+
+<a href="checkout.html" class="menu-item">📦 checkout</a>
+
+<a href="receipt.html" class="menu-item">📦 receipt</a>
+
+</div>
+
+
+<section class="hero">
+<h1>Checkout</h1>
+<p>Complete your order securely</p>
+</section>
+
+<section class="checkout-section">
+
+<div class="checkout-grid">
+
+<!-- BILLING -->
+<div class="box">
 
 <h2>Billing Details</h2>
 
-<div class="input">
 <input id="name" placeholder="Full Name">
-</div>
-
-<div class="input">
-<input id="email" placeholder="Email Address">
-</div>
-
-<div class="input">
 <input id="phone" placeholder="Phone Number">
-</div>
-
-<div class="input">
+<input id="email" placeholder="Email">
 <textarea id="address" placeholder="Delivery Address"></textarea>
-</div>
 
-<h2>Shipping</h2>
-
-<div class="input">
-<select id="location">
-<option value="Abuja">Abuja</option>
-<option value="Lagos">Lagos</option>
-<option value="Kano">Kano</option>
-<option value="Port Harcourt">Port Harcourt</option>
-</select>
-</div>
-
-<div class="input">
-<select id="shipping">
-<option value="standard">Standard</option>
-<option value="express">Express</option>
-</select>
-</div>
-
-<h2>Payment</h2>
-
-<div class="input">
 <select id="payment">
-<option value="cod">Pay on Delivery</option>
-<option value="card">Card</option>
-<option value="transfer">Bank Transfer</option>
+<option>Cash on Delivery</option>
+<option>Bank Transfer</option>
+<option>WhatsApp Payment</option>
 </select>
-</div>
 
-<button class="btn" onclick="placeOrder()">Place Order</button>
+<button class="btn btn-green" onclick="placeOrder()">
+Place Order
+</button>
+
+<button class="btn btn-red" onclick="clearCart()">
+Clear Cart
+</button>
 
 </div>
 
 <!-- SUMMARY -->
-<div class="summary">
+<div class="box">
 
-<h3>Order Summary</h3>
+<h2>Order Summary</h2>
 
-<div id="items"></div>
+<div id="summary"></div>
 
-<div class="total">
+<hr style="margin:15px 0;">
+
+<div class="summary-row">
 <span>Total</span>
-<span id="total">₦0</span>
+<strong id="total">₦0</strong>
 </div>
+
+<button class="btn btn-gold" onclick="payWhatsApp()">
+Pay via WhatsApp
+</button>
 
 </div>
 
 </div>
+
+</section>
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<h3>Company</h3>
+<p>About</p>
+<p>Products</p>
+<p>Contact</p>
+</div>
+
+<div>
+<h3>Support</h3>
+<p>Orders</p>
+<p>Tracking</p>
+<p>Help Center</p>
+</div>
+
+<div>
+<h3>AI System</h3>
+<p>Automation</p>
+<p>Smart Logistics</p>
+</div>
+
+<div>
+<h3>Contact</h3>
+<p>Abuja, Nigeria</p>
+<p>+234 810 780 8968</p>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 Kabini Global
+</div>
+
+</footer>
+
+<div class="float whatsapp" onclick="openWhatsApp()">
+<i class="fab fa-whatsapp"></i>
+</div>
+
+<div class="float instagram" onclick="openInstagram()">
+<i class="fab fa-instagram"></i>
 </div>
 
 <script>
 
-/* ================= CART ================= */
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+const menu=document.getElementById("menu");
+const overlay=document.getElementById("overlay");
 
-const itemsBox = document.getElementById("items");
-const totalBox = document.getElementById("total");
-
-/* ================= RENDER ================= */
-function render() {
-
-itemsBox.innerHTML = "";
-
-let subtotal = 0;
-
-if (!cart || cart.length === 0) {
-itemsBox.innerHTML = "<p class='empty'>Cart is empty</p>";
-totalBox.innerText = "₦0";
-return;
+function openMenu(){
+menu.style.left="0";
+overlay.style.opacity="1";
+overlay.style.visibility="visible";
 }
 
-cart.forEach(item => {
+function closeMenu(){
+menu.style.left="-100%";
+overlay.style.opacity="0";
+overlay.style.visibility="hidden";
+}
 
-let price = Number(item.price) || 0;
-let qty = Number(item.qty) || 1;
+/* LOAD CART */
+function loadCart(){
 
-let total = price * qty;
-subtotal += total;
+let cart=JSON.parse(localStorage.getItem("kabiniCart"))||[];
 
-itemsBox.innerHTML += `
-<div class="item">
-<span>${item.name} x${qty}</span>
-<span>₦${total.toLocaleString()}</span>
+let summary=document.getElementById("summary");
+let total=0;
+
+summary.innerHTML="";
+
+cart.forEach(item=>{
+
+let price=Number(item.price)||0;
+total+=price;
+
+summary.innerHTML+=`
+<div class="summary-row">
+<span>${item.name}</span>
+<span>₦${price}</span>
 </div>
 `;
 
 });
 
-let shipping = 2000;
-let total = subtotal + shipping;
-
-totalBox.innerText = "₦" + total.toLocaleString();
+document.getElementById("total").innerText="₦"+total.toLocaleString();
 
 }
 
-render();
+function placeOrder(){
 
-/* ================= WHATSAPP ================= */
-function sendToWhatsApp(orderData) {
+let orders=JSON.parse(localStorage.getItem("kabiniOrders"))||[];
 
-let message = `🛒 *New Order from Kabini Global*\n\n`;
+let cart=JSON.parse(localStorage.getItem("kabiniCart"))||[];
 
-message += `👤 *Customer Details*\n`;
-message += `Name: ${orderData.customer.name}\n`;
-message += `Email: ${orderData.customer.email}\n`;
-message += `Phone: ${orderData.customer.phone}\n`;
-message += `Address: ${orderData.customer.address}\n\n`;
-
-message += `📦 *Order Items*\n`;
-
-let subtotal = 0;
-
-orderData.items.forEach(item => {
-
-let price = Number(item.price) || 0;
-let qty = Number(item.qty) || 1;
-let total = price * qty;
-
-subtotal += total;
-
-message += `- ${item.name} x${qty} = ₦${total.toLocaleString()}\n`;
-
-});
-
-let shipping = 2000;
-let total = subtotal + shipping;
-
-message += `\n🚚 Shipping: ₦${shipping.toLocaleString()}`;
-message += `\n💰 *Total: ₦${total.toLocaleString()}*`;
-message += `\n\n📅 Order Time: ${new Date().toLocaleString()}`;
-
-let phoneNumber = "2348107808968"; // <-- PUT YOUR NUMBER
-
-let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-window.open(url, "_blank");
-
-}
-
-/* ================= ORDER ================= */
-function placeOrder() {
-
-if (!cart || cart.length === 0) {
+if(cart.length===0){
 alert("Cart is empty");
 return;
 }
 
-let name = document.getElementById("name").value.trim();
-let email = document.getElementById("email").value.trim();
-let phone = document.getElementById("phone").value.trim();
-let address = document.getElementById("address").value.trim();
-
-if (!name || !email || !phone || !address) {
-alert("Fill all fields");
-return;
-}
-
-let order = {
-id: Date.now(),
-customer: { name, email, phone, address },
-items: cart,
-date: new Date().toLocaleString(),
-status: "Processing"
+let order={
+name:name.value,
+phone:phone.value,
+email:email.value,
+address:address.value,
+items:cart,
+date:new Date().toLocaleString(),
+status:"Pending"
 };
 
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
 orders.push(order);
 
-localStorage.setItem("orders", JSON.stringify(orders));
-localStorage.removeItem("cart");
+localStorage.setItem("kabiniOrders",JSON.stringify(orders));
 
-/* 👉 SEND TO WHATSAPP */
-sendToWhatsApp(order);
+localStorage.removeItem("kabiniCart");
 
-alert("Redirecting to WhatsApp...");
+alert("Order Placed Successfully");
+
+window.location.href="orders.html";
 
 }
+
+function clearCart(){
+
+localStorage.removeItem("kabiniCart");
+loadCart();
+
+alert("Cart Cleared");
+
+}
+
+function payWhatsApp(){
+
+let msg="Hello Kabini Global, I want to pay for my order.";
+
+window.open(
+"https://wa.me/2348107808968?text="+encodeURIComponent(msg),
+"_blank"
+);
+
+}
+
+function openWhatsApp(){
+window.open("https://wa.me/2348107808968","_blank");
+}
+
+function openInstagram(){
+window.open("https://instagram.com","_blank");
+}
+
+loadCart();
 
 </script>
 
