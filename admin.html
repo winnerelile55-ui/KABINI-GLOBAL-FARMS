@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kabini Global | Admin Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+:root{
+--green:#0B3D2E;
+--gold:#D4AF37;
+--dark:#050505;
+--light:#f5f7fb;
+--white:#ffffff;
+--danger:#dc3545;
+--success:#28a745;
+--shadow:0 15px 40px rgba(0,0,0,.12);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:var(--light);
+overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+background:white;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:999;
+box-shadow:var(--shadow);
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.logo h2{
+font-size:20px;
+font-weight:800;
+color:var(--green);
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+position:fixed;
+left:0;
+top:85px;
+width:280px;
+height:100%;
+background:linear-gradient(
+135deg,
+#071d15,
+#0B3D2E,
+#143e2f
+);
+padding:20px;
+overflow-y:auto;
+}
+
+.sidebar a{
+display:block;
+padding:15px;
+margin-bottom:12px;
+background:rgba(255,255,255,.08);
+border-radius:15px;
+text-decoration:none;
+color:white;
+font-weight:700;
+box-shadow:
+0 0 10px rgba(255,255,255,.4);
+}
+
+.sidebar a:hover{
+transform:translateX(5px);
+}
+
+/* ================= MAIN ================= */
+
+.main{
+margin-left:300px;
+padding:30px;
+}
+
+.title{
+font-size:35px;
+font-weight:900;
+color:var(--green);
+margin-bottom:25px;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-bottom:30px;
+}
+
+.stat{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:var(--shadow);
+text-align:center;
+}
+
+.stat i{
+font-size:40px;
+color:var(--gold);
+margin-bottom:10px;
+}
+
+.stat h2{
+font-size:35px;
+color:var(--green);
+}
+
+/* ================= TABLE ================= */
+
+.card{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:var(--shadow);
+margin-bottom:30px;
+}
+
+.card h3{
+margin-bottom:20px;
+color:var(--green);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:15px;
+text-align:left;
+border-bottom:1px solid #eee;
+}
+
+th{
+background:#f8f8f8;
+}
+
+/* ================= FORMS ================= */
+
+input,
+textarea,
+select{
+width:100%;
+padding:14px;
+margin-top:8px;
+margin-bottom:15px;
+border:1px solid #ddd;
+border-radius:10px;
+}
+
+.btn{
+padding:12px 25px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:700;
+}
+
+.btn-green{
+background:var(--green);
+color:white;
+}
+
+.btn-gold{
+background:var(--gold);
+color:black;
+}
+
+.btn-red{
+background:var(--danger);
+color:white;
+}
+
+/* ================= AI PANEL ================= */
+
+.ai-panel{
+background:
+linear-gradient(
+135deg,
+#071d15,
+#0B3D2E
+);
+color:white;
+padding:25px;
+border-radius:20px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+top:0;
+}
+
+.main{
+margin-left:0;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+
+table{
+display:block;
+overflow-x:auto;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+
+<div class="logo">
+<img src="kabini images/images/IMG-20260323-WA0001.jpg">
+<h2>KABINI ADMIN</h2>
+</div>
+
+<div>
+<i class="fas fa-user-shield"
+style="
+font-size:30px;
+color:#0B3D2E;
+"></i>
+</div>
+
+</nav>
+
+<div class="sidebar">
+
+<a href="index.html">
+🏠 Website Home
+</a>
+
+<a href="products.html">
+🛒 Products
+</a>
+
+<a href="orders.html">
+📦 Orders
+</a>
+
+<a href="invoice.html">
+🧾 Invoices
+</a>
+
+<a href="account.html">
+👤 Accounts
+</a>
+
+<a href="checkout.html">
+💳 Checkout
+</a>
+
+<a href="about.html">
+ℹ About Page
+</a>
+
+<a href="#">
+🤖 AI Dashboard
+</a>
+
+<a href="#">
+⚙ Settings
+</a>
+
+</div>
+
+<div class="main">
+
+<h1 class="title">
+Admin Dashboard
+</h1>
+
+<!-- STATS -->
+
+<div class="stats">
+
+<div class="stat">
+<i class="fas fa-users"></i>
+<h2 id="usersCount">0</h2>
+<p>Users</p>
+</div>
+
+<div class="stat">
+<i class="fas fa-cart-shopping"></i>
+<h2 id="cartCount">0</h2>
+<p>Cart Items</p>
+</div>
+
+<div class="stat">
+<i class="fas fa-box"></i>
+<h2 id="ordersCount">0</h2>
+<p>Orders</p>
+</div>
+
+<div class="stat">
+<i class="fas fa-file-invoice"></i>
+<h2 id="invoiceCount">0</h2>
+<p>Invoices</p>
+</div>
+
+</div>
+
+<!-- PRODUCTS -->
+
+<div class="card">
+
+<h3>
+Product Management
+</h3>
+
+<input
+id="productName"
+placeholder="Product Name">
+
+<input
+id="productPrice"
+placeholder="Price">
+
+<textarea
+id="productDesc"
+placeholder="Description"></textarea>
+
+<button
+class="btn btn-green"
+onclick="addProduct()">
+Add Product
+</button>
+
+</div>
+
+<!-- ORDERS -->
+
+<div class="card">
+
+<h3>
+Recent Orders
+</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>Order</th>
+<th>Status</th>
+<th>Date</th>
+</tr>
+</thead>
+
+<tbody id="ordersTable">
+
+<tr>
+<td>No Orders</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- USERS -->
+
+<div class="card">
+
+<h3>
+Registered Users
+</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+</tr>
+</thead>
+
+<tbody id="usersTable">
+
+<tr>
+<td>No Users</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- AI PANEL -->
+
+<div class="ai-panel">
+
+<h2>
+🤖 Kabini AI Admin Center
+</h2>
+
+<br>
+
+<p>
+Monitor products, orders,
+customers, invoices,
+inventory and business
+analytics from one dashboard.
+</p>
+
+<br>
+
+<p>
+Future AI Features:
+</p>
+
+<ul>
+
+<li>
+AI Product Analysis
+</li>
+
+<li>
+AI Sales Prediction
+</li>
+
+<li>
+AI Customer Insights
+</li>
+
+<li>
+AI Logistics Tracking
+</li>
+
+<li>
+AI Inventory Forecasting
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<script>
+
+/* ================= LOAD COUNTS ================= */
+
+function loadDashboard(){
+
+let cart =
+JSON.parse(
+localStorage.getItem("kabiniCart")
+)||[];
+
+let orders =
+JSON.parse(
+localStorage.getItem("kabiniOrders")
+)||[];
+
+let invoices =
+JSON.parse(
+localStorage.getItem("kabiniInvoices")
+)||[];
+
+let user =
+JSON.parse(
+localStorage.getItem("kabiniUser")
+);
+
+document.getElementById(
+"cartCount"
+).innerHTML = cart.length;
+
+document.getElementById(
+"ordersCount"
+).innerHTML = orders.length;
+
+document.getElementById(
+"invoiceCount"
+).innerHTML = invoices.length;
+
+document.getElementById(
+"usersCount"
+).innerHTML =
+user ? 1 : 0;
+
+loadUsers(user);
+loadOrders(orders);
+
+}
+
+/* ================= USERS ================= */
+
+function loadUsers(user){
+
+if(!user) return;
+
+usersTable.innerHTML=`
+
+<tr>
+<td>${user.name||''}</td>
+<td>${user.email||''}</td>
+<td>${user.phone||''}</td>
+</tr>
+
+`;
+
+}
+
+/* ================= ORDERS ================= */
+
+function loadOrders(orders){
+
+if(!orders.length) return;
+
+ordersTable.innerHTML="";
+
+orders.forEach(order=>{
+
+ordersTable.innerHTML += `
+
+<tr>
+<td>${order.name || "Product"}</td>
+<td>Pending</td>
+<td>${new Date().toLocaleDateString()}</td>
+</tr>
+
+`;
+
+});
+
+}
+
+/* ================= PRODUCTS ================= */
+
+function addProduct(){
+
+let products =
+JSON.parse(
+localStorage.getItem("kabiniProducts")
+)||[];
+
+let product = {
+
+name:
+productName.value,
+
+price:
+productPrice.value,
+
+description:
+productDesc.value
+
+};
+
+products.push(product);
+
+localStorage.setItem(
+"kabiniProducts",
+JSON.stringify(products)
+);
+
+alert(
+"Product Added Successfully"
+);
+
+productName.value="";
+productPrice.value="";
+productDesc.value="";
+
+}
+
+/* ================= START ================= */
+
+loadDashboard();
+
+</script>
+
+</body>
+</html>
