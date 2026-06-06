@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kabini AI </title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* ================= GLOBAL ================= */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
+}
+
+body{
+height:100vh;
+background:linear-gradient(135deg,#050816,#0b1220,#0f1a2b);
+overflow:hidden;
+color:white;
+}
+
+/* ================= NAV ================= */
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px;
+background:rgba(0,0,0,.4);
+backdrop-filter:blur(10px);
+position:fixed;
+width:100%;
+top:0;
+z-index:1000;
+}
+
+.logo{
+color:#00ffcc;
+font-weight:900;
+}
+
+.menu-btn{
+font-size:28px;
+cursor:pointer;
+}
+
+/* ================= MENU ================= */
+.menu{
+position:fixed;
+top:0;
+left:-100%;
+width:320px;
+height:100%;
+background:rgba(10,15,25,.95);
+backdrop-filter:blur(10px);
+padding:20px;
+transition:.4s;
+z-index:2000;
+}
+
+.menu.open{left:0;}
+
+.menu a{
+display:block;
+padding:14px;
+margin:10px 0;
+background:rgba(255,255,255,.08);
+color:white;
+text-decoration:none;
+border-radius:12px;
+box-shadow:0 0 15px rgba(0,255,204,.15);
+font-weight:700;
+}
+
+/* ================= CHAT AREA ================= */
+.container{
+display:flex;
+flex-direction:column;
+height:100vh;
+padding-top:60px;
+}
+
+/* HEADER */
+.header{
+text-align:center;
+padding:10px;
+border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+/* SUGGESTIONS */
+.suggestions{
+display:flex;
+gap:10px;
+overflow-x:auto;
+padding:10px;
+}
+
+.suggestions button{
+padding:8px 12px;
+border:none;
+border-radius:20px;
+background:rgba(255,255,255,.08);
+color:white;
+font-weight:600;
+cursor:pointer;
+white-space:nowrap;
+}
+
+.suggestions button:hover{
+background:#00ffcc;
+color:black;
+}
+
+/* CHAT */
+.chat{
+flex:1;
+overflow-y:auto;
+padding:15px;
+display:flex;
+flex-direction:column;
+gap:10px;
+scroll-behavior:smooth;
+}
+
+/* MESSAGE */
+.msg{
+padding:12px;
+border-radius:12px;
+max-width:80%;
+animation:pop .25s ease;
+}
+
+@keyframes pop{
+from{transform:scale(.9);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+.user{
+background:#00ffcc;
+color:black;
+align-self:flex-end;
+}
+
+.ai{
+background:rgba(255,255,255,.08);
+align-self:flex-start;
+backdrop-filter:blur(5px);
+}
+
+/* TIME */
+.time{
+font-size:10px;
+opacity:.6;
+margin-top:4px;
+}
+
+/* INPUT */
+.input{
+display:flex;
+padding:10px;
+background:rgba(0,0,0,.3);
+border-top:1px solid rgba(255,255,255,.1);
+}
+
+.input input{
+flex:1;
+padding:12px;
+border:none;
+outline:none;
+border-radius:10px;
+}
+
+.input button{
+margin-left:10px;
+padding:12px;
+border:none;
+background:#00ffcc;
+font-weight:800;
+cursor:pointer;
+border-radius:10px;
+}
+
+/* FLOAT BUTTON GROUP */
+.float{
+position:fixed;
+right:15px;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:22px;
+cursor:pointer;
+}
+
+.whatsapp{bottom:20px;background:#25D366;}
+.insta{bottom:90px;background:#E1306C;}
+.aiBtn{bottom:160px;background:#00ffcc;color:black;}
+
+/* AI PANEL */
+.panel{
+position:fixed;
+bottom:230px;
+right:15px;
+width:320px;
+height:420px;
+background:rgba(0,0,0,.85);
+backdrop-filter:blur(10px);
+border-radius:15px;
+border:1px solid rgba(255,255,255,.1);
+display:none;
+flex-direction:column;
+overflow:hidden;
+}
+
+.panel-header{
+padding:10px;
+background:#00ffcc;
+color:black;
+font-weight:900;
+}
+
+.panel-chat{
+flex:1;
+padding:10px;
+overflow-y:auto;
+}
+
+.panel-input{
+display:flex;
+border-top:1px solid rgba(255,255,255,.1);
+}
+
+.panel-input input{
+flex:1;
+padding:10px;
+border:none;
+outline:none;
+}
+
+.panel-input button{
+background:#00ffcc;
+border:none;
+font-weight:800;
+cursor:pointer;
+padding:10px;
+}
+
+/* TYPING EFFECT */
+.typing{
+font-size:12px;
+opacity:.6;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+50%{opacity:0.3;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<div class="logo">KABINI AI PRO</div>
+</nav>
+
+<!-- MENU -->
+<div class="menu" id="menu">
+
+<a href="index.html">Home</a>
+<a href="about.html">about</a>
+<a href="ai.html">AI CHATBOT</a>
+<a href="cart.html">cart</a>
+<a href="checkout.html">checkout</a>
+<a href="contact.html">contact</a>
+<a href="invoice.html">invoice</a>
+<a href="order.html">order</a>
+<a href="product.html">product</a>
+<a href="register.html">register</a>
+
+
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+<div class="header">
+<h3>🤖 Ultra Interactive AI System</h3>
+</div>
+
+<!-- SUGGESTIONS -->
+<div class="suggestions">
+<button onclick="ask('What can you do?')">Capabilities</button>
+<button onclick="ask('Show products')">Products</button>
+<button onclick="ask('How to order')">Order</button>
+<button onclick="ask('Payment method')">Payment</button>
+</div>
+
+<!-- CHAT -->
+<div class="chat" id="chat">
+<div class="msg ai">Hello 👋 I am Kabini AI Ultra System</div>
+</div>
+
+<!-- INPUT -->
+<div class="input">
+<input id="input" placeholder="Ask AI...">
+<button onclick="send()">Send</button>
+</div>
+
+</div>
+
+<!-- FLOAT -->
+<div class="float aiBtn" onclick="togglePanel()">🤖</div>
+<div class="float whatsapp" onclick="wa()">💬</div>
+<div class="float insta" onclick="ig()">📸</div>
+
+<!-- PANEL -->
+<div class="panel" id="panel">
+
+<div class="panel-header">AI Live Panel</div>
+
+<div class="panel-chat" id="pchat"></div>
+
+<div class="panel-input">
+<input id="pinput">
+<button onclick="sendPanel()">Send</button>
+</div>
+
+</div>
+
+<script>
+
+/* MENU */
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("open");
+}
+
+/* CLOSE MENU OUTSIDE */
+document.addEventListener("click",(e)=>{
+let menu=document.getElementById("menu");
+let btn=document.querySelector(".menu-btn");
+
+if(menu.classList.contains("open")){
+if(!menu.contains(e.target) && !btn.contains(e.target)){
+menu.classList.remove("open");
+}
+}
+});
+
+/* CHAT MEMORY */
+let memory=[];
+
+/* TIME */
+function time(){
+let d=new Date();
+return d.getHours()+":"+String(d.getMinutes()).padStart(2,'0');
+}
+
+/* SEND */
+function send(){
+let input=document.getElementById("input");
+let chat=document.getElementById("chat");
+
+let msg=input.value.trim();
+if(!msg) return;
+
+memory.push(msg);
+
+chat.innerHTML+=`<div class="msg user">${msg}<div class="time">${time()}</div></div>`;
+
+chat.innerHTML+=`<div class="msg ai typing">AI is thinking...</div>`;
+chat.scrollTop=chat.scrollHeight;
+
+setTimeout(()=>{
+document.querySelector(".typing").remove();
+chat.innerHTML+=`<div class="msg ai">${ai(msg)}<div class="time">${time()}</div></div>`;
+chat.scrollTop=chat.scrollHeight;
+},700);
+
+input.value="";
+}
+
+/* AI ENGINE */
+function ai(msg){
+msg=msg.toLowerCase();
+
+if(msg.includes("product")) return "We have Tech, Fashion, Shoes & AI gadgets 📦";
+if(msg.includes("order")) return "Use checkout or WhatsApp 💬";
+if(msg.includes("payment")) return "We support WhatsApp & bank transfer 💳";
+if(msg.includes("hello")) return "Hello again 👋";
+if(msg.includes("cart")) return "Your cart is stored locally 🛒";
+
+return "I am learning your request 🤖";
+}
+
+/* QUICK */
+function ask(text){
+document.getElementById("input").value=text;
+send();
+}
+
+/* PANEL */
+function togglePanel(){
+let p=document.getElementById("panel");
+p.style.display=(p.style.display==="flex")?"none":"flex";
+}
+
+/* PANEL SEND */
+function sendPanel(){
+let i=document.getElementById("pinput");
+let c=document.getElementById("pchat");
+
+let msg=i.value;
+if(!msg) return;
+
+c.innerHTML+=`<div class="msg user">${msg}</div>`;
+c.innerHTML+=`<div class="msg ai">${ai(msg)}</div>`;
+
+i.value="";
+}
+
+/* SOCIAL */
+function wa(){window.open("https://wa.me/2348107808968");}
+function ig(){window.open("https://instagram.com");}
+
+</script>
+
+</body>
+</html>
