@@ -3,276 +3,465 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kabini Global | Contact</title>
+<title>Kabini Global | Contact Us</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+
 :root{
---deep-green:#0f5f2f;
---gold:#d4af37;
---bg:#fefcf8;
---white:#fff;
---transition:all .4s ease;
+--green:#0B3D2E;
+--gold:#D4AF37;
+--dark:#050505;
+--light:#f5f7fb;
+--white:#ffffff;
+--shadow:0 15px 40px rgba(0,0,0,.12);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background:var(--bg);}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-/* NAV */
+body{
+background:var(--light);
+overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
 nav{
-position:fixed;
-width:100%;
-top:0;
+background:white;
+padding:15px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px 25px;
-background:rgba(15,95,47,.95);
+position:sticky;
+top:0;
 z-index:1000;
+box-shadow:var(--shadow);
 }
 
-.logo-container{
+.logo{
 display:flex;
 align-items:center;
 gap:10px;
-color:#fff;
-font-weight:600;
 }
-.logo-container img{height:40px;}
 
-nav ul{
-display:flex;
-gap:20px;
-list-style:none;
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
 }
-nav a{color:#fff;text-decoration:none;font-weight:600;}
 
-/* HAMBURGER */
-.menu-toggle{display:none;flex-direction:column;cursor:pointer;}
-.menu-toggle div{width:25px;height:3px;background:#fff;margin:4px;}
+.logo h2{
+font-size:20px;
+font-weight:800;
+color:var(--green);
+}
 
-.overlay{
+.hamburger{
+font-size:28px;
+cursor:pointer;
+color:var(--green);
+}
+
+/* ================= MENU ================= */
+
+#overlay{
 position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,.6);
-opacity:0;
-pointer-events:none;
-transition:.3s;
-}
-.overlay.active{opacity:1;pointer-events:auto;}
-
-@media(max-width:768px){
-nav ul{
-position:fixed;
-right:-100%;
 top:0;
-width:270px;
+left:0;
+width:100%;
 height:100%;
-flex-direction:column;
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(20px);
-padding:80px 20px;
+background:rgba(0,0,0,.7);
+opacity:0;
+visibility:hidden;
 transition:.4s;
-}
-nav ul.active{right:0;}
-nav ul li{
-background:#fff;
-padding:12px;
-border-radius:10px;
-margin-bottom:10px;
-}
-nav ul li a{color:#000;}
-.menu-toggle{display:flex;}
+z-index:1999;
 }
 
-/* HERO */
-.hero{
-height:50vh;
-display:flex;
-align-items:center;
-justify-content:center;
+#menu{
+position:fixed;
+left:-100%;
+top:0;
+width:320px;
+height:100%;
+background:linear-gradient(135deg,#071d15,#0B3D2E,#143e2f);
+padding:25px;
+overflow-y:auto;
+transition:.5s;
+z-index:2000;
+}
+
+.menu-title{
+font-size:26px;
+font-weight:900;
+color:white;
+margin-bottom:25px;
 text-align:center;
-color:#fff;
-background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-url('https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/freepik_generate-beautiful-nigeri_2757138044.png') center/cover;
 }
 
-.hero h1{font-size:40px;}
+.menu-item{
+display:block;
+padding:16px;
+margin-bottom:15px;
+border-radius:15px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.2);
+color:white;
+font-weight:700;
+text-decoration:none;
+box-shadow:
+0 0 15px rgba(255,255,255,.5),
+0 0 25px rgba(255,255,255,.3);
+}
 
-/* CONTENT */
-.container{
-margin-top:100px;
-padding:30px;
-max-width:1100px;
-margin-left:auto;
-margin-right:auto;
+/* ================= HERO ================= */
+
+.hero{
+padding:80px 20px;
+text-align:center;
+color:white;
+background:
+linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+url('https://images.unsplash.com/photo-1521791136064-7986c2920216');
+background-size:cover;
+background-position:center;
+}
+
+.hero h1{
+font-size:55px;
+}
+
+.hero p{
+max-width:800px;
+margin:auto;
+}
+
+/* ================= CONTACT ================= */
+
+.contact-section{
+padding:60px 8%;
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:30px;
 }
 
-@media(max-width:768px){
-.container{grid-template-columns:1fr;}
-}
-
-/* CARD */
-.card{
-background:#fff;
+.box{
+background:white;
 padding:25px;
-border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
+border-radius:20px;
+box-shadow:var(--shadow);
 }
 
-/* FORM */
-input, textarea{
+.box h2{
+color:var(--green);
+margin-bottom:20px;
+}
+
+input,textarea{
 width:100%;
-padding:12px;
-margin-top:10px;
-border-radius:8px;
+padding:14px;
+margin-bottom:15px;
+border-radius:10px;
 border:1px solid #ddd;
 }
 
-textarea{resize:none;height:120px;}
-
-.btn{
-margin-top:15px;
-padding:14px;
-border:none;
+button{
 width:100%;
-border-radius:10px;
-background:var(--deep-green);
-color:#fff;
-font-weight:600;
+padding:15px;
+border:none;
+background:var(--green);
+color:white;
+font-weight:700;
+border-radius:12px;
 cursor:pointer;
 }
 
-.btn:hover{background:#0b4723;}
+/* ================= INFO CARDS ================= */
 
-/* CONTACT INFO */
-.info div{
-margin-bottom:15px;
-font-weight:500;
+.info{
+display:grid;
+grid-template-columns:1fr;
+gap:15px;
 }
 
-/* FOOTER */
+.info-card{
+padding:20px;
+border-radius:15px;
+background:white;
+box-shadow:var(--shadow);
+}
+
+.info-card i{
+color:var(--gold);
+font-size:25px;
+margin-bottom:10px;
+}
+
+/* ================= FLOAT ================= */
+
+.float{
+position:fixed;
+right:20px;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+cursor:pointer;
+z-index:999;
+}
+
+.whatsapp{
+bottom:20px;
+background:#25D366;
+color:white;
+}
+
+.instagram{
+bottom:95px;
+background:#E1306C;
+color:white;
+}
+
+/* ================= FOOTER ================= */
+
 footer{
-background:var(--deep-green);
-color:#fff;
-text-align:center;
-padding:30px;
-margin-top:40px;
+background:#051a13;
+color:white;
+padding:80px 8% 30px;
+margin-top:60px;
 }
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:35px;
+}
+
+.footer-bottom{
+margin-top:40px;
+padding-top:20px;
+border-top:1px solid rgba(255,255,255,.15);
+text-align:center;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+.contact-section{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:35px;
+}
+
+#menu{
+width:85%;
+}
+
+}
+
 </style>
 </head>
-
 <body>
 
-<div class="overlay"></div>
-
-<!-- NAV -->
 <nav>
-<div class="logo-container">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260323-WA0001.jpg">
-<span>KABINI LTD</span>
+
+<div class="hamburger" onclick="openMenu()">
+<i class="fas fa-bars"></i>
 </div>
 
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="product.html">Products</a></li>
-<li><a href="order.html">Orders</a></li>
-<li><a href="cart.html">Cart</a></li>
-<li><a href="checkout.html">Checkout</a></li>
-<li><a href="receipt.html">Receipt</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
+<div class="logo">
+<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260323-WA0001.jpg">
+<h2>KABINI LTD</h2>
+</div>
 
-<div class="menu-toggle"><div></div><div></div><div></div></div>
+<div>
+<i class="fas fa-phone" style="font-size:25px;color:#0B3D2E;"></i>
+</div>
+
 </nav>
 
-<!-- HERO -->
+<div id="overlay" onclick="closeMenu()"></div>
+
+<div id="menu">
+
+<div class="menu-title">KABINI LTD</div>
+
+<a href="index.html" class="menu-item">🏠 Home</a>
+
+<a href="product.html" class="menu-item">🛒 Products</a>
+
+<a href="contact.html" class="menu-item">📞 Contact Us</a>
+
+<a href="cart.html" class="menu-item">🛍 Cart</a>
+
+<a href="ai.html" class="menu-item">🤖 AI CHATBOT</a>
+
+<a href="register.html" class="menu-item">👤 Register</a>
+
+<a href="invoice.html" class="menu-item">🧾 Invoice</a>
+
+<a href="order.html" class="menu-item">📦 Orders</a>
+
+<a href="checkout.html" class="menu-item">📦 checkout</a>
+
+<a href="receipt.html" class="menu-item">📦 receipt</a>
+
+</div>
+
 <section class="hero">
 <h1>Contact Us</h1>
+<p>We are always ready to support your business and orders</p>
 </section>
 
-<!-- CONTENT -->
-<div class="container">
+<section class="contact-section">
 
-<!-- FORM -->
-<div class="card">
-<h2>Send a Message</h2>
+<div class="box">
 
-<input type="text" id="name" placeholder="Your Name">
-<input type="email" id="email" placeholder="Your Email">
-<textarea id="message" placeholder="Your Message"></textarea>
+<h2>Send Message</h2>
 
-<button class="btn" onclick="sendMessage()">Send Message</button>
-<button class="btn" onclick="sendWhatsApp()">Chat on WhatsApp</button>
+<input id="name" placeholder="Your Name">
+<input id="email" placeholder="Your Email">
+<textarea id="message" rows="6" placeholder="Your Message"></textarea>
+
+<button onclick="sendMessage()">
+Send via WhatsApp
+</button>
 
 </div>
 
-<!-- INFO -->
-<div class="card info">
+<div class="box">
+
 <h2>Contact Info</h2>
 
-<div><i class="fas fa-phone"></i> +234 812345678</div>
-<div><i class="fas fa-envelope"></i> info@kabini.com</div>
-<div><i class="fas fa-location-dot"></i> Abuja, Nigeria</div>
+<div class="info">
 
+<div class="info-card">
+<i class="fas fa-location-dot"></i>
+<p>Abuja, Nigeria</p>
+</div>
+
+<div class="info-card">
+<i class="fas fa-phone"></i>
+<p>+234 810 780 8968</p>
+</div>
+
+<div class="info-card">
+<i class="fas fa-envelope"></i>
+<p>support@kabiniglobal.com</p>
+</div>
+
+<div class="info-card">
+<i class="fab fa-whatsapp"></i>
+<p>WhatsApp Support 24/7</p>
 </div>
 
 </div>
 
-<!-- FOOTER -->
+</div>
+
+</section>
+
 <footer>
-<p>© 2026 Kabini LTD</p>
+
+<div class="footer-grid">
+
+<div>
+<h3>Company</h3>
+<p>About</p>
+<p>Products</p>
+<p>Contact</p>
+</div>
+
+<div>
+<h3>Support</h3>
+<p>Help Center</p>
+<p>Orders</p>
+<p>Tracking</p>
+</div>
+
+<div>
+<h3>AI System</h3>
+<p>Automation</p>
+<p>Smart Logistics</p>
+</div>
+
+<div>
+<h3>Contact</h3>
+<p>Abuja, Nigeria</p>
+<p>+234 810 780 8968</p>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 Kabini Global
+</div>
+
 </footer>
+
+<div class="float whatsapp" onclick="openWhatsApp()">
+<i class="fab fa-whatsapp"></i>
+</div>
+
+<div class="float instagram" onclick="openInstagram()">
+<i class="fab fa-instagram"></i>
+</div>
 
 <script>
 
-/* NAV */
-const toggle=document.querySelector('.menu-toggle');
-const nav=document.querySelector('nav ul');
-const overlay=document.querySelector('.overlay');
+const menu=document.getElementById("menu");
+const overlay=document.getElementById("overlay");
 
-toggle.onclick=()=>{
-nav.classList.toggle('active');
-overlay.classList.toggle('active');
+function openMenu(){
+menu.style.left="0";
+overlay.style.opacity="1";
+overlay.style.visibility="visible";
 }
 
-overlay.onclick=()=>{
-nav.classList.remove('active');
-overlay.classList.remove('active');
+function closeMenu(){
+menu.style.left="-100%";
+overlay.style.opacity="0";
+overlay.style.visibility="hidden";
 }
 
-/* EMAIL (fallback opens mail app) */
 function sendMessage(){
-const name=document.getElementById("name").value;
-const email=document.getElementById("email").value;
-const msg=document.getElementById("message").value;
 
-if(!name || !email || !msg){
-alert("Please fill all fields");
-return;
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+let message=document.getElementById("message").value;
+
+let url=
+"https://wa.me/2348107808968?text="
++"Name: "+name+"%0A"
++"Email: "+email+"%0A"
++"Message: "+message;
+
+window.open(url,"_blank");
+
 }
 
-window.location.href=`mailto:info@kabini.com?subject=Message from ${name}&body=${msg} (${email})`;
+function openWhatsApp(){
+window.open("https://wa.me/2348107808968","_blank");
 }
 
-/* WHATSAPP */
-function sendWhatsApp(){
-const name=document.getElementById("name").value || "Customer";
-const msg=document.getElementById("message").value || "Hello, I want to make an enquiry.";
-
-let text=`Hello, my name is ${name}.%0A${msg}`;
-
-window.open(`https://wa.me/2348107808968?text=${text}`,"_blank");
+function openInstagram(){
+window.open("https://instagram.com","_blank");
 }
 
 </script>
 
 </body>
-<script src="app.js"></script>
 </html>
