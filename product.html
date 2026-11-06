@@ -1,1015 +1,3746 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NG">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kabini Global | Products Store</title>
+<meta name="theme-color" content="#101218">
+<meta name="description" content="Explore the KABINI LTD product collection. Shop electronics, fashion, home essentials, beauty and more.">
+<title>Shop All Products | KABINI LTD</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* =========================================================
+   01. DESIGN SYSTEM
+========================================================= */
 
-/* ================= GLOBAL ================= */
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins;
+:root {
+    --cyan: #00F0FF;
+    --red: #FF003C;
+    --dark: #101218;
+    --dark-2: #191c25;
+    --muted: #717784;
+    --line: #e8eaf0;
+    --white: #ffffff;
+    --soft: #f5f7fa;
+    --green: #07895f;
+    --yellow: #f0a000;
+    --radius: 16px;
+    --shadow: 0 12px 36px rgba(17,24,39,.08);
+    --max: 1440px;
 }
 
-body{
-background:#f5f7fb;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* ================= NAV ================= */
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px;
-background:white;
-position:sticky;
-top:0;
-z-index:1000;
-box-shadow:0 10px 25px rgba(0,0,0,.1);
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 110px;
 }
 
-.logo{
-font-weight:900;
-color:#0B3D2E;
+body {
+    background: #f7f8fb;
+    color: var(--dark);
+    font-family: "DM Sans", sans-serif;
+    line-height: 1.5;
 }
 
-.menu-btn{
-font-size:28px;
-cursor:pointer;
-color:#0B3D2E;
+button,
+input,
+select {
+    font: inherit;
 }
 
-/* ================= MENU ================= */
-.menu{
-position:fixed;
-top:0;
-left:-100%;
-width:320px;
-height:100%;
-background:#0B3D2E;
-padding:20px;
-transition:.4s;
-z-index:2000;
+button {
+    cursor: pointer;
 }
 
-.menu.open{left:0;}
-
-.menu a{
-display:block;
-padding:14px;
-margin:10px 0;
-background:rgba(255,255,255,.1);
-color:white;
-text-decoration:none;
-border-radius:12px;
-box-shadow:0 0 15px rgba(255,255,255,.5);
-font-weight:700;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-/* ================= HEADER ================= */
-.header{
-padding:20px;
-text-align:center;
-background:linear-gradient(135deg,#0B3D2E,#145c44);
-color:white;
+img {
+    max-width: 100%;
+    display: block;
 }
 
-.search{
-margin-top:12px;
-padding:12px;
-width:90%;
-border-radius:10px;
-border:none;
-outline:none;
+.container {
+    width: min(calc(100% - 36px), var(--max));
+    margin: auto;
 }
 
-/* ================= FILTER ================= */
-.filters{
-display:flex;
-gap:10px;
-overflow-x:auto;
-padding:15px;
+.section {
+    padding: 35px 0;
 }
 
-.filter{
-padding:10px 15px;
-background:white;
-border-radius:20px;
-cursor:pointer;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
-white-space:nowrap;
-font-weight:600;
+.eyebrow {
+    color: var(--muted);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .13em;
+    text-transform: uppercase;
 }
 
-/* ================= PRODUCTS ================= */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:15px;
-padding:15px;
+.cyan {
+    color: var(--cyan);
 }
 
-.card{
-background:white;
-padding:12px;
-border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,.1);
-transition:.3s;
+.red {
+    color: var(--red);
 }
 
-.card:hover{
-transform:translateY(-5px);
+.hidden {
+    display: none !important;
 }
 
-.card img{
-width:100%;
-height:120px;
-object-fit:cover;
-border-radius:12px;
+/* =========================================================
+   02. ANNOUNCEMENT BAR
+========================================================= */
+
+.announcement {
+    background: var(--cyan);
+    color: var(--dark);
+    padding: 9px 15px;
+    text-align: center;
+    font-size: .8rem;
+    font-weight: 800;
 }
 
-.price{
-font-weight:900;
-color:#0B3D2E;
+.announcement a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
-/* BUTTONS */
-.btn{
-display:block;
-padding:10px;
-margin-top:8px;
-border-radius:10px;
-text-align:center;
-font-weight:800;
-border:none;
-cursor:pointer;
+/* =========================================================
+   03. HEADER
+========================================================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--dark);
+    color: white;
+    box-shadow: 0 5px 25px rgba(0,0,0,.12);
 }
 
-.view{background:#0B3D2E;color:white;}
-.cart{background:#D4AF37;color:black;}
-
-/* ================= FLOAT ================= */
-.float{
-position:fixed;
-right:15px;
-width:55px;
-height:55px;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-color:white;
-font-size:22px;
-cursor:pointer;
+.header-main {
+    min-height: 82px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
-.whatsapp{bottom:20px;background:#25D366;}
-.insta{bottom:90px;background:#E1306C;}
-.ai{bottom:160px;background:#0B3D2E;}
-
-/* ================= FOOTER ================= */
-footer{
-background:#061b14;
-color:white;
-padding:50px 15px;
-margin-top:40px;
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 190px;
 }
 
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:20px;
+.brand-mark {
+    width: 43px;
+    height: 43px;
+    border-radius: 12px;
+    background: var(--cyan);
+    color: var(--dark);
+    display: grid;
+    place-items: center;
+    font: 900 1.3rem Manrope;
+    transform: skew(-5deg);
 }
 
-.footer-bottom{
-text-align:center;
-margin-top:20px;
-border-top:1px solid rgba(255,255,255,.2);
-padding-top:10px;
+.brand-name {
+    font: 800 1.4rem Manrope;
+    letter-spacing: -.06em;
 }
 
-/* ================= 3D CUBE SECTION ================= */
-.cube-section{
-padding:30px 15px;
-text-align:center;
+.brand-sub {
+    display: block;
+    color: #aab0bc;
+    font-size: .58rem;
+    letter-spacing: .16em;
+    font-weight: 700;
 }
 
-.cube-title{
-font-size:18px;
-margin-bottom:20px;
-font-weight:800;
-color:#0B3D2E;
+.search {
+    position: relative;
+    flex: 1;
+    max-width: 680px;
 }
 
-/* SCENE */
-.scene{
-width:200px;
-height:200px;
-margin:auto;
-perspective:1000px;
+.search input {
+    height: 47px;
+    width: 100%;
+    border: 1px solid #393e49;
+    border-radius: 12px;
+    background: #222631;
+    color: white;
+    padding: 0 50px 0 45px;
+    outline: none;
 }
 
-/* CUBE */
-.cube{
-width:100%;
-height:100%;
-position:relative;
-transform-style:preserve-3d;
-animation:rotateCube 10s infinite linear;
+.search input:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 3px rgba(0,240,255,.13);
 }
 
-/* ROTATION */
-@keyframes rotateCube{
-0%{transform:rotateX(0deg) rotateY(0deg);}
-100%{transform:rotateX(360deg) rotateY(360deg);}
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cyan);
+    font-size: 1.2rem;
 }
 
-/* FACES */
-.face{
-position:absolute;
-width:200px;
-height:200px;
-display:flex;
-align-items:center;
-justify-content:center;
-flex-direction:column;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(5px);
-border:1px solid rgba(255,255,255,0.2);
-box-shadow:0 0 20px rgba(0,0,0,0.2);
+.search button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 37px;
+    width: 40px;
+    border: 0;
+    border-radius: 9px;
+    background: var(--cyan);
+    color: var(--dark);
+    font-weight: 900;
 }
 
-.face img{
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:10px;
-opacity:0.85;
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
 }
 
-/* TEXT INSIDE CUBE */
-.face span{
-position:absolute;
-bottom:10px;
-background:rgba(0,0,0,0.6);
-color:white;
-padding:5px 10px;
-border-radius:10px;
-font-size:12px;
+.header-btn {
+    position: relative;
+    width: 43px;
+    height: 43px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: transparent;
+    color: white;
+    font-size: 1.2rem;
 }
 
-/* POSITIONING */
-.front  { transform: rotateY(0deg) translateZ(100px); }
-.back   { transform: rotateY(180deg) translateZ(100px); }
-.right  { transform: rotateY(90deg) translateZ(100px); }
-.left   { transform: rotateY(-90deg) translateZ(100px); }
-.top    { transform: rotateX(90deg) translateZ(100px); }
-.bottom { transform: rotateX(-90deg) translateZ(100px); }
-
-/* MOBILE */
-@media(max-width:600px){
-.scene{
-width:160px;
-height:160px;
-}
-.face{
-width:160px;
-height:160px;
-}
+.header-btn:hover {
+    background: #282d38;
+    border-color: #454a56;
 }
 
+.count {
+    position: absolute;
+    top: 0;
+    right: -2px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    display: grid;
+    place-items: center;
+    border-radius: 50px;
+    background: var(--red);
+    color: white;
+    font-size: .65rem;
+    font-weight: 900;
+}
 
+.header-nav {
+    border-top: 1px solid #292d37;
+    background: var(--dark-2);
+}
+
+.nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+    min-height: 44px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.nav-inner::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-inner a {
+    flex: 0 0 auto;
+    color: #d4d7de;
+    font-size: .82rem;
+    font-weight: 700;
+}
+
+.nav-inner a:hover {
+    color: var(--cyan);
+}
+
+.mobile-menu {
+    display: none;
+}
+
+/* =========================================================
+   04. BREADCRUMB
+========================================================= */
+
+.breadcrumb {
+    padding: 18px 0;
+    color: var(--muted);
+    font-size: .8rem;
+}
+
+.breadcrumb a {
+    color: var(--dark);
+    font-weight: 700;
+}
+
+.breadcrumb span {
+    padding: 0 8px;
+}
+
+/* =========================================================
+   05. PAGE INTRODUCTION
+========================================================= */
+
+.page-intro {
+    position: relative;
+    overflow: hidden;
+    min-height: 250px;
+    border-radius: 23px;
+    padding: clamp(28px,5vw,55px);
+    display: flex;
+    align-items: center;
+    color: white;
+    background:
+      linear-gradient(90deg,rgba(10,12,18,.96),rgba(10,12,18,.58)),
+      url("https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1800&q=88")
+      center/cover;
+}
+
+.page-intro::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,var(--cyan),var(--red));
+}
+
+.intro-content {
+    max-width: 620px;
+}
+
+.intro-label {
+    display: inline-block;
+    padding: 7px 12px;
+    border: 1px solid rgba(0,240,255,.45);
+    border-radius: 50px;
+    color: var(--cyan);
+    background: rgba(0,240,255,.08);
+    font-size: .72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.page-intro h1 {
+    margin: 17px 0 12px;
+    font: 800 clamp(2.4rem,5vw,4.4rem)/1 Manrope;
+    letter-spacing: -.07em;
+}
+
+.page-intro p {
+    color: #d5d9e2;
+    max-width: 500px;
+    font-size: .95rem;
+    line-height: 1.8;
+}
+
+/* =========================================================
+   06. SHOP BENEFITS
+========================================================= */
+
+.benefits {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: white;
+}
+
+.benefit-icon {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(0,240,255,.15);
+    display: grid;
+    place-items: center;
+    font-size: 1.2rem;
+}
+
+.benefit strong {
+    display: block;
+    font-size: .82rem;
+}
+
+.benefit small {
+    color: var(--muted);
+    font-size: .7rem;
+}
+
+/* =========================================================
+   07. CATEGORY SHORTCUTS
+========================================================= */
+
+.category-section {
+    padding: 32px 0 15px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+    margin-top: 5px;
+    font: 800 clamp(1.5rem,3vw,2.2rem) Manrope;
+    letter-spacing: -.06em;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: .84rem;
+    margin-top: 5px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(8,minmax(0,1fr));
+    gap: 12px;
+}
+
+.category-card {
+    min-width: 0;
+    padding: 9px 9px 13px;
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    background: white;
+    text-align: center;
+    transition: .2s;
+}
+
+.category-card:hover,
+.category-card.active {
+    border-color: var(--cyan);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.category-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.category-card strong {
+    display: block;
+    margin-top: 9px;
+    font-size: .76rem;
+}
+
+/* =========================================================
+   08. SHOP LAYOUT
+========================================================= */
+
+.shop-layout {
+    display: grid;
+    grid-template-columns: 245px minmax(0,1fr);
+    gap: 24px;
+    align-items: start;
+    padding: 20px 0 55px;
+}
+
+.sidebar {
+    position: sticky;
+    top: 150px;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 17px;
+    background: white;
+}
+
+.sidebar h3 {
+    font: 800 1rem Manrope;
+    margin-bottom: 16px;
+}
+
+.filter-group {
+    padding: 17px 0;
+    border-top: 1px solid var(--line);
+}
+
+.filter-group h4 {
+    margin-bottom: 12px;
+    font-size: .82rem;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 10px 0;
+    color: #515866;
+    font-size: .8rem;
+    cursor: pointer;
+}
+
+.filter-option input {
+    accent-color: var(--dark);
+}
+
+.price-inputs {
+    display: flex;
+    gap: 8px;
+}
+
+.price-inputs input {
+    width: 50%;
+    min-width: 0;
+    height: 38px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0 8px;
+    outline-color: var(--cyan);
+}
+
+.apply-filter {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 0;
+    border-radius: 9px;
+    background: var(--dark);
+    color: white;
+    font-weight: 800;
+    font-size: .78rem;
+}
+
+.clear-filter {
+    width: 100%;
+    margin-top: 8px;
+    padding: 9px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: white;
+    color: var(--muted);
+    font-size: .78rem;
+    font-weight: 700;
+}
+
+/* =========================================================
+   09. TOOLBAR
+========================================================= */
+
+.shop-main {
+    min-width: 0;
+}
+
+.shop-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 16px;
+}
+
+.shop-title-row h2 {
+    font: 800 1.55rem Manrope;
+    letter-spacing: -.05em;
+}
+
+.result-count {
+    display: block;
+    color: var(--muted);
+    font-size: .76rem;
+    margin-top: 4px;
+}
+
+.sort-select {
+    height: 41px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: white;
+    padding: 0 12px;
+    color: var(--dark);
+    outline-color: var(--cyan);
+    font-size: .78rem;
+}
+
+.mobile-filter-btn {
+    display: none;
+    height: 40px;
+    padding: 0 13px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: white;
+    font-weight: 800;
+    font-size: .78rem;
+}
+
+.active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.active-tag {
+    padding: 6px 10px;
+    border-radius: 50px;
+    background: #e8fdff;
+    color: #087b83;
+    font-size: .7rem;
+    font-weight: 800;
+}
+
+/* =========================================================
+   10. PRODUCT GRID
+========================================================= */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 15px;
+}
+
+.product-card {
+    min-width: 0;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: white;
+    transition: transform .2s,box-shadow .2s;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.product-image-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    background: #f0f2f5;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-badge {
+    position: absolute;
+    left: 9px;
+    top: 9px;
+    padding: 5px 8px;
+    border-radius: 6px;
+    background: var(--red);
+    color: white;
+    font-size: .59rem;
+    font-weight: 900;
+}
+
+.product-badge.blue {
+    background: var(--cyan);
+    color: var(--dark);
+}
+
+.wishlist-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,.95);
+    color: var(--dark);
+    font-size: 1.1rem;
+}
+
+.wishlist-btn.active {
+    color: var(--red);
+}
+
+.product-info {
+    padding: 13px;
+}
+
+.product-category {
+    color: var(--muted);
+    font-size: .63rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+}
+
+.product-title {
+    min-height: 42px;
+    margin: 6px 0;
+    font-size: .81rem;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+.rating {
+    color: var(--yellow);
+    font-size: .72rem;
+}
+
+.rating span {
+    color: var(--muted);
+    margin-left: 3px;
+}
+
+.price-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px;
+    margin-top: 9px;
+}
+
+.price {
+    font: 800 .98rem Manrope;
+}
+
+.old-price {
+    color: #969ba5;
+    font-size: .68rem;
+    text-decoration: line-through;
+}
+
+.discount {
+    color: var(--green);
+    font-size: .65rem;
+    font-weight: 900;
+}
+
+.product-actions {
+    display: flex;
+    gap: 7px;
+    margin-top: 12px;
+}
+
+.add-cart {
+    flex: 1;
+    min-width: 0;
+    height: 36px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--dark);
+    color: white;
+    font-size: .7rem;
+    font-weight: 800;
+    transition: .2s;
+}
+
+.add-cart:hover {
+    background: var(--cyan);
+    color: var(--dark);
+}
+
+.quick-view {
+    flex: 0 0 36px;
+    height: 36px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    font-size: 1rem;
+}
+
+.quick-view:hover {
+    border-color: var(--cyan);
+}
+
+.no-products {
+    grid-column: 1/-1;
+    padding: 55px 20px;
+    text-align: center;
+    border-radius: 15px;
+    background: white;
+    color: var(--muted);
+}
+
+.no-products h3 {
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+/* =========================================================
+   11. PAGINATION
+========================================================= */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin-top: 30px;
+}
+
+.page-btn {
+    min-width: 37px;
+    height: 37px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: white;
+    font-size: .8rem;
+    font-weight: 800;
+}
+
+.page-btn.active,
+.page-btn:hover {
+    background: var(--dark);
+    color: white;
+    border-color: var(--dark);
+}
+
+.page-btn:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   12. PROMOTIONAL BANNER
+========================================================= */
+
+.promo-banner {
+    position: relative;
+    overflow: hidden;
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    padding: 35px;
+    border-radius: 22px;
+    color: white;
+    background:
+      linear-gradient(90deg,rgba(10,12,18,.94),rgba(10,12,18,.25)),
+      url("https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1400&q=88")
+      center/cover;
+}
+
+.promo-banner h2 {
+    font: 800 clamp(2rem,4vw,3.2rem) Manrope;
+    letter-spacing: -.06em;
+    margin: 8px 0;
+}
+
+.promo-banner p {
+    color: #d5d9e2;
+    max-width: 430px;
+    font-size: .9rem;
+}
+
+.primary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    min-height: 43px;
+    padding: 0 17px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--cyan);
+    color: var(--dark);
+    font-weight: 900;
+    font-size: .8rem;
+}
+
+/* =========================================================
+   13. FOOTER
+========================================================= */
+
+.footer {
+    margin-top: 45px;
+    padding: 50px 0 20px;
+    background: var(--dark);
+    color: white;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3,1fr);
+    gap: 30px;
+    padding-bottom: 35px;
+}
+
+.footer-about p {
+    max-width: 300px;
+    color: #aab0bc;
+    font-size: .82rem;
+    line-height: 1.8;
+    margin-top: 16px;
+}
+
+.footer-column h3 {
+    margin-bottom: 15px;
+    font-size: .85rem;
+}
+
+.footer-column a {
+    display: block;
+    margin: 10px 0;
+    color: #aab0bc;
+    font-size: .78rem;
+}
+
+.footer-column a:hover {
+    color: var(--cyan);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding-top: 20px;
+    border-top: 1px solid #2d313b;
+    color: #939aa7;
+    font-size: .72rem;
+}
+
+/* =========================================================
+   14. CART DRAWER
+========================================================= */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(5,7,12,.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: .25s;
+}
+
+.overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-drawer {
+    position: fixed;
+    z-index: 101;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: min(430px,100%);
+    display: flex;
+    flex-direction: column;
+    background: white;
+    transform: translateX(105%);
+    transition: transform .3s;
+}
+
+.cart-drawer.open {
+    transform: translateX(0);
+}
+
+.drawer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid var(--line);
+}
+
+.drawer-head h2 {
+    font: 800 1.3rem Manrope;
+}
+
+.close-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: white;
+    font-size: 1.1rem;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 17px 20px;
+}
+
+.cart-empty {
+    padding: 45px 15px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.cart-line {
+    display: grid;
+    grid-template-columns: 70px 1fr auto;
+    gap: 11px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.cart-line img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 9px;
+}
+
+.cart-line strong {
+    display: block;
+    font-size: .8rem;
+}
+
+.cart-line small {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: .72rem;
+}
+
+.quantity {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 7px;
+    padding: 3px 7px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+}
+
+.quantity button {
+    border: 0;
+    background: transparent;
+    font-weight: 900;
+}
+
+.remove-cart {
+    display: block;
+    margin-top: 5px;
+    border: 0;
+    background: transparent;
+    color: var(--red);
+    font-size: .7rem;
+}
+
+.cart-price {
+    font-size: .78rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.drawer-footer {
+    padding: 20px;
+    border-top: 1px solid var(--line);
+}
+
+.subtotal {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-weight: 900;
+}
+
+.checkout-btn {
+    width: 100%;
+    height: 46px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--dark);
+    color: white;
+    font-weight: 900;
+}
+
+.checkout-note {
+    color: var(--muted);
+    font-size: .7rem;
+    margin-top: 9px;
+}
+
+/* =========================================================
+   15. QUICK VIEW MODAL
+========================================================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    display: grid;
+    place-items: center;
+    padding: 18px;
+    opacity: 0;
+    visibility: hidden;
+    transition: .2s;
+}
+
+.modal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(5,7,12,.7);
+}
+
+.modal-card {
+    position: relative;
+    width: min(780px,100%);
+    max-height: 90vh;
+    overflow: auto;
+    border-radius: 20px;
+    background: white;
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+}
+
+.modal-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.modal-content img {
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    object-fit: cover;
+}
+
+.modal-info {
+    padding: 40px 28px 28px;
+}
+
+.modal-info h2 {
+    margin: 9px 0;
+    font: 800 1.7rem Manrope;
+    letter-spacing: -.05em;
+}
+
+.modal-info p {
+    color: var(--muted);
+    font-size: .85rem;
+    line-height: 1.8;
+}
+
+.modal-price {
+    display: block;
+    margin: 18px 0;
+    font: 800 1.5rem Manrope;
+}
+
+/* =========================================================
+   16. TOAST MESSAGE
+========================================================= */
+
+.toast {
+    position: fixed;
+    z-index: 150;
+    left: 50%;
+    bottom: 25px;
+    transform: translate(-50%,20px);
+    padding: 12px 18px;
+    border-radius: 10px;
+    background: var(--dark);
+    color: white;
+    font-size: .8rem;
+    font-weight: 800;
+    opacity: 0;
+    visibility: hidden;
+    transition: .25s;
+    text-align: center;
+    max-width: calc(100% - 30px);
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%,0);
+}
+
+/* =========================================================
+   17. MOBILE FILTER PANEL
+========================================================= */
+
+.mobile-filter-panel {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background: white;
+    overflow-y: auto;
+    padding: 22px;
+}
+
+.mobile-filter-panel.open {
+    display: block;
+}
+
+.mobile-filter-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+}
+
+/* =========================================================
+   18. RESPONSIVE DESIGN
+========================================================= */
+
+@media(max-width:1150px) {
+    .product-grid {
+        grid-template-columns: repeat(3,minmax(0,1fr));
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(4,minmax(0,1fr));
+    }
+
+    .benefits {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:850px) {
+    .header-main {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 13px 0;
+    }
+
+    .brand {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .search {
+        order: 3;
+        flex-basis: 100%;
+        max-width: none;
+    }
+
+    .shop-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .mobile-filter-btn {
+        display: block;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(3,minmax(0,1fr));
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .footer-about {
+        grid-column: 1/-1;
+    }
+}
+
+@media(max-width:560px) {
+    .container {
+        width: calc(100% - 22px);
+    }
+
+    .announcement {
+        font-size: .7rem;
+    }
+
+    .header-main {
+        gap: 7px;
+    }
+
+    .brand-mark {
+        width: 36px;
+        height: 36px;
+    }
+
+    .brand-name {
+        font-size: 1.2rem;
+    }
+
+    .brand-sub {
+        font-size: .5rem;
+    }
+
+    .header-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .header-nav {
+        display: none;
+    }
+
+    .header-nav.mobile-open {
+        display: block;
+    }
+
+    .nav-inner {
+        flex-wrap: wrap;
+        gap: 14px;
+        padding: 12px 0;
+    }
+
+    .page-intro {
+        min-height: 300px;
+        padding: 25px 20px;
+        border-radius: 17px;
+        background-position: 60% center;
+    }
+
+    .page-intro h1 {
+        font-size: 2.7rem;
+    }
+
+    .page-intro p {
+        font-size: .83rem;
+    }
+
+    .benefits {
+        gap: 7px;
+    }
+
+    .benefit {
+        padding: 10px;
+        gap: 7px;
+    }
+
+    .benefit-icon {
+        flex-basis: 32px;
+        width: 32px;
+        height: 32px;
+        font-size: .9rem;
+    }
+
+    .benefit strong {
+        font-size: .68rem;
+    }
+
+    .benefit small {
+        font-size: .6rem;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(4,minmax(0,1fr));
+        gap: 7px;
+    }
+
+    .category-card {
+        padding: 6px;
+    }
+
+    .category-card strong {
+        font-size: .65rem;
+    }
+
+    .shop-title-row {
+        flex-wrap: wrap;
+    }
+
+    .shop-title-row h2 {
+        font-size: 1.35rem;
+    }
+
+    .sort-select {
+        max-width: 145px;
+        font-size: .68rem;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        gap: 9px;
+    }
+
+    .product-card {
+        border-radius: 12px;
+    }
+
+    .product-info {
+        padding: 9px;
+    }
+
+    .product-title {
+        font-size: .73rem;
+        min-height: 40px;
+    }
+
+    .product-category {
+        font-size: .56rem;
+    }
+
+    .price {
+        font-size: .85rem;
+    }
+
+    .old-price {
+        font-size: .62rem;
+    }
+
+    .add-cart {
+        font-size: .65rem;
+        height: 34px;
+    }
+
+    .quick-view {
+        flex-basis: 34px;
+        height: 34px;
+    }
+
+    .promo-banner {
+        min-height: 260px;
+        padding: 23px;
+        background-position: 60% center;
+    }
+
+    .footer-grid {
+        gap: 23px 13px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+    }
+
+    .modal-content {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content img {
+        min-height: 0;
+        height: 250px;
+    }
+
+    .modal-info {
+        padding: 23px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<nav>
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-<div class="logo">KABINI LTD</div>
-</nav>
+<!-- =======================================================
+     ANNOUNCEMENT
+======================================================= -->
 
-<!-- MENU -->
-<div class="menu" id="menu">
-
-<a href="index.htmll" class="menu-item">🏠 Home</a>
-
-<a href="product.html" class="menu-item">🛒 Products</a>
-
-<a href="contact.html" class="menu-item">📞 Contact Us</a>
-
-<a href="cart.html" class="menu-item">🛍 Cart</a>
-
-<a href="ai.html" class="menu-item">🤖 AI CHATBOT</a>
-
-<a href="register.html" class="menu-item">👤 Register</a>
-
-<a href="invoice.html" class="menu-item">🧾 Invoice</a>
-
-<a href="order.html" class="menu-item">📦 Orders</a>
-
-<a href="checkout.html" class="menu-item">📦 checkout</a>
-
-<a href="receipt.html" class="menu-item">📦 receipt</a>
-
-
-
+<div class="announcement">
+    ⚡ KABINI WEEKEND DROPS — Fresh finds, bold prices.
+    <a href="#products">Explore products</a>
 </div>
 
-<!-- HEADER -->
-<div class="header">
+<!-- =======================================================
+     HEADER
+======================================================= -->
 
-<h2>🔥 KABINI LTD</h2>
+<header class="header">
 
-<input class="search" id="search" placeholder="Search products..." onkeyup="search()">
+    <div class="container header-main">
 
+        <button class="header-btn mobile-menu" id="menuToggle"
+                aria-label="Toggle navigation">☰</button>
+
+        <a href="index.html" class="brand">
+
+            <span class="brand-mark">K</span>
+
+            <span>
+                <span class="brand-name">
+                    KABINI<span class="cyan">.</span>
+                </span>
+                <span class="brand-sub">
+                    SHOP SMARTER. LIVE BETTER.
+                </span>
+            </span>
+
+        </a>
+
+        <form class="search" id="searchForm">
+
+            <span class="search-icon">⌕</span>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search products, brands and categories..."
+                autocomplete="off"
+                aria-label="Search products">
+
+            <button type="submit">⌕</button>
+
+        </form>
+
+        <div class="header-actions">
+
+            <button class="header-btn" id="wishlistButton"
+                    aria-label="View wishlist">
+                ♡
+                <span class="count" id="wishlistCount">0</span>
+            </button>
+
+            <button class="header-btn" id="cartButton"
+                    aria-label="Open shopping bag">
+                🛒
+                <span class="count" id="cartCount">0</span>
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="header-nav" id="headerNav">
+
+        <nav class="container nav-inner">
+
+            <a href="index.html">Home</a>
+            <a href="#products">All products</a>
+            <a href="#categories">Categories</a>
+            <a href="#electronics" data-category-link="Electronics">Electronics</a>
+            <a href="#fashion" data-category-link="Fashion">Fashion</a>
+            <a href="#home" data-category-link="Home">Home & living</a>
+            <a href="#beauty" data-category-link="Beauty">Beauty</a>
+            <a href="#deals">Deals</a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<main>
+
+<!-- =======================================================
+     BREADCRUMB
+======================================================= -->
+
+<div class="container breadcrumb">
+    <a href="index.html">Home</a>
+    <span>/</span>
+    <strong>Products</strong>
 </div>
 
-<!-- FILTERS -->
-<div class="filters">
-
-<div class="filter" onclick="filter('all')">All</div>
-<div class="filter" onclick="filter('Livestock')">Livestock</div>
-<div class="filter" onclick="filter('Farm')">Farm</div>
-<div class="filter" onclick="filter('Tools')">Tools</div>
-<div class="filter" onclick="filter('Grains')">Grains</div>
-<div class="filter" onclick="filter('Tools')">Tools</div>
-<div class="filter" onclick="filter('STOCKS')">  STOCKS</div>
-<div class="filter" onclick="filter('bevarages')">bevarages</div>
-<div class="filter" onclick="filter('soyaoil')">soyaoil</div>
-
-</div>
-<!-- ================= 3D CUBE SHOWCASE ================= -->
-<div class="cube-section">
-
-<h2 class="cube-title">🔥 KABINI LTD PRODUCTS (3D Showcase)</h2>
-
-<div class="scene">
-
-<!-- CUBE 1 -->
-<a href="product-details.html?id=1">
-<div class="cube">
-
-<div class="face front">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260323-WA0001.jpg">
-<span>KABINI STOCKS</span>
-</div>
-
-<div class="face back">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0013.jpg">
-<span>KABINI BEVARAGES</span>
-</div>
-
-<div class="face right">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0014.jpg">
-<span>KABINI CRUNCHY</span>
-</div>
-
-<div class="face left">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0003.jpg">
-<span>KABINI FINAL SOYA OIL</span>
-</div>
-
-<div class="face top">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260325-WA0028.jpg">
-<span>KABINI STOCKS</span>
-</div>
-
-<div class="face bottom">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0012(1).jpg">
-<span>KABINI TABLE WATER</span>
-</div>
-
-</div>
-</a>
-
-</div>
-
-</div>
-<!-- PRODUCTS -->
-<div class="grid">
-
-<!-- PRODUCT 1 -->
-<div class="card product" data-cat="STOCKS">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260323-WA0001.jpg">
-<h3>KABINI STOCKS</h3>
-<p class="price">₦200,000</p>
-
-<a class="btn view" href="product-details.html?id=1">View Details</a>
-<button class="btn cart" onclick="add('KABINI STOCKS',200000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 2 -->
-<div class="card product" data-cat="bevarages">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0013.jpg">
-<h3>KABINI BEVARAGES</h3>
-<p class="price">₦1,500</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('KABINI BEVARAGES',18000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 3 -->
-<div class="card product" data-cat="crunchy">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0014.jpg">
-<h3>KABINI CRUNCHY</h3>
-<p class="price">₦1,500</p>
-
-<a class="btn view" href="product-details.html?id=3">View Details</a>
-<button class="btn cart" onclick="add('CRUNCHY',1,500)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 4 -->
-<div class="card product" data-cat="soyaoil">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260325-WA0027.jpg">
-<h3>KABINI FINAL SOYA OIL</h3>
-<p class="price">₦30,000</p>
-
-<a class="btn view" href="product-details.html?id=4">View Details</a>
-<button class="btn cart" onclick="add('soyaoil',30000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 5 -->
-<div class="card product" data-cat="STOCK">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/IMG-20260325-WA0028.jpg">
-<h3>KABINI STOCKS</h3>
-<p class="price">₦180,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('KABINI STOCKS',18000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 6 -->
-<div class="card product" data-cat="soyaoil">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0005.jpg">
-<h3>KABINI FINAL SOYA OIL</h3>
-<p class="price">₦18,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('soyaoil',18000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 7 -->
-<div class="card product" data-cat="bevarages">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0012(1).jpg">
-<h3>KABINI TABLE WATER</h3>
-<p class="price">₦1,500</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('bevarages',18000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 8 -->
-<div class="card product" data-cat="livestock">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/tmp-1589792989118857216-mQ4lIS.jpg">
-<h3>CHICKENS</h3>
-<p class="price">₦18,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('livestock',18000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 9 -->
-<div class="card product" data-cat="soyaoil">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images/IMG-20260331-WA0003.jpg">
-<h3>KABINI FINAL SOYA OIL</h3>
-<p class="price">₦19,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('soyaoil',18000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 10 -->
-<div class="card product" data-cat="livestock">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/5b538c0521fb05c889c0239139e561da.jpg">
-<h3>GOATS</h3>
-<p class="price">₦180,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('livestock',180000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 11 -->
-<div class="card product" data-cat="farm">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/9e1da69742169f6f7000be2ecf9ad2d8.jpg">
-<h3>EGGS</h3>
-<p class="price">₦8,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('farm',8000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 12 -->
-<div class="card product" data-cat="livestock">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images%202/8dc40fc8fbbe300fbfaae586b25b1cdb.jpg">
-<h3>COWS</h3>
-<p class="price">₦1,500000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('livestock',1500000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 13 -->
-<div class="card product" data-cat="farm">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/86d55b649d06acde6e6960105f8eec1e.jpg">
-<h3>CABAGES</h3>
-<p class="price">₦7,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('CABAGES',7000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 14 -->
-<div class="card product" data-cat="farm">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/62470630b6689e1431a3a29d64cfaf93.jpg">
-<h3>CARROTS</h3>
-<p class="price">₦1,800</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('CARROTS',1800)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 15 -->
-<div class="card product" data-cat="farm">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/d4a2526b8193401d65afa6644f645bcc.jpg">
-<h3>VEGETABLES</h3>
-<p class="price">₦8,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('VEGETABLES',8000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 16 -->
-<div class="card product" data-cat="farm">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/d811290e405d2bb747927bee7f5c4026.jpg">
-<h3>PLANTAINS</h3>
-<p class="price">₦10,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('PLANTAINS',10000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 17 -->
-<div class="card product" data-cat="farm">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/front-view-smiley-woman-with-harvest.jpg">
-<h3>VEGETABLES</h3>
-<p class="price">₦2,500</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('VEGETABLES',18000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 18 -->
-<div class="card product" data-cat="farm">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/8c814da10ef8dcd65105c9ade7b091fa.jpg">
-<h3>KABINI SALAD</h3>
-<p class="price">₦18,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('KABINI SALAD',18000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 19 -->
-<div class="card product" data-cat="grain">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images%202/7f891149e176e075049f485dd324f3f9.jpg">
-<h3>GRAINS</h3>
-<p class="price">₦18,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('GRAINS',18000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 20 -->
-<div class="card product" data-cat="grain">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images%202/8ab7039d0808648f526af6d56d6f9fc5.jpg">
-<h3>CORN FLOURS</h3>
-<p class="price">₦45,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('CORN FLOURS',45000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 21 -->
-<div class="card product" data-cat="grain">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images%202/8b47efa4bea6682e6dafdde9136ec64b.jpg">
-<h3>RICE</h3>
-<p class="price">₦65,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('RICE',65000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 22 -->
-<div class="card product" data-cat="farm">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/5feed2ae3bd94816976793f280b0e1d3.jpg">
-<h3>SALAD</h3>
-<p class="price">₦8,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('SALAD',8000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 23 -->
-<div class="card product" data-cat="farm">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images%202/9a903c36a5b21e89f30087c31d861835.jpg">
-<h3>SPICES</h3>
-<p class="price">₦8,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('SPICES',8000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 24 -->
-<div class="card product" data-cat="farm">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/27c2e119e1339e11a8fc278733dce845.jpg">
-<h3>GINGER</h3>
-<p class="price">₦7,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('GINGER',7000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 25 -->
-<div class="card product" data-cat="livestock">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/47b551b04a66cdd9039b46c01076b164.jpg">
-<h3>RED COWS</h3>
-<p class="price">₦1,500000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('RED COWS',1500000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 26 -->
-<div class="card product" data-cat="farm">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/51bd903723da533f3f9c445cb80c5204.jpg">
-<h3>COCOA</h3>
-<p class="price">₦18,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('COCOA',18000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 27 -->
-<div class="card product" data-cat="farm">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/b7276f133ed34934857af0b153d375c4.jpg">
-<h3>GREEN PEPPERS</h3>
-<p class="price">₦3,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('GREEN PEPPERS',3000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 28 -->
-<div class="card product" data-cat="grain">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/61bcc7efeeff2db822393dc36b61740d.jpg">
-<h3>BAG OF GRAINS</h3>
-<p class="price">₦55,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('BAG OF GRAINS',55000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 29 -->
-<div class="card product" data-cat="farm">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/53c923642878481c4ce9bb0dd5702818.jpg">
-<h3>TATASHI</h3>
-<p class="price">₦3,000</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('TATASHI',3000)">Add to Cart</button>
-</div>
-
-<!-- PRODUCT 30 -->
-<div class="card product" data-cat="farm">
-<img src="https://raw.githubusercontent.com/winnerelile55-ui/KABINI-GLOBAL-FARMS/refs/heads/main/images%202/4e4330e84a34c8b756ad08d98f5244a6.jpg">
-<h3>ONIONS</h3>
-<p class="price">₦3,500</p>
-
-<a class="btn view" href="product-details.html?id=2">View Details</a>
-<button class="btn cart" onclick="add('ONIONS',3500)">Add to Cart</button>
-</div>
-
-</div>
-
-<!-- FLOAT -->
-<div class="float whatsapp" onclick="wa()">💬</div>
-<div class="float insta" onclick="ig()">📸</div>
-<div class="float ai"><i class="fas fa-robot"></i></div>
-
-<!-- FOOTER -->
-<footer>
-
-<div class="footer-grid">
-
-<div>
-<h3>AI System</h3>
-<p>Smart automation active</p>
-</div>
-
-<div>
-<h3>Contact</h3>
-<p>Abuja, Nigeria</p>
-</div>
-
-<div>
-<h3>Social</h3>
-<p>WhatsApp • Instagram</p>
-</div>
-
-</div>
-
-<div class="footer-bottom">
-© 2026 Kabini LTD
-</div>
+<!-- =======================================================
+     INTRODUCTION
+======================================================= -->
+
+<section class="container">
+
+    <div class="page-intro">
+
+        <div class="intro-content">
+
+            <span class="intro-label">
+                The KABINI collection
+            </span>
+
+            <h1>
+                Find your next
+                <span class="cyan">favourite.</span>
+            </h1>
+
+            <p>
+                Discover electronics, personal style, home essentials
+                and everyday finds. Explore the collection and find
+                something that fits your lifestyle.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+     BENEFITS
+======================================================= -->
+
+<section class="container">
+
+    <div class="benefits">
+
+        <div class="benefit">
+            <div class="benefit-icon">⌕</div>
+            <div>
+                <strong>Easy discovery</strong>
+                <small>Find what you need</small>
+            </div>
+        </div>
+
+        <div class="benefit">
+            <div class="benefit-icon">♡</div>
+            <div>
+                <strong>Your wishlist</strong>
+                <small>Save your favourites</small>
+            </div>
+        </div>
+
+        <div class="benefit">
+            <div class="benefit-icon">🛒</div>
+            <div>
+                <strong>Simple shopping bag</strong>
+                <small>Keep your picks together</small>
+            </div>
+        </div>
+
+        <div class="benefit">
+            <div class="benefit-icon">✦</div>
+            <div>
+                <strong>Mobile friendly</strong>
+                <small>Shop on any screen</small>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+     CATEGORIES
+======================================================= -->
+
+<section class="container category-section" id="categories">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="eyebrow">Find your thing</span>
+            <h2>Shop by category</h2>
+            <p>Choose a category to explore the collection.</p>
+        </div>
+
+    </div>
+
+    <div class="category-grid" id="categoryGrid">
+
+        <button class="category-card" data-category="Electronics">
+            <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=500&q=80"
+                 alt="Electronics" loading="lazy">
+            <strong>Electronics</strong>
+        </button>
+
+        <button class="category-card" data-category="Phones">
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=500&q=80"
+                 alt="Smartphone" loading="lazy">
+            <strong>Phones</strong>
+        </button>
+
+        <button class="category-card" data-category="Fashion">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=500&q=80"
+                 alt="Fashion" loading="lazy">
+            <strong>Fashion</strong>
+        </button>
+
+        <button class="category-card" data-category="Home">
+            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=500&q=80"
+                 alt="Home living" loading="lazy">
+            <strong>Home</strong>
+        </button>
+
+        <button class="category-card" data-category="Audio">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80"
+                 alt="Audio" loading="lazy">
+            <strong>Audio</strong>
+        </button>
+
+        <button class="category-card" data-category="Beauty">
+            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=500&q=80"
+                 alt="Beauty" loading="lazy">
+            <strong>Beauty</strong>
+        </button>
+
+        <button class="category-card" data-category="Fitness">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=500&q=80"
+                 alt="Fitness" loading="lazy">
+            <strong>Fitness</strong>
+        </button>
+
+        <button class="category-card" data-category="Accessories">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80"
+                 alt="Accessories" loading="lazy">
+            <strong>Accessories</strong>
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+     SHOP AREA
+======================================================= -->
+
+<section class="container shop-layout" id="products">
+
+    <!-- DESKTOP SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h3>Filter products</h3>
+
+        <div class="filter-group">
+
+            <h4>Categories</h4>
+
+            <label class="filter-option">
+                <input type="radio" name="category" value="All" checked>
+                All products
+            </label>
+
+            <label class="filter-option">
+                <input type="radio" name="category" value="Electronics">
+                Electronics
+            </label>
+
+            <label class="filter-option">
+                <input type="radio" name="category" value="Phones">
+                Phones
+            </label>
+
+            <label class="filter-option">
+                <input type="radio" name="category" value="Fashion">
+                Fashion
+            </label>
+
+            <label class="filter-option">
+                <input type="radio" name="category" value="Home">
+                Home
+            </label>
+
+            <label class="filter-option">
+                <input type="radio" name="category" value="Audio">
+                Audio
+            </label>
+
+            <label class="filter-option">
+                <input type="radio" name="category" value="Beauty">
+                Beauty
+            </label>
+
+            <label class="filter-option">
+                <input type="radio" name="category" value="Fitness">
+                Fitness
+            </label>
+
+            <label class="filter-option">
+                <input type="radio" name="category" value="Accessories">
+                Accessories
+            </label>
+
+        </div>
+
+        <div class="filter-group">
+
+            <h4>Price range (₦)</h4>
+
+            <div class="price-inputs">
+
+                <input type="number" id="minPrice"
+                       placeholder="Minimum" min="0">
+
+                <input type="number" id="maxPrice"
+                       placeholder="Maximum" min="0">
+
+            </div>
+
+            <button class="apply-filter" id="applyPrice">
+                Apply price
+            </button>
+
+        </div>
+
+        <div class="filter-group">
+
+            <h4>Customer rating</h4>
+
+            <label class="filter-option">
+                <input type="checkbox" value="4" class="rating-filter">
+                4 stars and above
+            </label>
+
+            <label class="filter-option">
+                <input type="checkbox" value="3" class="rating-filter">
+                3 stars and above
+            </label>
+
+        </div>
+
+        <button class="clear-filter" id="clearFilters">
+            Clear all filters
+        </button>
+
+    </aside>
+
+    <!-- PRODUCT AREA -->
+
+    <div class="shop-main">
+
+        <div class="shop-title-row">
+
+            <div>
+                <span class="eyebrow">Explore the collection</span>
+                <h2>All products</h2>
+                <span class="result-count" id="resultCount">
+                    Loading products...
+                </span>
+            </div>
+
+            <div style="display:flex;gap:8px;align-items:center;">
+
+                <button class="mobile-filter-btn" id="mobileFilterButton">
+                    ☷ Filters
+                </button>
+
+                <select class="sort-select" id="sortSelect"
+                        aria-label="Sort products">
+
+                    <option value="featured">Sort: Featured</option>
+                    <option value="low">Price: Low to high</option>
+                    <option value="high">Price: High to low</option>
+                    <option value="rating">Top rated</option>
+                    <option value="name">Name: A to Z</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="active-filters" id="activeFilters"></div>
+
+        <div class="product-grid" id="productGrid"></div>
+
+        <div class="pagination" id="pagination"></div>
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+     PROMOTIONAL BANNER
+======================================================= -->
+
+<section class="container section" id="deals">
+
+    <div class="promo-banner">
+
+        <div>
+            <span class="eyebrow" style="color:var(--cyan)">
+                Discover something new
+            </span>
+
+            <h2>Good finds.<br>Great energy.</h2>
+
+            <p>
+                Explore the KABINI collection and discover products
+                for work, lifestyle, creativity and everyday living.
+            </p>
+
+            <a href="#products" class="primary-btn">
+                Explore products ↗
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-about">
+
+                <a href="index.html" class="brand">
+                    <span class="brand-mark">K</span>
+                    <span>
+                        <span class="brand-name">
+                            KABINI<span class="cyan">.</span>
+                        </span>
+                        <span class="brand-sub">
+                            SHOP SMARTER. LIVE BETTER.
+                        </span>
+                    </span>
+                </a>
+
+                <p>
+                    Discover products that make everyday living
+                    more convenient, enjoyable and inspiring.
+                </p>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Explore</h3>
+
+                <a href="index.html">Home</a>
+                <a href="#products">All products</a>
+                <a href="#categories">Categories</a>
+                <a href="#deals">Discover</a>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Customer care</h3>
+
+                <a href="#">Contact us</a>
+                <a href="#">Delivery information</a>
+                <a href="#">Returns policy</a>
+                <a href="#">FAQs</a>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Account</h3>
+
+                <a href="#">My account</a>
+                <a href="#" id="footerWishlist">Wishlist</a>
+                <a href="#" id="footerCart">Shopping bag</a>
+                <a href="#">Order tracking</a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <span>
+                © <span id="year"></span> KABINI LTD. All rights reserved.
+            </span>
+
+            <span>
+                Shop smarter. Live better.
+            </span>
+
+        </div>
+
+    </div>
 
 </footer>
 
+<!-- =======================================================
+     CART OVERLAY
+======================================================= -->
 
-</script>
-<div id="kabini-chat-btn" class="float ai">
-    <i class="fas fa-robot"></i>
+<div class="overlay" id="overlay"></div>
+
+<aside class="cart-drawer" id="cartDrawer">
+
+    <div class="drawer-head">
+
+        <h2>Your shopping bag</h2>
+
+        <button class="close-btn" id="closeCart"
+                aria-label="Close shopping bag">×</button>
+
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="drawer-footer">
+
+        <div class="subtotal">
+            <span>Subtotal</span>
+            <span id="cartSubtotal">₦0</span>
+        </div>
+
+        <button class="checkout-btn" id="checkoutButton">
+            Continue to checkout
+        </button>
+
+        <p class="checkout-note">
+            This is a front-end demonstration. No payment is processed.
+        </p>
+
+    </div>
+
+</aside>
+
+<!-- =======================================================
+     QUICK VIEW MODAL
+======================================================= -->
+
+<div class="modal" id="quickModal">
+
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+
+    <div class="modal-card">
+
+        <button class="close-btn modal-close" id="closeModal">
+            ×
+        </button>
+
+        <div id="modalContent"></div>
+
+    </div>
+
 </div>
 
-<div id="kabini-chatbox" style="
-position:fixed;
-bottom:90px;
-right:20px;
-width:380px;
-height:550px;
-background:white;
-border-radius:20px;
-box-shadow:0 20px 60px rgba(0,0,0,.25);
-display:none;
-flex-direction:column;
-z-index:99999;
-overflow:hidden;">
+<!-- =======================================================
+     MOBILE FILTER PANEL
+======================================================= -->
 
-<div style="background:#0B3D2E;color:white;padding:15px;">
-<h3>🤖 Kabini AI Assistant</h3>
-<p style="font-size:12px;">Agriculture • Products • Export • Support</p>
+<div class="mobile-filter-panel" id="mobileFilterPanel">
+
+    <div class="mobile-filter-head">
+
+        <h2>Filters</h2>
+
+        <button class="close-btn" id="closeMobileFilter">
+            ×
+        </button>
+
+    </div>
+
+    <div style="padding-top:20px;">
+
+        <h3 style="font-size:.9rem;margin-bottom:12px;">Categories</h3>
+
+        <div id="mobileCategories"></div>
+
+        <div class="filter-group">
+
+            <h4>Price range (₦)</h4>
+
+            <div class="price-inputs">
+                <input type="number" id="mobileMinPrice" placeholder="Minimum">
+                <input type="number" id="mobileMaxPrice" placeholder="Maximum">
+            </div>
+
+        </div>
+
+        <button class="apply-filter" id="mobileApplyFilters">
+            Apply filters
+        </button>
+
+        <button class="clear-filter" id="mobileClearFilters">
+            Clear filters
+        </button>
+
+    </div>
+
 </div>
 
-<div id="chatMessages" style="flex:1;padding:15px;overflow-y:auto;"></div>
+<!-- =======================================================
+     TOAST
+======================================================= -->
 
-<div style="padding:10px;border-top:1px solid #eee;">
-<input id="chatInput" type="text" placeholder="Ask anything..."
-style="width:100%;padding:12px;border-radius:10px;border:1px solid #ccc;">
-<button id="sendBtn"
-style="margin-top:8px;width:100%;padding:12px;background:#0B3D2E;color:white;border:none;border-radius:10px;">
-Send
-</button>
-</div>
-</div>
-<button class="quick-ai">
-🥚 Eggs
-</button>
+<div class="toast" id="toast"></div>
 
-<button class="quick-ai">
-🥬 Vegetables
-</button>
-
-<button class="quick-ai">
-🚚 Delivery
-</button>
-
-<button class="quick-ai">
-🌍 Export
-</button>
-
-<button class="quick-ai">
-📞 Contact
-</button>
-
-<button class="quick-ai">
-🛒 Cart
-</button>
-
-</body>
+<!-- =======================================================
+     JAVASCRIPT: PRODUCT DATA
+======================================================= -->
 
 <script>
-/* MENU */
-function toggleMenu(){
-document.getElementById("menu").classList.toggle("open");
+
+/*
+IMPORTANT:
+These are the same 20 illustrative catalogue entries from
+your supplied KABINI homepage.
+
+Confirm real stock, prices, product details and ratings
+before making the website live.
+*/
+
+const products = [
+
+{
+id:1,
+title:"Studio Wireless Headphones",
+category:"Audio",
+price:48500,
+oldPrice:62000,
+rating:4.8,
+reviews:124,
+badge:"BEST SELLER",
+image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85",
+description:"A clean, modern headphone pick for playlists, podcasts and focus sessions. Product details are illustrative."
+},
+
+{
+id:2,
+title:"Everyday Smartphone",
+category:"Phones",
+price:285000,
+oldPrice:319000,
+rating:4.7,
+reviews:86,
+badge:"POPULAR",
+image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=85",
+description:"A sleek smartphone concept for staying connected, capturing moments and keeping your day moving."
+},
+
+{
+id:3,
+title:"Minimal Everyday Wristwatch",
+category:"Accessories",
+price:32000,
+oldPrice:41000,
+rating:4.6,
+reviews:57,
+badge:"-22%",
+image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=85",
+description:"A timeless accessory with a minimal look that works from weekday plans to weekend outings."
+},
+
+{
+id:4,
+title:"Modern Lounge Chair",
+category:"Home",
+price:128000,
+oldPrice:149000,
+rating:4.8,
+reviews:42,
+badge:"HOME PICK",
+image:"https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=85",
+description:"A contemporary furniture inspiration piece for creating a more comfortable living space."
+},
+
+{
+id:5,
+title:"Classic Streetwear Jacket",
+category:"Fashion",
+price:39500,
+oldPrice:46000,
+rating:4.5,
+reviews:38,
+badge:"TRENDING",
+image:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=85",
+description:"A versatile style layer for building outfits around comfort, texture and personal expression."
+},
+
+{
+id:6,
+title:"Compact Laptop Workspace",
+category:"Electronics",
+price:425000,
+oldPrice:470000,
+rating:4.7,
+reviews:64,
+badge:"SMART PICK",
+image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=85",
+description:"A laptop-focused workspace idea for study, creativity, remote work and getting things done."
+},
+
+{
+id:7,
+title:"Daily Skincare Essentials",
+category:"Beauty",
+price:18500,
+oldPrice:22500,
+rating:4.4,
+reviews:91,
+badge:"DAILY CARE",
+image:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=85",
+description:"A skincare shelf inspiration for building a simple, consistent self-care routine."
+},
+
+{
+id:8,
+title:"Performance Training Shoes",
+category:"Fitness",
+price:56000,
+oldPrice:67000,
+rating:4.6,
+reviews:73,
+badge:"-16%",
+image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=85",
+description:"Sport-inspired footwear styling for active days and casual everyday outfits."
+},
+
+{
+id:9,
+title:"Portable Bluetooth Speaker",
+category:"Audio",
+price:27500,
+oldPrice:34000,
+rating:4.5,
+reviews:49,
+badge:"GREAT SOUND",
+image:"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=85",
+description:"A compact audio accessory concept for bringing your soundtrack into shared spaces."
+},
+
+{
+id:10,
+title:"Everyday Canvas Backpack",
+category:"Fashion",
+price:24500,
+oldPrice:29000,
+rating:4.5,
+reviews:52,
+badge:"EVERYDAY",
+image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=85",
+description:"A practical bag inspiration for carrying daily essentials to work, class or a day out."
+},
+
+{
+id:11,
+title:"Ceramic Coffee Set",
+category:"Home",
+price:16500,
+oldPrice:19500,
+rating:4.7,
+reviews:31,
+badge:"HOME FAVOURITE",
+image:"https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=800&q=85",
+description:"A warm tabletop detail to make a morning coffee or tea ritual feel a little more special."
+},
+
+{
+id:12,
+title:"Wireless Smartwatch",
+category:"Accessories",
+price:42000,
+oldPrice:51000,
+rating:4.3,
+reviews:105,
+badge:"SMART TECH",
+image:"https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=85",
+description:"A wearable-tech style pick for a modern, active and connected everyday routine."
+},
+
+{
+id:13,
+title:"Mirrorless Camera Inspiration",
+category:"Electronics",
+price:365000,
+oldPrice:399000,
+rating:4.8,
+reviews:27,
+badge:"CREATOR PICK",
+image:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=85",
+description:"A photography gear showcase for creators who enjoy documenting the world around them."
+},
+
+{
+id:14,
+title:"Fresh Fragrance Bottle",
+category:"Beauty",
+price:29500,
+oldPrice:36000,
+rating:4.4,
+reviews:44,
+badge:"GIFT IDEA",
+image:"https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=85",
+description:"A fragrance-inspired gift idea for a considered finishing touch to your daily ritual."
+},
+
+{
+id:15,
+title:"Training Dumbbell Set",
+category:"Fitness",
+price:33500,
+oldPrice:39000,
+rating:4.6,
+reviews:33,
+badge:"MOVE MORE",
+image:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=800&q=85",
+description:"Fitness equipment inspiration for planning a simple home workout corner."
+},
+
+{
+id:16,
+title:"Modern Table Lamp",
+category:"Home",
+price:22000,
+oldPrice:27500,
+rating:4.5,
+reviews:28,
+badge:"SPACE MAKER",
+image:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=85",
+description:"A warm lighting accent to bring atmosphere and function to a desk or bedside table."
+},
+
+{
+id:17,
+title:"Slim Tablet Device",
+category:"Electronics",
+price:178000,
+oldPrice:199000,
+rating:4.4,
+reviews:40,
+badge:"STUDY PICK",
+image:"https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=85",
+description:"A tablet product concept for reading, streaming and portable productivity."
+},
+
+{
+id:18,
+title:"Everyday Running Sneakers",
+category:"Fitness",
+price:48500,
+oldPrice:57000,
+rating:4.7,
+reviews:61,
+badge:"TOP RATED",
+image:"https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=800&q=85",
+description:"A sporty sneaker pick for movement, comfort and off-duty styling."
+},
+
+{
+id:19,
+title:"Structured Shoulder Bag",
+category:"Fashion",
+price:35500,
+oldPrice:42000,
+rating:4.6,
+reviews:47,
+badge:"STYLE PICK",
+image:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=85",
+description:"A polished accessory concept for carrying essentials with a clean silhouette."
+},
+
+{
+id:20,
+title:"Soft Throw Cushion",
+category:"Home",
+price:12500,
+oldPrice:16000,
+rating:4.3,
+reviews:22,
+badge:"COSY FIND",
+image:"https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=800&q=85",
+description:"A soft home accent idea for adding texture, comfort and colour to a favourite corner."
 }
 
-/* CLOSE MENU ON OUTSIDE CLICK */
-document.addEventListener("click",function(e){
-let menu=document.getElementById("menu");
-let btn=document.querySelector(".menu-btn");
+];
 
-if(menu.classList.contains("open")){
-if(!menu.contains(e.target) && !btn.contains(e.target)){
-menu.classList.remove("open");
-}
-}
+
+/* =========================================================
+   JAVASCRIPT: STORE STATE
+========================================================= */
+
+const currency = new Intl.NumberFormat("en-NG",{
+    style:"currency",
+    currency:"NGN",
+    maximumFractionDigits:0
 });
 
-/* CART */
-function add(name,price){
-let cart=JSON.parse(localStorage.getItem("kabiniCart"))||[];
-cart.push({name,price});
-localStorage.setItem("kabiniCart",JSON.stringify(cart));
-alert("Added to cart");
-}
+const state = {
 
-/* SEARCH */
-function search(){
-let input=document.getElementById("search").value.toLowerCase();
-let cards=document.querySelectorAll(".product");
+    category:"All",
 
-cards.forEach(c=>{
-c.style.display=c.innerText.toLowerCase().includes(input)?"block":"none";
-});
-}
+    search:"",
 
-/* FILTER */
-function filter(cat){
-let cards=document.querySelectorAll(".product");
+    sort:"featured",
 
-cards.forEach(c=>{
-if(cat==="all"||c.dataset.cat===cat){
-c.style.display="block";
-}else{
-c.style.display="none";
-}
-});
-}
+    minPrice:0,
 
-/* SOCIAL */
-function wa(){
-window.open("https://wa.me/2348107808968");
-}
+    maxPrice:Infinity,
 
-function ig(){
-window.open("https://instagram.com");
-}
+    minRating:0,
 
+    page:1,
 
-let cube = document.querySelector(".cube");
+    perPage:12,
 
-document.querySelector(".scene").addEventListener("mouseenter",()=>{
-cube.style.animationPlayState="paused";
-});
+    wishlist:readStore("kabini-wishlist",[]),
 
-document.querySelector(".scene").addEventListener("mouseleave",()=>{
-cube.style.animationPlayState="running";
-});
-/* ================= FLOATING BUTTON FIX ================= */
-document.querySelector(".whatsapp").onclick = ()=>{
-window.open("https://wa.me/2348107808968","_blank");
+    cart:readStore("kabini-cart",[]),
+
+    wishlistOnly:false
+
 };
 
-document.querySelector(".instagram").onclick = ()=>{
-window.open("https://instagram.com","_blank");
-};
 
-document.querySelector(".ai").onclick = ()=>{
+/* =========================================================
+   STORAGE FUNCTIONS
+========================================================= */
 
-let q = prompt("Ask Kabini AI:");
-if(!q) return;
+function readStore(key,fallback) {
 
-q = q.toLowerCase();
+    try {
 
-let reply = "Kabini AI: Explore premium agro products.";
+        const saved = localStorage.getItem(key);
 
-if(q.includes("rice")) reply = "Rice is available in premium bulk export.";
-if(q.includes("delivery")) reply = "We deliver nationwide in Nigeria.";
-if(q.includes("export")) reply = "We handle international agro export.";
-if(q.includes("price")) reply = "Prices vary by category. Check products section.";
+        return saved ? JSON.parse(saved) : fallback;
 
-alert(reply);
-};
+    } catch(error) {
 
-/* ================= HERO SCROLL BUTTON FIX ================= */
-document.querySelector(".btn").onclick = ()=>{
-document.querySelector(".products").scrollIntoView({behavior:"smooth"});
-};
+        return fallback;
 
-const chatBtn=document.getElementById("kabini-chat-btn");
-const chatbox=document.getElementById("kabini-chatbox");
-const chatMessages=document.getElementById("chatMessages");
-const chatInput=document.getElementById("chatInput");
+    }
 
-let memory=[];
-
-chatBtn.onclick=()=>{
-chatbox.style.display=chatbox.style.display==="flex"?"none":"flex";
-};
-
-function addMessage(sender,msg){
-let div=document.createElement("div");
-div.style.marginBottom="12px";
-div.innerHTML=`<b>${sender}</b><br>${msg}`;
-chatMessages.appendChild(div);
-chatMessages.scrollTop=chatMessages.scrollHeight;
 }
 
-function aiReply(q){
 
-q=q.toLowerCase();
+function saveStore() {
 
-let reply="I can help with products, farming, exports, logistics and Kabini Global services.";
+    try {
 
-if(q.includes("egg")) reply="Fresh Eggs are available from ₦5,500.";
-if(q.includes("vegetable")) reply="Organic Veggies are available from ₦8,000.";
-if(q.includes("delivery")) reply="Kabini Global provides nationwide delivery.";
-if(q.includes("export")) reply="We support international agro exports.";
-if(q.includes("price")) reply="Prices vary by product. Ask for a specific product.";
-if(q.includes("company")) reply="Kabini Global is building an AI-powered agriculture marketplace.";
-if(q.includes("contact")) reply="Use WhatsApp support for direct assistance.";
+        localStorage.setItem(
+            "kabini-cart",
+            JSON.stringify(state.cart)
+        );
 
-memory.push({user:q,ai:reply});
+        localStorage.setItem(
+            "kabini-wishlist",
+            JSON.stringify(state.wishlist)
+        );
 
-setTimeout(()=>{
-addMessage("🤖 Kabini AI",reply);
-speechSynthesis.speak(new SpeechSynthesisUtterance(reply));
-},800);
+    } catch(error) {
+
+        console.warn("Browser storage is unavailable.");
+
+    }
+
 }
 
-function sendMessage(){
-let q=chatInput.value.trim();
-if(!q) return;
 
-addMessage("👤 You",q);
-chatInput.value="";
-aiReply(q);
+/* =========================================================
+   GENERAL HELPERS
+========================================================= */
+
+function money(value) {
+
+    return currency.format(value).replace("NGN","₦");
+
 }
 
-document.getElementById("sendBtn").onclick=sendMessage;
-chatInput.addEventListener("keypress",(e)=>{
-if(e.key==="Enter") sendMessage();
+
+function escapeHTML(value) {
+
+    return String(value).replace(/[&<>"']/g,char=>({
+
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+
+    }[char]));
+
+}
+
+
+function discount(product) {
+
+    if(!product.oldPrice || product.oldPrice<=product.price) {
+        return 0;
+    }
+
+    return Math.round(
+        (1-product.price/product.oldPrice)*100
+    );
+
+}
+
+
+function showToast(message) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(showToast.timer);
+
+    showToast.timer = setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+    },2500);
+
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+function productCard(product) {
+
+    const wished = state.wishlist.includes(product.id);
+
+    const sale = discount(product);
+
+    return `
+
+    <article class="product-card">
+
+        <div class="product-image-wrap">
+
+            <img
+                class="product-image"
+                src="${product.image}"
+                alt="${escapeHTML(product.title)}"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='https://placehold.co/700x700/f1f3f6/101218?text=KABINI+Product'">
+
+            <span class="product-badge ${product.id%3===0?"blue":""}">
+                ${escapeHTML(product.badge)}
+            </span>
+
+            <button
+                class="wishlist-btn ${wished?"active":""}"
+                data-wishlist="${product.id}"
+                aria-label="Toggle wishlist"
+                aria-pressed="${wished}">
+
+                ${wished?"♥":"♡"}
+
+            </button>
+
+        </div>
+
+        <div class="product-info">
+
+            <div class="product-category">
+                ${escapeHTML(product.category)}
+            </div>
+
+            <h3 class="product-title">
+                ${escapeHTML(product.title)}
+            </h3>
+
+            <div class="rating">
+                ★★★★★
+                <span>${product.rating} (${product.reviews})</span>
+            </div>
+
+            <div class="price-row">
+
+                <span class="price">
+                    ${money(product.price)}
+                </span>
+
+                <span class="old-price">
+                    ${money(product.oldPrice)}
+                </span>
+
+                <span class="discount">
+                    -${sale}%
+                </span>
+
+            </div>
+
+            <div class="product-actions">
+
+                <button
+                    class="add-cart"
+                    data-add="${product.id}">
+
+                    Add to bag +
+
+                </button>
+
+                <button
+                    class="quick-view"
+                    data-quick="${product.id}"
+                    aria-label="Quick view">
+
+                    ↗
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </article>
+
+    `;
+
+}
+
+
+/* =========================================================
+   FILTER PRODUCTS
+========================================================= */
+
+function getFilteredProducts() {
+
+    let items = [...products];
+
+    if(state.wishlistOnly) {
+
+        items = items.filter(product=>
+            state.wishlist.includes(product.id)
+        );
+
+    }
+
+    if(state.category!=="All") {
+
+        items = items.filter(product=>
+            product.category===state.category
+        );
+
+    }
+
+    if(state.search.trim()) {
+
+        const query = state.search.toLowerCase();
+
+        items = items.filter(product=>{
+
+            const searchable = (
+
+                product.title+" "+
+                product.category+" "+
+                product.description
+
+            ).toLowerCase();
+
+            return searchable.includes(query);
+
+        });
+
+    }
+
+    items = items.filter(product=>
+        product.price>=state.minPrice &&
+        product.price<=state.maxPrice
+    );
+
+    if(state.minRating>0) {
+
+        items = items.filter(product=>
+            product.rating>=state.minRating
+        );
+
+    }
+
+    switch(state.sort) {
+
+        case "low":
+
+            items.sort((a,b)=>a.price-b.price);
+
+            break;
+
+        case "high":
+
+            items.sort((a,b)=>b.price-a.price);
+
+            break;
+
+        case "rating":
+
+            items.sort((a,b)=>b.rating-a.rating);
+
+            break;
+
+        case "name":
+
+            items.sort((a,b)=>a.title.localeCompare(b.title));
+
+            break;
+
+        default:
+
+            items.sort((a,b)=>a.id-b.id);
+
+    }
+
+    return items;
+
+}
+
+
+/* =========================================================
+   RENDER PRODUCTS
+========================================================= */
+
+function renderProducts() {
+
+    const items = getFilteredProducts();
+
+    const grid = document.getElementById("productGrid");
+
+    const totalPages = Math.max(
+        1,
+        Math.ceil(items.length/state.perPage)
+    );
+
+    if(state.page>totalPages) {
+        state.page=totalPages;
+    }
+
+    const start = (state.page-1)*state.perPage;
+
+    const visible = items.slice(
+        start,
+        start+state.perPage
+    );
+
+    grid.innerHTML = visible.length
+
+        ? visible.map(productCard).join("")
+
+        : `
+
+        <div class="no-products">
+
+            <h3>No products found</h3>
+
+            <p>
+                Try changing your search or removing some filters.
+            </p>
+
+            <button class="primary-btn" onclick="clearFilters()">
+                Clear filters
+            </button>
+
+        </div>
+
+        `;
+
+    document.getElementById("resultCount").textContent =
+
+        `${items.length} product(s) found`;
+
+    renderPagination(totalPages);
+
+    renderActiveFilters();
+
+    updateCounts();
+
+    document.querySelectorAll(".category-card").forEach(card=>{
+
+        card.classList.toggle(
+            "active",
+            card.dataset.category===state.category
+        );
+
+    });
+
+    document.querySelectorAll(
+        'input[name="category"]'
+    ).forEach(input=>{
+
+        input.checked=input.value===state.category;
+
+    });
+
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+function renderPagination(totalPages) {
+
+    const container = document.getElementById("pagination");
+
+    if(totalPages<=1) {
+
+        container.innerHTML="";
+
+        return;
+
+    }
+
+    let html = `
+
+        <button class="page-btn"
+                data-page="${state.page-1}"
+                ${state.page===1?"disabled":""}>
+            ‹
+        </button>
+
+    `;
+
+    for(let i=1;i<=totalPages;i++) {
+
+        html+=`
+
+            <button
+                class="page-btn ${i===state.page?"active":""}"
+                data-page="${i}">
+
+                ${i}
+
+            </button>
+
+        `;
+
+    }
+
+    html+=`
+
+        <button
+            class="page-btn"
+            data-page="${state.page+1}"
+            ${state.page===totalPages?"disabled":""}>
+
+            ›
+
+        </button>
+
+    `;
+
+    container.innerHTML=html;
+
+}
+
+
+/* =========================================================
+   ACTIVE FILTER DISPLAY
+========================================================= */
+
+function renderActiveFilters() {
+
+    const container = document.getElementById("activeFilters");
+
+    let tags=[];
+
+    if(state.category!=="All") {
+        tags.push(state.category);
+    }
+
+    if(state.search) {
+        tags.push("Search: "+state.search);
+    }
+
+    if(state.minPrice>0) {
+        tags.push("From "+money(state.minPrice));
+    }
+
+    if(state.maxPrice!==Infinity) {
+        tags.push("Up to "+money(state.maxPrice));
+    }
+
+    if(state.minRating>0) {
+        tags.push(state.minRating+"+ stars");
+    }
+
+    container.innerHTML=tags.map(tag=>`
+
+        <span class="active-tag">
+            ${escapeHTML(tag)}
+        </span>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   CATEGORY FILTER
+========================================================= */
+
+function setCategory(category) {
+
+    state.category=category;
+
+    state.page=1;
+
+    state.wishlistOnly=false;
+
+    renderProducts();
+
+}
+
+
+/* =========================================================
+   CLEAR FILTERS
+========================================================= */
+
+function clearFilters() {
+
+    state.category="All";
+
+    state.search="";
+
+    state.sort="featured";
+
+    state.minPrice=0;
+
+    state.maxPrice=Infinity;
+
+    state.minRating=0;
+
+    state.page=1;
+
+    state.wishlistOnly=false;
+
+    document.getElementById("searchInput").value="";
+
+    document.getElementById("minPrice").value="";
+
+    document.getElementById("maxPrice").value="";
+
+    document.getElementById("sortSelect").value="featured";
+
+    document.querySelectorAll(".rating-filter").forEach(input=>{
+        input.checked=false;
+    });
+
+    renderProducts();
+
+}
+
+
+/* =========================================================
+   WISHLIST
+========================================================= */
+
+function toggleWishlist(id) {
+
+    id=Number(id);
+
+    if(state.wishlist.includes(id)) {
+
+        state.wishlist=state.wishlist.filter(
+            item=>item!==id
+        );
+
+        showToast("Removed from wishlist");
+
+    } else {
+
+        state.wishlist.push(id);
+
+        showToast("Added to wishlist");
+
+    }
+
+    saveStore();
+
+    renderProducts();
+
+}
+
+
+function showWishlist() {
+
+    state.wishlistOnly=true;
+
+    state.category="All";
+
+    state.search="";
+
+    state.page=1;
+
+    document.getElementById("searchInput").value="";
+
+    renderProducts();
+
+    document.getElementById("products").scrollIntoView({
+        behavior:"smooth"
+    });
+
+    showToast("Showing your saved products");
+
+}
+
+
+/* =========================================================
+   CART FUNCTIONS
+========================================================= */
+
+function addToCart(id) {
+
+    id=Number(id);
+
+    const existing=state.cart.find(
+        item=>item.id===id
+    );
+
+    if(existing) {
+
+        existing.quantity++;
+
+    } else {
+
+        state.cart.push({
+            id:id,
+            quantity:1
+        });
+
+    }
+
+    saveStore();
+
+    renderCart();
+
+    showToast("Product added to your bag");
+
+}
+
+
+function changeQuantity(id,change) {
+
+    const item=state.cart.find(
+        product=>product.id===Number(id)
+    );
+
+    if(!item) return;
+
+    item.quantity+=Number(change);
+
+    if(item.quantity<=0) {
+
+        state.cart=state.cart.filter(
+            product=>product.id!==Number(id)
+        );
+
+    }
+
+    saveStore();
+
+    renderCart();
+
+}
+
+
+function removeCartItem(id) {
+
+    state.cart=state.cart.filter(
+        item=>item.id!==Number(id)
+    );
+
+    saveStore();
+
+    renderCart();
+
+    showToast("Product removed");
+
+}
+
+
+/* =========================================================
+   CART RENDERING
+========================================================= */
+
+function renderCart() {
+
+    const container=document.getElementById("cartItems");
+
+    let subtotal=0;
+
+    if(state.cart.length===0) {
+
+        container.innerHTML=`
+
+            <div class="cart-empty">
+
+                <div style="font-size:2.5rem;">🛒</div>
+
+                <h3>Your bag is empty</h3>
+
+                <p>Explore the collection and add something you like.</p>
+
+            </div>
+
+        `;
+
+    } else {
+
+        container.innerHTML=state.cart.map(item=>{
+
+            const product=products.find(
+                p=>p.id===item.id
+            );
+
+            if(!product) return "";
+
+            subtotal+=product.price*item.quantity;
+
+            return `
+
+                <div class="cart-line">
+
+                    <img
+                        src="${product.image}"
+                        alt="${escapeHTML(product.title)}">
+
+                    <div>
+
+                        <strong>
+                            ${escapeHTML(product.title)}
+                        </strong>
+
+                        <small>
+                            ${money(product.price)}
+                        </small>
+
+                        <div class="quantity">
+
+                            <button data-change="-1"
+                                    data-id="${product.id}">
+                                −
+                            </button>
+
+                            <span>${item.quantity}</span>
+
+                            <button data-change="1"
+                                    data-id="${product.id}">
+                                +
+                            </button>
+
+                        </div>
+
+                        <button class="remove-cart"
+                                data-remove="${product.id}">
+                            Remove
+                        </button>
+
+                    </div>
+
+                    <span class="cart-price">
+                        ${money(product.price*item.quantity)}
+                    </span>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+    }
+
+    document.getElementById("cartSubtotal").textContent=
+        money(subtotal);
+
+    updateCounts();
+
+}
+
+
+function updateCounts() {
+
+    const total=state.cart.reduce(
+        (sum,item)=>sum+item.quantity,
+        0
+    );
+
+    document.getElementById("cartCount").textContent=total;
+
+    document.getElementById("wishlistCount").textContent=
+        state.wishlist.length;
+
+}
+
+
+/* =========================================================
+   CART DRAWER
+========================================================= */
+
+function openCart() {
+
+    document.getElementById("cartDrawer")
+        .classList.add("open");
+
+    document.getElementById("overlay")
+        .classList.add("open");
+
+}
+
+
+function closeCart() {
+
+    document.getElementById("cartDrawer")
+        .classList.remove("open");
+
+    document.getElementById("overlay")
+        .classList.remove("open");
+
+}
+
+
+/* =========================================================
+   QUICK VIEW
+========================================================= */
+
+function openQuickView(id) {
+
+    const product=products.find(
+        item=>item.id===Number(id)
+    );
+
+    if(!product) return;
+
+    document.getElementById("modalContent").innerHTML=`
+
+        <div class="modal-content">
+
+            <img
+                src="${product.image}"
+                alt="${escapeHTML(product.title)}">
+
+            <div class="modal-info">
+
+                <span class="eyebrow">
+                    ${escapeHTML(product.category)}
+                </span>
+
+                <h2>${escapeHTML(product.title)}</h2>
+
+                <div class="rating">
+                    ★★★★★
+                    <span>${product.rating} (${product.reviews})</span>
+                </div>
+
+                <span class="modal-price">
+                    ${money(product.price)}
+                </span>
+
+                <p>
+                    ${escapeHTML(product.description)}
+                </p>
+
+                <button class="primary-btn"
+                        data-modal-add="${product.id}">
+
+                    Add to shopping bag +
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+    document.getElementById("quickModal")
+        .classList.add("open");
+
+}
+
+
+function closeQuickView() {
+
+    document.getElementById("quickModal")
+        .classList.remove("open");
+
+}
+
+
+/* =========================================================
+   PRICE FILTER
+========================================================= */
+
+function applyPriceFilter(min,max) {
+
+    state.minPrice=Number(min)||0;
+
+    state.maxPrice=Number(max)||Infinity;
+
+    state.page=1;
+
+    renderProducts();
+
+}
+
+
+/* =========================================================
+   RATING FILTER
+========================================================= */
+
+function applyRatingFilter() {
+
+    const selected=[
+        ...document.querySelectorAll(".rating-filter:checked")
+    ].map(input=>Number(input.value));
+
+    state.minRating=selected.length
+        ?Math.max(...selected)
+        :0;
+
+    state.page=1;
+
+    renderProducts();
+
+}
+
+
+/* =========================================================
+   MOBILE FILTER PANEL
+========================================================= */
+
+function openMobileFilters() {
+
+    const panel=document.getElementById("mobileFilterPanel");
+
+    panel.classList.add("open");
+
+    const categories=document.getElementById("mobileCategories");
+
+    const names=[
+        "All",
+        "Electronics",
+        "Phones",
+        "Fashion",
+        "Home",
+        "Audio",
+        "Beauty",
+        "Fitness",
+        "Accessories"
+    ];
+
+    categories.innerHTML=names.map(category=>`
+
+        <label class="filter-option">
+
+            <input
+                type="radio"
+                name="mobileCategory"
+                value="${category}"
+                ${state.category===category?"checked":""}>
+
+            ${category==="All"?"All products":category}
+
+        </label>
+
+    `).join("");
+
+}
+
+
+function closeMobileFilters() {
+
+    document.getElementById("mobileFilterPanel")
+        .classList.remove("open");
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function searchProducts(value) {
+
+    state.search=value;
+
+    state.page=1;
+
+    state.wishlistOnly=false;
+
+    renderProducts();
+
+}
+
+
+/* =========================================================
+   SORTING
+========================================================= */
+
+function sortProducts(value) {
+
+    state.sort=value;
+
+    state.page=1;
+
+    renderProducts();
+
+}
+
+
+/* =========================================================
+   EVENT LISTENERS
+========================================================= */
+
+/* Search submit */
+
+document.getElementById("searchForm")
+.addEventListener("submit",event=>{
+
+    event.preventDefault();
+
+    searchProducts(
+        document.getElementById("searchInput").value
+    );
+
 });
 
-if('webkitSpeechRecognition' in window){
-const recognition=new webkitSpeechRecognition();
-recognition.continuous=false;
 
-const mic=document.createElement("button");
-mic.innerHTML="🎤 Voice";
-mic.style.width="100%";
-mic.style.marginTop="8px";
+/* Search as the customer types */
 
-document.querySelector("#kabini-chatbox div:last-child").appendChild(mic);
+document.getElementById("searchInput")
+.addEventListener("input",event=>{
 
-mic.onclick=()=>recognition.start();
-
-recognition.onresult=(e)=>{
-chatInput.value=e.results[0][0].transcript;
-sendMessage();
-};
-}
-document.addEventListener("click",(e)=>{
-
-const chatBox =
-document.getElementById("kabini-chatbox");
-
-const aiBtn =
-document.getElementById("kabini-chat-btn");
-
-if(
-chatBox &&
-!chatBox.contains(e.target) &&
-!aiBtn.contains(e.target)
-){
-chatBox.style.display="none";
-}
+    searchProducts(event.target.value);
 
 });
-document.addEventListener("keydown",(e)=>{
 
-if(e.key==="Escape"){
 
-document.getElementById("kabini-chatbox")
-.style.display="none";
+/* Sorting */
 
-}
+document.getElementById("sortSelect")
+.addEventListener("change",event=>{
 
-});document.addEventListener("keydown",(e)=>{
-
-if(e.key==="Escape"){
-
-document.getElementById("kabini-chatbox")
-.style.display="none";
-
-}
+    sortProducts(event.target.value);
 
 });
-addMessage(
-"🤖 Kabini AI",
-"Welcome to Kabini Global. How can I assist you today?"
-);
-window.open(
-"https://wa.me/2348107808968",
-"_blank"
-);
+
+
+/* Category shortcuts */
+
+document.getElementById("categoryGrid")
+.addEventListener("click",event=>{
+
+    const button=event.target.closest("[data-category]");
+
+    if(!button) return;
+
+    setCategory(button.dataset.category);
+
+    document.getElementById("products").scrollIntoView({
+        behavior:"smooth"
+    });
+
+});
+
+
+/* Desktop category radio filters */
+
+document.querySelectorAll('input[name="category"]')
+.forEach(input=>{
+
+    input.addEventListener("change",event=>{
+
+        setCategory(event.target.value);
+
+    });
+
+});
+
+
+/* Product grid actions */
+
+document.getElementById("productGrid")
+.addEventListener("click",event=>{
+
+    const add=event.target.closest("[data-add]");
+
+    const wish=event.target.closest("[data-wishlist]");
+
+    const quick=event.target.closest("[data-quick]");
+
+    if(add) {
+
+        addToCart(add.dataset.add);
+
+    }
+
+    if(wish) {
+
+        toggleWishlist(wish.dataset.wishlist);
+
+    }
+
+    if(quick) {
+
+        openQuickView(quick.dataset.quick);
+
+    }
+
+});
+
+
+/* Pagination */
+
+document.getElementById("pagination")
+.addEventListener("click",event=>{
+
+    const button=event.target.closest("[data-page]");
+
+    if(!button) return;
+
+    const page=Number(button.dataset.page);
+
+    if(page<1) return;
+
+    state.page=page;
+
+    renderProducts();
+
+    document.getElementById("products").scrollIntoView({
+        behavior:"smooth"
+    });
+
+});
+
+
+/* Price filters */
+
+document.getElementById("applyPrice")
+.addEventListener("click",()=>{
+
+    applyPriceFilter(
+        document.getElementById("minPrice").value,
+        document.getElementById("maxPrice").value
+    );
+
+});
+
+
+/* Rating filters */
+
+document.querySelectorAll(".rating-filter")
+.forEach(input=>{
+
+    input.addEventListener("change",applyRatingFilter);
+
+});
+
+
+/* Clear filters */
+
+document.getElementById("clearFilters")
+.addEventListener("click",clearFilters);
+
+
+/* Wishlist */
+
+document.getElementById("wishlistButton")
+.addEventListener("click",showWishlist);
+
+document.getElementById("footerWishlist")
+.addEventListener("click",event=>{
+
+    event.preventDefault();
+
+    showWishlist();
+
+});
+
+
+/* Cart */
+
+document.getElementById("cartButton")
+.addEventListener("click",openCart);
+
+document.getElementById("footerCart")
+.addEventListener("click",event=>{
+
+    event.preventDefault();
+
+    openCart();
+
+});
+
+
+document.getElementById("closeCart")
+.addEventListener("click",closeCart);
+
+document.getElementById("overlay")
+.addEventListener("click",closeCart);
+
+
+/* Cart item quantity and removal */
+
+document.getElementById("cartItems")
+.addEventListener("click",event=>{
+
+    const change=event.target.closest("[data-change]");
+
+    const remove=event.target.closest("[data-remove]");
+
+    if(change) {
+
+        changeQuantity(
+            change.dataset.id,
+            change.dataset.change
+        );
+
+    }
+
+    if(remove) {
+
+        removeCartItem(remove.dataset.remove);
+
+    }
+
+});
+
+
+/* Quick view */
+
+document.getElementById("closeModal")
+.addEventListener("click",closeQuickView);
+
+document.getElementById("modalBackdrop")
+.addEventListener("click",closeQuickView);
+
+
+document.getElementById("modalContent")
+.addEventListener("click",event=>{
+
+    const button=event.target.closest("[data-modal-add]");
+
+    if(!button) return;
+
+    addToCart(button.dataset.modalAdd);
+
+    closeQuickView();
+
+});
+
+
+/* Checkout placeholder */
+
+document.getElementById("checkoutButton")
+.addEventListener("click",()=>{
+
+    showToast(
+        "Checkout is not connected yet. A backend and payment integration are required."
+    );
+
+});
+
+
+/* Mobile filters */
+
+document.getElementById("mobileFilterButton")
+.addEventListener("click",openMobileFilters);
+
+document.getElementById("closeMobileFilter")
+.addEventListener("click",closeMobileFilters);
+
+
+document.getElementById("mobileApplyFilters")
+.addEventListener("click",()=>{
+
+    const selected=document.querySelector(
+        'input[name="mobileCategory"]:checked'
+    );
+
+    if(selected) {
+
+        state.category=selected.value;
+
+    }
+
+    applyPriceFilter(
+        document.getElementById("mobileMinPrice").value,
+        document.getElementById("mobileMaxPrice").value
+    );
+
+    closeMobileFilters();
+
+});
+
+
+document.getElementById("mobileClearFilters")
+.addEventListener("click",()=>{
+
+    clearFilters();
+
+    closeMobileFilters();
+
+});
+
+
+/* Mobile navigation */
+
+document.getElementById("menuToggle")
+.addEventListener("click",()=>{
+
+    document.getElementById("headerNav")
+        .classList.toggle("mobile-open");
+
+});
+
+
+/* Escape key */
+
+document.addEventListener("keydown",event=>{
+
+    if(event.key==="Escape") {
+
+        closeCart();
+
+        closeQuickView();
+
+        closeMobileFilters();
+
+    }
+
+});
+
+
+/* Footer year */
+
+document.getElementById("year").textContent=
+    new Date().getFullYear();
+
+
+/* =========================================================
+   INITIALISE THE SHOP
+========================================================= */
+
+renderProducts();
+
+renderCart();
+
+updateCounts();
+
 </script>
 
 </body>
